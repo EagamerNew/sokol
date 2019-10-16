@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta required="true" name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<title>Document</title>
+	<link href="fonts/fontawesome/css/all.css" rel="stylesheet">
+	<link rel="stylesheet" href="css/jquery-ui.css">
+	<link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="fonts/icomoon/style.css">
+    <link rel="stylesheet" href="fonts/font.css">
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.7.8/angular.js"></script>
+	
+</head>
+
+<body ng-app="index" ng-controller="registration">
+	<div class="login-wrapper">
+		<div id="step1" class="steps">
+			<img src="images/dc-logo.svg" alt="" class="logo">
+			<button class="registration" data-id="registration-form">Регистрация</button>
+			<button class="enter">Вход</button>
+		</div>
+		<div id="registration-form" class="steps" style="display: none;">
+			<img src="images/dc-logo.svg" width="140" alt="" class="logo">
+			<p class="form-title">Регистрация</p>
+			<p class="form-step">Шаг <span class="violet count">1</span> из 3</p>
+			<!-- <form novalidate> -->
+				<div id="reg-step1" style="display:none">
+					<div class="form_item">
+						<label for="surname">Ваша фамилия</label>
+						<input type="text" id="surname" required="true" name="surname" placeholder="Введите фамилию" ng-model="user.surname">
+					</div>
+					<div class="form_item">
+						<label for="name">Ваше имя</label>
+						<input type="text" id="name" required="true" name="name" placeholder="Введите имя" ng-model="user.name">
+					</div>
+					<div class="form_item">
+						<label for="lastname">Ваше отчество</label>
+						<input type="text" id="lastname" required="true" name="lastname" placeholder="Введите отчество" ng-model="user.lastname">
+					</div>
+					<div class="form_item">
+						<label for="email">Ваш e-mail</label>
+						<input type="text" id="email" required="true" name="email" placeholder="Введите e-mail" ng-model="user.email">
+					</div>
+					<div class="form_item">
+						<label for="password">Ваш пароль</label>
+						<input type="password" id="password" required="true" name="password"
+							placeholder="Введите пароль" ng-model="user.password">
+					</div>
+					<div class="footer-buttons">
+						<span id="go-back" data-id="step1" class="back">
+							Назад
+						</span>
+						<span id="regstep2" class="next" ng-click="saveStep1()">
+							Продолжить
+						</span>
+					</div>
+				</div>
+				<div id="reg-step2" style="display:none">
+					<div class="form_item">
+						<label for="study_center">Наименование учебного центра</label>
+						<input type="text" id="study_center" required="true" name="study_center"
+							placeholder="Введите название" ng-model="user.uchcenter">
+					</div>
+					<div class="form_item">
+						<label for="name">БИН</label>
+						<input type="text" id="name" required="true" name="name" placeholder="Введите БИН" ng-model="user.bin">
+					</div>
+					<div class="form_item">
+						<label for="lastname">Фактический адрес</label>
+						<input type="text" id="lastname" required="true" name="lastname" placeholder="Введите адрес" ng-model="user.fact_address"> 
+					</div>
+					<div class="form_item">
+						<label for="email">Правоустанавливающие документы</label>
+						<div class="file-upload">
+							<label>
+								<input type="file" name="file" formnovalidate onchange="getFileParam()"
+									id="uploaded-file1" file-model="file_ustav">
+								<span class="upload">Устав</span>
+							</label>
+							<div id="file-name1" class="fileName">&nbsp;</div>
+						</div>
+						<div class="file-upload">
+							<label>
+								<input type="file" name="file" formnovalidate onchange="getFileParam2();"
+									id="uploaded-file2" file-model="file_rekvisity">
+								<span class="upload">Реквизиты</span>
+							</label>
+							<div id="file-name2" class="fileName">&nbsp;</div>
+						</div>
+						<div class="file-upload">
+							<label>
+								<input type="file" name="file" formnovalidate onchange="getFileParam3();"
+									id="uploaded-file3" file-model="file_uchdocs">
+								<span class="upload">Учредительные документы</span>
+							</label>
+							<div id="file-name3" class="fileName">&nbsp;</div>
+						</div>
+					</div>
+					<div class="footer-buttons">
+						<span id="go-back" data-id="reg-step1" class="back">
+							Назад
+						</span>
+						<span id="regstep3" class="next" ng-click="saveStep2()">
+							Продолжить
+						</span>
+					</div>
+				</div>
+				<div id="reg-step3" style="display:none">
+					<div class="form_item">
+						<label for="project">Проектная вместимость</label>
+						<input type="text" id="project" required="true" name="project" placeholder="Введите название" ng-model="user.project_vmest">
+					</div>
+					<div class="form_item">
+						<label for="specialization">Специализация</label>
+						<input type="text" id="specialization" required="true" name="specialization" ng-model="user.specialization"
+							placeholder="Выберите специализацию">
+					</div>
+					<div class="form_item">
+						<label for="datepicker">Сроки обучения</label>
+						<div class="datepicker">
+							<input type="text" id="datepicker" placeholder="Выберите период" required ng-model="user.srokObuch"> <i
+								class="far fa-calendar-alt calendar-icon"></i>
+						</div>
+					</div>
+					<div class="form_item">
+						<label for="language">Язык обучения</label>
+						<select name="language" id="language" class="custom-select"
+							placeholder="Выберите язык обучения">
+							<option value="1">Русский</option>
+							<option value="2">Английский</option>
+							<option value="3">Французский</option>
+							<option value="4">Испанский</option>
+						</select>
+					</div>
+					<div class="form_item">
+						<label for="lessons">Форма обучения</label>
+						<select name="lessons" id="lessons" class="custom-select" placeholder="Выберите язык обучения">
+							<option value="1">Очная</option>
+							<option value="2">Заочная</option>
+							<option value="3">Удаленная</option>
+						</select>
+					</div>
+					<div class="form_item">
+						<label for="lessons">Количество групп</label>
+						<select name="groups"  id="groups" class="custom-select" placeholder="Выберите язык обучения">
+							<option value="1">Очная</option>
+							<option value="2">Заочная</option>
+							<option value="3">Удаленная</option>
+						</select>
+					</div>
+					<div class="form_item">
+						<span class="add-input" id="add-input" ng-click="addSpecialization()">
+							<img src="images/plus-violet.svg" alt=""> Добавить специализацию
+						</span>
+					</div>
+					<div id="new_fields" >
+						<div class="form_item" ng-repeat="spec in user.specializations track by $index;">
+							<input type="text" name="customSpec" placeholder="{{'Дополнительная специализация ' + ($index+1)}}" ng-model="user.specializations[$index]">
+						</div>
+					</div>
+					<!-- <span ng-click="saveAll()" style="background-color: red;">check</button> -->
+					<div class="footer-buttons">
+						<span id="go-back" data-id="reg-step2" class="back">
+							Назад
+						</span>
+						<button ng-click="saveAll()" class="next">Завершить</button>
+					</div>
+				</div>
+				<!-- <button ng-click="hello()">hello</button> -->
+
+				<!-- <span ng-click="saveAll()" style="background-color: red;">check</button> -->
+
+			<!-- </form> -->
+		</div>
+	</div>
+
+	<script src="js/jquery-3.3.1.min.js"></script>
+	<script src="js/jquery-ui.js"></script>
+	<script src="js/registration-ctrl.js"></script>
+	<script src="js/custom.js"></script>
+    <script src="js/libs/jquery-3.2.1.min.js"></script>
+    <script src="js/libs/jquery.formstyler.min.js"></script>
+    <script src="js/common.js"></script>
+</body>
+
+</html>

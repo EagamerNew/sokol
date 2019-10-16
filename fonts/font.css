@@ -1,0 +1,34 @@
+@font-face {
+	font-family: 'PTMonoWebRegular';
+	src: url('PT%20Mono_Regular.eot');
+	src:
+	     url('PT%20Mono_Regular.eot?#iefix') format('embedded-opentype'),
+	     url('PT%20Mono_Regular.woff2') format('woff2'),
+	     url('PT%20Mono_Regular.woff') format('woff'),
+	     url('PT%20Mono_Regular.ttf') format('truetype');
+	font-weight: normal;
+	font-style: normal;
+}
+@font-face {
+	font-family: 'PTRootUIWebMedium';
+	src: url('PT%20Root%20UI_Medium.eot');
+	src:
+	     url('PT%20Root%20UI_Medium.eot?#iefix') format('embedded-opentype'),
+	     url('PT%20Root%20UI_Medium.woff2') format('woff2'),
+	     url('PT%20Root%20UI_Medium.woff') format('woff'),
+	     url('PT%20Root%20UI_Medium.ttf') format('truetype');
+	font-weight: normal;
+	font-style: normal;
+}
+
+@font-face {
+	font-family: 'PTRootUIWebRegular';
+	src: url('PT%20Root%20UI_Regular.eot');
+	src:
+	     url('PT%20Root%20UI_Regular.eot?#iefix') format('embedded-opentype'),
+	     url('PT%20Root%20UI_Regular.woff2') format('woff2'),
+	     url('PT%20Root%20UI_Regular.woff') format('woff'),
+	     url('PT%20Root%20UI_Regular.ttf') format('truetype');
+	font-weight: normal;
+	font-style: normal;
+}

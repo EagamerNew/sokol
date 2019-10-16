@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta required="true" name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<title>Document</title>
+	<link href="fonts/fontawesome/css/all.css" rel="stylesheet">
+	<link rel="stylesheet" href="css/jquery-ui.css">
+	<link rel="stylesheet" href="css/style.css">
+</head>
+
+<body ng-app="thanks" ng-controller="thanks-info">
+	<div class="thanks">
+		<div class="thanks-inner">
+			<img src="images/dc-logo.svg" alt="" class="logo">
+			<div class="main-image">
+				<img src="images/success.svg" alt="">
+			</div>
+			<p class="thanks-title">
+					Регистрация прошла успешно!
+			</p>
+			<div class="thanks-text">
+					На вашу почту <span class="sent-from" id="sent-from">{{email}}</span> было отправлено письмо для активации аккаунта
+			</div>
+			<a href="#" class="thanks-finish">Активировать</a>
+		</div>
+	</div>
+	<script src="js/jquery-3.3.1.min.js"></script>
+	<script src="js/jquery-ui.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.7.8/angular.js"></script>
+
+	<script>
+			var app = angular.module("thanks", []);
+			app.controller("thanks-info", function($scope, $http, $window) {
+				console.log('init');
+				$scope.email = $window.sessionStorage.email;
+				console.log($window.sessionStorage.email);
+				 $window.localStorage.removeItem('nextStep');
+				 $window.localStorage.removeItem('loginPage');
+				 $window.localStorage.removeItem('prevStep');
+				 $window.localStorage.removeItem('currentStep');
+				 $window.localStorage.removeItem('formName');
+			});
+		
+		</script>
+	
+</body>
+
+</html>

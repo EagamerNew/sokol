@@ -70,7 +70,8 @@ app.controller("registration", function($scope, $http,$location,$window) {
                 console.log('crassavchik' + $scope.user.email);
                 // $cookies.put('email',$scope.user.email);
                 $window.sessionStorage.setItem('email',$scope.user.email);
-                $window.location.href = 'thanks.html';
+                $window.sessionStorage.setItem('userId',insertedId);
+                 $window.location.href = 'thanks.html';
             });
     }
 

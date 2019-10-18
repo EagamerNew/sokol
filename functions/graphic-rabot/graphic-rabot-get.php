@@ -2,7 +2,7 @@
 
 include('../database_connection.php');
 
-$query = "SELECT * FROM education_graphic ORDER BY id";
+$query = "SELECT * FROM education_graphic WHERE userId = ".$_GET['userId']." ORDER BY id";
 
 $statement = $connect->prepare($query);
 

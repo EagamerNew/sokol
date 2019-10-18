@@ -2,70 +2,72 @@
 <html>
 <head>
     <meta charset="utf-8">
-	<meta http-equiv="x-ua-compatible" content="ie=edge">
-	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<meta name="format-detection" content="telephone=no" />
-	<title>index</title>
-	<meta name="description" content="">
-	<meta name="Keywords" content="">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="format-detection" content="telephone=no" />
+    <title>index</title>
+    <meta name="description" content="">
+    <meta name="Keywords" content="">
 
-	<link rel="stylesheet" href="css/style.css">
-	<link rel="stylesheet" href="fonts/icomoon/style.css">
-	<link rel="stylesheet" href="fonts/font.css">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="fonts/icomoon/style.css">
+    <link rel="stylesheet" href="fonts/font.css">
 </head>
 
-    
-    
-    
-<body class="body">
+
+
+
+<body class="body" ng-app="add-participant" ng-controller="participant">
 <script src="js/libs/jquery-3.2.1.min.js"></script>
 <script src="js/libs/jquery.formstyler.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.7.8/angular.js"></script>
 <script src="js/common.js"></script>
-    <aside class="aside d-flex">
+<aside class="aside d-flex">
+    <a href="/" class="logo">
+        <img src="images/logo.svg" alt="digital control">
+    </a>
+    <nav class="nav d-flex">
+        <a class="nav-a" href="02_Grafik_rabot_pravka.html">
+            <i class="icon-home"></i>
+            <span>
+                    Главная
+                </span>
+        </a>
+        <a class="nav-a active" href="08_Spisok_uch.html">
+            <i class="icon-account-group"></i>
+            <span>
+                    Список учащихся
+                </span>
+        </a>
+        <a class="nav-a" href="12_Kolichestvo_mest.html">
+            <i class="icon-clipboard"></i>
+            <span>
+                    Количество мест
+                </span>
+        </a>
+        <a class="nav-a" href="14_Tabelirovanie_st_1.html">
+            <i class="icon-new-window"></i>
+            <span>
+                    Табелирование
+                </span>
+        </a>
+
+    </nav>
+</aside>
+<section class="section">
+    <div class="mobile align-items-center">
+        <div class="btn-mob">
+            <span></span>
+        </div>
         <a href="/" class="logo">
             <img src="images/logo.svg" alt="digital control">
         </a>
-        <nav class="nav d-flex">
-            <a class="nav-a" href="01_Grafik_rabot.html">
-                <i class="icon-home"></i>
-                <span>
-                    Главная
-                </span>
-            </a>
-            <a class="nav-a active" href="08_Spisok_uch.html">
-                <i class="icon-account-group"></i>
-                <span>
-                    Список учащихся
-                </span>
-            </a>
-            <a class="nav-a" href="12_Kolichestvo_mest.html">
-                <i class="icon-clipboard"></i>
-                <span>
-                    Количество мест
-                </span>
-            </a>
-            <a class="nav-a" href="14_Tabelirovanie_st_1.html">
-                <i class="icon-new-window"></i>
-                <span>
-                    Табелирование
-                </span>
-            </a>
-            
-        </nav>
-    </aside>
-    <section class="section">
-        <div class="mobile align-items-center">
-            <div class="btn-mob">
-                <span></span>
-            </div>
-            <a href="/" class="logo">
-                <img src="images/logo.svg" alt="digital control">
-            </a>
-        </div>
-        <div class="user__add">
-            <div class="user__add-h1">Добавить учащегося</div>
+    </div>
+    <div class="user__add">
+        <div class="user__add-h1">{{type === 'add'? 'Добавить учащегося' : 'Редактирование' }}</div>
+        <div ng-show="step === 1">
             <div class="user__add-step">
-                Шаг 
+                Шаг
                 <span>1</span>
                 из 2
             </div>
@@ -74,66 +76,233 @@
                     <div class="label-name">
                         Фамилия
                     </div>
-                    <input type="text" placeholder="Введите фамилию">
+                    <input type="text" placeholder="Введите фамилию"  ng-model="participant.surname">
                 </label>
                 <label class="label">
                     <div class="label-name">
                         Имя
                     </div>
-                    <input type="text" placeholder="Введите имя">
+                    <input type="text" placeholder="Введите имя"  ng-model="participant.name">
                 </label>
                 <label class="label">
                     <div class="label-name">
                         Отчество
                     </div>
-                    <input type="text" placeholder="Введите отчество">
+                    <input type="text" placeholder="Введите отчество"  ng-model="participant.lastname">
                 </label>
                 <label class="label">
                     <div class="label-name">
                         ИИН
                     </div>
-                    <input type="text" placeholder="Введите ИИН">
+                    <input type="text" placeholder="Введите ИИН" ng-model="participant.idn">
                 </label>
                 <label class="label">
                     <div class="label-name">
                         Район
                     </div>
 
-                    <select  data-placeholder="Выберите район">
+                    <select  data-placeholder="Выберите район"  ng-model="participant.regionId">
                         <option></option>
-                        <option>Алмалинский</option>
-                        <option>Алмалинский</option>
-                        <option>Алмалинский</option>
-                        <option>Алмалинский</option>
-                        <option>Алмалинский</option>
+                        <option value="1">Алмалинский</option>
+                        <option value="2">Алатауский</option>
+                        <option value="3">Медеуский</option>
                     </select>
                 </label>
                 <label class="label">
                     <div class="label-name">
                         Номер телефона
                     </div>
-                    <input type="text" placeholder="Введите телефон">
+                    <input type="text" placeholder="Введите телефон"  ng-model="participant.phone">
                 </label>
                 <label class="label">
                     <div class="label-name">
                         Электронная почта
                     </div>
-                    <input type="text" placeholder="Введите эл. почту">
+                    <input type="text" placeholder="Введите эл. почту" ng-model="participant.email">
                 </label>
                 <div class="d-flex justify-content-between">
                     <a href="08_Spisok_uch.html" class="btn btn-white btn-big">
                         Отмена
                     </a>
-                    <a href="06_Dobavit_uch_st_2.html" class="btn btn-pur btn-big">
+                    <a  ng-click="nextStep()" href="" class="btn btn-pur btn-big">
                         Далее
                     </a>
-                    
+
                 </div>
-                
+
             </form>
         </div>
+        <div ng-show="step === 2">
+            <div class="user__add-step">
+                Шаг
+                <span>2</span>
+                из 2
+            </div>
+            <form class="form">
+                <label class="label">
+                    <div class="label-name">
+                        Специализация
+                    </div>
+                    <select data-search="true" data-placeholder="Выберите специализацию"  ng-model="participant.specId">
+                        <option></option>
+                        <option ng-repeat="punct in specs" value="{{$index+1}}">{{punct}}</option>
+                    </select>
+                </label>
+                <label class="label">
+                    <div class="label-name">
+                        Квалификация
+                    </div>
+                    <select data-placeholder="Выберите квалификацию"  ng-model="participant.qualId">
+                        <option></option>
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                    </select>
+                </label>
+                <label class="label">
+                    <div class="label-name">
+                        Выберите высшее образование
+                    </div>
+                    <select data-placeholder="Выберите вариант" ng-model="participant.educId">
+                        <option></option>
+                        <option value="1">Имеется</option>
+                        <option value="2">Не имеется</option>
+                    </select>
+                </label>
+                <label class="label">
+                    <div class="label-name">
+                        Выберите навыки
+                    </div>
+                    <select data-placeholder="Выберите навыки" ng-model="tempSkill" ng-change="addSkill(tempSkill)">
+                        <option></option>
+                        <option value="1">Навык 1</option>
+                        <option value="2">Навык 2</option>
+                        <option value="3">Навык 3</option>
+                        <option value="4">Навык 4</option>
+                    </select>
+                </label>
+                <div class="label skill" >
+                    <div class="skill-item" ng-repeat="item in participant.skillArr">
+                        {{getSkillById(item)}}
+                        <i class="skill-remove icon-close" ng-click="removeSkill(item)"></i>
+                    </div>
+                </div>
+                <div class="d-flex justify-content-between">
+                    <a href="javascript:void(0)" ng-click="prevStep()" class="btn btn-white btn-big">
+                        Назад
+                    </a>
+                    <a href="javascript:void(0)"  class="btn btn-pur btn-big" ng-click="save()">
+                        Завершить
+                    </a>
+                </div>
 
-        
-    </section>
+            </form>
+        </div>
+    </div>
+
+
+</section>
 </body>
+<script>
+    var app = angular.module("add-participant", []);
+    app.controller("participant", function ($scope, $http, $location, $window, $timeout,$filter) {
+        $scope.step = 1;
+        $scope.participant = {
+            id: -1,
+            userId: -1,
+            surname: '',
+            name: '',
+            lastname: '',
+            idn: '',
+            regionId: 1,
+            phone: '',
+            email: '',
+            specId: 1,
+            qualId: 1,
+            educId: 1,
+            skillArr: [],
+            skills: '',
+            attend: 0,
+            absent: 0,
+            created: $filter('date')(new Date(), "dd.MM.yyyy")
+        };
+        $scope.specs = ["Пункт 1","Пункт 2","Пункт 3","Пункт 4","Пункт 5","Пункт 6","Пункт 7","Пункт 8","Пункт 9"];
+        $scope.type = 'add';
+        console.log($scope.participant)
+        $scope.init = function () {
+            var param = $window.location.search;
+            if(param.length > 0){
+                $scope.id = param.split('=')[1];
+                $scope.type = 'edit';
+                $http.get('./functions/participant/participant-one-get.php?id=' + $scope.id).then(function (data) {
+                    console.log(data);
+                    if (data.data && angular.isArray(data.data)) {
+                        $scope.participant = data.data[0];
+                        $scope.participant.skillArr = $scope.participant.skills.split(',');
+                    }
+                });
+            }
+        }
+        $scope.init();
+
+        $scope.nextStep = function(){
+            $scope.step = 2;
+        }
+
+        $scope.prevStep = function(){
+            $scope.step = 1;
+        }
+
+        $scope.addSkill = function(item){
+            var skills = {"1":"Навык 1","2":"Навык 2","3":"Навык 3","4":"Навык 4"};
+            console.log('item exist: ', skills[item+""], ' item: ', item);
+            if(!$scope.participant.skillArr.includes(item) && item){
+                $scope.participant.skillArr.push(item);
+            }
+        }
+
+        $scope.removeSkill = function(item){
+            var index = $scope.participant.skillArr.indexOf(item);
+            console.log(index);
+            $scope.participant.skillArr.splice(index, 1);
+        }
+
+        $scope.getSkillById = function(item){
+            var skills = {"1":"Навык 1","2":"Навык 2","3":"Навык 3","4":"Навык 4"};
+            return skills[item+""];
+        }
+
+        $scope.save = function(){
+            $scope.participant.skills = $scope.participant.skillArr.join(',');
+            if($scope.type === 'add'){
+                console.log('add', $scope.participant);
+                $http({
+                    method:"POST",
+                    url:"functions/participant/participant-add-post.php",
+                    data:$scope.participant
+                }).then(function(data){
+                    console.log(data);
+                    console.log(parseInt(data.data.replace(' ','')));
+                    var insertedId = parseInt(data.data.replace(' ',''));
+                    console.log('crassavchik - insertedId: ', insertedId);
+                    $window.location.href = '18_Dobavit_uch_st_4.html?id='+insertedId;
+                });
+            }else{
+                $scope.participant.id = $scope.id;
+                console.log('edit', $scope.participant);
+                $http({
+                    method:"POST",
+                    url:"functions/participant/participant-edit-post.php",
+                    data:$scope.participant
+                }).then(function(data){
+                    console.log(data);
+                    console.log(parseInt(data.data.replace(' ','')));
+                    var insertedId = parseInt(data.data.replace(' ',''));
+                    console.log('crassavchik - insertedId: ', insertedId);
+                    $window.location.href = '19_Otredactirovat_uch_st_3.html?id='+$scope.id;
+                });
+            }
+
+        }
+    });
+</script>
 </html>

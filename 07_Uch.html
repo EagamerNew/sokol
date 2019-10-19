@@ -205,11 +205,12 @@
             absent: 0,
             created: ''
         };
-        $scope.specs = ["Пункт 1", "Пункт 2", "Пункт 3", "Пункт 4", "Пункт 5", "Пункт 6", "Пункт 7", "Пункт 8", "Пункт 9"];
+        $scope.specs = [];
         $scope.quals = ["1","2"];
         $scope.educs = ["Имеется","Не имеется"];
         $scope.regions = ["Алмалинский","Алатауский","Медеуский"];
         $scope.attendStyle = {'min-width': '50%'};
+        $scope.userId = $window.sessionStorage.userId;
 
         $scope.init = function () {
             var param = $window.location.search;
@@ -226,6 +227,19 @@
             }
         }
         $scope.init();
+
+        $scope.getUserSpec = function(){
+            $http.get('./functions/user-spec/user-spec-list-get.php?userId=' + $scope.userId).then(function (data) {
+                console.log(data);
+                $scope.changingId = -1;
+                if (data.data && angular.isArray(data.data)) {
+                    $scope.specs = data.data;
+                }else{
+                    console.error('userSpec array null!');
+                }
+            });
+        }
+        $scope.getUserSpec();
 
         $scope.calcStyle = function(){
             $scope.participant.attend = parseInt($scope.participant.attend);

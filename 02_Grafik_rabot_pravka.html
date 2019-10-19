@@ -151,9 +151,8 @@
 
                         </div>
                         <div class="colo" data-text="Специализация">
-                            <select id="specId" ng-model="item.specId">
-                                <option value="1">Слесарь</option>
-                                <option value="2">Автомеханик</option>
+                            <select id="specId" ng-model="item.specId" >
+                                <option ng-repeat="spec in specs" value="{{spec.id}}">{{spec.title}}</option>
                             </select>
 
                         </div>
@@ -196,8 +195,13 @@
         $scope.changingId = -1;
         $scope.graphics = [];
         $scope.userId = $window.sessionStorage.userId;
+        $scope.specs = [];
 
         $scope.fetchData = function () {
+            if(!$scope.userId){
+                alert("You aren't log on! Please log in first");
+                $window.location.href = "login.html";
+            }
             $http.get('./functions/graphic-rabot/graphic-rabot-get.php?userId=' + $scope.userId).then(function (data) {
                 console.log(data);
                 $scope.changingId = -1;
@@ -207,6 +211,20 @@
             });
         };
         $scope.fetchData();
+
+        $scope.getUserSpec = function(){
+            $http.get('./functions/user-spec/user-spec-list-get.php?userId=' + $scope.userId).then(function (data) {
+                console.log(data);
+                $scope.changingId = -1;
+                if (data.data && angular.isArray(data.data)) {
+                    $scope.specs = data.data;
+                }else{
+                    console.error('userSpec array null!');
+                }
+            });
+        }
+        $scope.getUserSpec();
+
 
         $scope.add = function () {
             $scope.changingId = -1;
@@ -278,12 +296,9 @@
         }
 
         $scope.getSpec = function (id) {
-            var arr = [
-                { name: "Автомеханик", id: 2 }, { name: "Слесарь", id: 1 }
-            ];
-            for (var i = 0; i < arr.length; i++) {
-                if (arr[i].id == id) {
-                    return arr[i].name;
+            for (var i = 0; i < $scope.specs.length; i++) {
+                if ($scope.specs[i].id == id) {
+                    return $scope.specs[i].title;
                 }
             }
         }

@@ -17,9 +17,10 @@
     
     
     
-<body class="body">
+<body class="body"  ng-app="kol-mest" ng-controller="mest">
 <script src="js/libs/jquery-3.2.1.min.js"></script>
 <script src="js/libs/jquery.formstyler.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.7.8/angular.js"></script>
 <script src="js/common.js"></script>
     <aside class="aside d-flex">
         <a href="/" class="logo">
@@ -72,7 +73,7 @@
                 </div>
                 <div class="d-flex justify-content-end align-items-center">
                     <label class="search-input">
-                        <input type="search" placeholder="Поиск…">
+                        <input type="search" placeholder="Поиск…" ng-model="search">
                         <i class="icon-search"></i>
                     </label>
                     <a href="" class="filter">
@@ -88,134 +89,68 @@
                     <div class="d-flex">
                             <div class="colo ">
                                 <label class="d-flex">
-                                    <input type="checkbox"><span></span>
                                     Специализация
-                                    <i class="icon-angle-arrow-down"></i>
+<!--                                    <i class="icon-angle-arrow-down"></i>-->
                                 </label>
                                 
                                 
                             </div>
                             <div class="colo ">
+                                Тема
+<!--                                <i class="icon-angle-arrow-down"></i>-->
+                            </div>
+                            <div class="colo ">
                                 Общее кол-во
-                                <i class="icon-angle-arrow-down"></i>
+<!--                                <i class="icon-angle-arrow-down"></i>-->
                             </div>
                             <div class="colo ">
                                 Занято
-                                <i class="icon-angle-arrow-down"></i>
+<!--                                <i class="icon-angle-arrow-down"></i>-->
                             </div>
                             <div class="colo ">
                                 Свободно
-                                <i class="icon-angle-arrow-down"></i>
+<!--                                <i class="icon-angle-arrow-down"></i>-->
                             </div>
                             <div class="colo ">
                                 Окончили
-                                <i class="icon-angle-arrow-down"></i>
+<!--                                <i class="icon-angle-arrow-down"></i>-->
                             </div>
                             <div class="colo ">
                                 Отчислено
-                                <i class="icon-angle-arrow-down"></i>
+<!--                                <i class="icon-angle-arrow-down"></i>-->
                             </div>
                         </div>
                             
                     
                 </div>
-                <div class="table-body table-body-bg table-body-last table-body-t ">
-                            
+                <div class="table-body table-body-bg table-body-last table-body-t " ng-if="educs" ng-repeat="item in educs |  filter: {specName: search}">
                             <div class="d-flex">
                                 <div class="colo " data-text="Специализация">
                                     <label class="d-flex">
-                                        <input type="checkbox"><span></span>
-                                        Автомеханик
+                                        {{item.specName}}
                                     </label>
                                 </div>
-                                <div class="colo " data-text="Общее кол-во">
-                                    35
-                                </div>
-                                <div class="colo " data-text="Занято">
-                                    15
-                                </div>
-                                <div class="colo " data-text="Свободно">
-                                    20
-                                </div>
-                                <div class="colo " data-text="Окончили">
-                                    45
-                                </div>
-                                <div class="colo " data-text="Отчислено">
-                                    2
-                                </div>
-                            </div>
-                            <div class="d-flex">
-                                <div class="colo " data-text="Специализация">
+                                <div class="colo " data-text="Тема">
                                     <label class="d-flex">
-                                        <input type="checkbox"><span></span>
-                                        Слесарь
+                                        {{item.theme}}
                                     </label>
                                 </div>
                                 <div class="colo " data-text="Общее кол-во">
-                                    30
+                                    {{item.total}}
                                 </div>
                                 <div class="colo " data-text="Занято">
-                                    12
+                                    {{item.busy}}
                                 </div>
                                 <div class="colo " data-text="Свободно">
-                                    28
+                                    {{item.total - item.busy}}
                                 </div>
                                 <div class="colo " data-text="Окончили">
-                                    14
+                                    0
                                 </div>
                                 <div class="colo " data-text="Отчислено">
-                                    1
+                                    0
                                 </div>
                             </div>
-                            <div class="d-flex">
-                                <div class="colo " data-text="Специализация">
-                                    <label class="d-flex">
-                                        <input type="checkbox"><span></span>
-                                        Автомеханик
-                                    </label>
-                                </div>
-                                <div class="colo " data-text="Общее кол-во">
-                                    35
-                                </div>
-                                <div class="colo " data-text="Занято">
-                                    15
-                                </div>
-                                <div class="colo " data-text="Свободно">
-                                    20
-                                </div>
-                                <div class="colo " data-text="Окончили">
-                                    45
-                                </div>
-                                <div class="colo " data-text="Отчислено">
-                                    2
-                                </div>
-                            </div>
-                            <div class="d-flex">
-                                <div class="colo " data-text="Специализация">
-                                    <label class="d-flex">
-                                        <input type="checkbox"><span></span>
-                                        Слесарь
-                                    </label>
-                                </div>
-                                <div class="colo " data-text="Общее кол-во">
-                                    30
-                                </div>
-                                <div class="colo " data-text="Занято">
-                                    12
-                                </div>
-                                <div class="colo " data-text="Свободно">
-                                    28
-                                </div>
-                                <div class="colo " data-text="Окончили">
-                                    14
-                                </div>
-                                <div class="colo " data-text="Отчислено">
-                                    1
-                                </div>
-                            </div>
-                            
-                            
-
                         </div>
             </div>        
         </div>
@@ -223,4 +158,62 @@
         
     </section>
 </body>
+<script>
+    var app = angular.module("kol-mest", []);
+    app.controller("mest", function ($scope, $http, $location, $window, $timeout,$filter) {
+        $scope.educs = [];
+        $scope.specs = [];
+        $scope.userId = $window.sessionStorage.userId;
+
+        $scope.getUserSpec = function(){
+            $http.get('./functions/user-spec/user-spec-list-get.php?userId=' + $scope.userId).then(function (data) {
+                console.log(data);
+                $scope.changingId = -1;
+                if (data.data && angular.isArray(data.data)) {
+                    $scope.specs = data.data;
+
+                }else{
+                    console.error('userSpec array null!');
+                }
+                $scope.getEducationProgram();
+            });
+        }
+        $scope.getUserSpec();
+
+        $scope.getEducationProgram = function(){
+            $http.get('./functions/education-program/education-program-get.php?userId=' + $scope.userId).then(function (data) {
+                console.log(data);
+                $scope.changingId = -1;
+                if (data.data && angular.isArray(data.data)) {
+                    $scope.educs = data.data;
+                    if($scope.specs){
+                        $scope.educs = $scope.educs.map(val=>{
+                            let temp = val;
+                            for (let i = 0; i < $scope.specs.length; i++) {
+                                console.log($scope.specs[i].id === val.specId)
+                                if($scope.specs[i].id === val.specId ){
+                                    temp.specName = $scope.specs[i].title;
+                                    break;
+                                }
+                            }
+                            return temp;
+                        })
+                        console.log('specs:', $scope.educs)
+                    }
+                }else{
+                    console.error('educs array null!');
+                }
+            });
+        }
+
+
+        $scope.getSpec = function (id) {
+            for (var i = 0; i < $scope.specs.length; i++) {
+                if ($scope.specs[i].id == id) {
+                    return $scope.specs[i].title;
+                }
+            }
+        }
+    });
+</script>
 </html>

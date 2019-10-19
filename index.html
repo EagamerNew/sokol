@@ -45,7 +45,12 @@
 				<div class="form_item">
 					<label for="email">Ваш e-mail</label>
 					<input type="text" id="email" required="true" name="email" placeholder="Введите e-mail"
-						ng-model="user.email">
+						   ng-model="user.email">
+				</div>
+				<div class="form_item">
+					<label for="phone">Ваш номер телефона</label>
+					<input type="text" id="phone" required="true" name="phone" placeholder="Пример(без +7): 7788098989"
+						   ng-model="user.phone">
 				</div>
 				<div class="form_item">
 					<label for="password">Ваш пароль</label>
@@ -183,6 +188,7 @@
 			<!-- </form> -->
 		</div>
 	</div>
+<!--	 <button ng-click="saveUserSpecs(1)">hello</button>-->
 
 	<script src="js/jquery-3.3.1.min.js"></script>
 	<script src="js/jquery-ui.js"></script>

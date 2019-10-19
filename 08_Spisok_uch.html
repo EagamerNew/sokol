@@ -95,24 +95,24 @@
                     <div class="d-flex">
                             <div class="colo ">
                                 <label class="flex">
-                                    <input type="checkbox"><span></span>
+<!--                                    <input type="checkbox"><span></span>-->
                                     Учащийся
-                                    <i class="icon-angle-arrow-down"></i>
+<!--                                    <i class="icon-angle-arrow-down"></i>-->
                                 </label>
                                 
                                 
                             </div>
                             <div class="colo ">
                                 Специализация
-                                <i class="icon-angle-arrow-down"></i>
+<!--                                <i class="icon-angle-arrow-down"></i>-->
                             </div>
                             <div class="colo ">
                                 Дата регистрации
-                                <i class="icon-angle-arrow-down"></i>
+<!--                                <i class="icon-angle-arrow-down"></i>-->
                             </div>
                             <div class="colo ">
                                 Успеваемость
-                                <i class="icon-angle-arrow-down"></i>
+<!--                                <i class="icon-angle-arrow-down"></i>-->
                             </div>
                             <div class="colo ">
                                 Профиль
@@ -124,7 +124,7 @@
                             <div class="d-flex">
                                 <div class="colo ">
                                     <label class="flex">
-                                        <input type="checkbox"><span></span>
+<!--                                        <input type="checkbox"><span></span>-->
                                         {{participant.fullName}}
                                     </label>
                                 </div>
@@ -195,11 +195,11 @@
 <script>
     var app = angular.module("get-list-participant", []);
     app.controller("participant-list", function ($scope, $http, $location, $window, $timeout, $filter) {
-        $scope.specs = ["Пункт 1","Пункт 2","Пункт 3","Пункт 4","Пункт 5","Пункт 6","Пункт 7","Пункт 8","Пункт 9"];
+        $scope.specs = [];
         $scope.greenStyle = {'min-width':'26%'};
         $scope.yellowStyle = {'background': '#eec643','min-width':'26%'};
         $scope.redStyle = {'background': '#df443a','min-width':'26%'};
-        $scope.userId = '-1';
+        $scope.userId = $window.sessionStorage.userId;
         $scope.participants = [];
         $scope.search;
 
@@ -217,6 +217,19 @@
             });
         };
         $scope.fetchData();
+
+        $scope.getUserSpec = function(){
+            $http.get('./functions/user-spec/user-spec-list-get.php?userId=' + $scope.userId).then(function (data) {
+                console.log(data);
+                $scope.changingId = -1;
+                if (data.data && angular.isArray(data.data)) {
+                    $scope.specs = data.data;
+                }else{
+                    console.error('userSpec array null!');
+                }
+            });
+        }
+        $scope.getUserSpec();
 
         $scope.getAttendPerc = function(participant){
             var all = parseInt(participant.absent) + parseInt(participant.attend);
@@ -242,8 +255,12 @@
             }
         };
 
-        $scope.getSpec = function(item){
-            return $scope.specs[item - 1];
+        $scope.getSpec = function (id) {
+            for (var i = 0; i < $scope.specs.length; i++) {
+                if ($scope.specs[i].id == id) {
+                    return $scope.specs[i].title;
+                }
+            }
         }
     });
 </script>

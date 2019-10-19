@@ -143,19 +143,17 @@
                     <div class="label-name">
                         Специализация
                     </div>
-                    <select data-search="true" data-placeholder="Выберите специализацию"  ng-model="participant.specId">
-                        <option></option>
-                        <option ng-repeat="punct in specs" value="{{$index+1}}">{{punct}}</option>
+                    <select ng-disabled="type==='edit'" data-placeholder="Выберите специализацию"  ng-model="participant.specId" ng-change="changeQual()">
+                        <option ng-repeat="spec in specs" value="{{spec.id}}">{{spec.title}}</option>
                     </select>
                 </label>
-                <label class="label">
+                <label class="label" ng-if="showEduc">
                     <div class="label-name">
-                        Квалификация
+                        Тема
                     </div>
-                    <select data-placeholder="Выберите квалификацию"  ng-model="participant.qualId">
+                    <select ng-disabled="type==='edit'" data-placeholder="Выберите тему"  ng-model="participant.qualId">
                         <option></option>
-                        <option value="1">1</option>
-                        <option value="2">2</option>
+                        <option ng-repeat="qual in educs" value="{{qual.id}}">{{qual.theme}}</option>
                     </select>
                 </label>
                 <label class="label">
@@ -163,7 +161,6 @@
                         Выберите высшее образование
                     </div>
                     <select data-placeholder="Выберите вариант" ng-model="participant.educId">
-                        <option></option>
                         <option value="1">Имеется</option>
                         <option value="2">Не имеется</option>
                     </select>
@@ -173,7 +170,6 @@
                         Выберите навыки
                     </div>
                     <select data-placeholder="Выберите навыки" ng-model="tempSkill" ng-change="addSkill(tempSkill)">
-                        <option></option>
                         <option value="1">Навык 1</option>
                         <option value="2">Навык 2</option>
                         <option value="3">Навык 3</option>
@@ -190,7 +186,7 @@
                     <a href="javascript:void(0)" ng-click="prevStep()" class="btn btn-white btn-big">
                         Назад
                     </a>
-                    <a href="javascript:void(0)"  class="btn btn-pur btn-big" ng-click="save()">
+                    <a href="javascript:void(0)"  class="btn btn-pur btn-big" ng-click="checkBeforeSave()">
                         Завершить
                     </a>
                 </div>
@@ -208,7 +204,7 @@
         $scope.step = 1;
         $scope.participant = {
             id: -1,
-            userId: -1,
+            userId: $window.sessionStorage.userId,
             surname: '',
             name: '',
             lastname: '',
@@ -216,18 +212,24 @@
             regionId: 1,
             phone: '',
             email: '',
-            specId: 1,
-            qualId: 1,
-            educId: 1,
+            specId: 0,
+            qualId: 0,
+            educId: 0,
             skillArr: [],
             skills: '',
             attend: 0,
             absent: 0,
             created: $filter('date')(new Date(), "dd.MM.yyyy")
         };
-        $scope.specs = ["Пункт 1","Пункт 2","Пункт 3","Пункт 4","Пункт 5","Пункт 6","Пункт 7","Пункт 8","Пункт 9"];
+        $scope.specs = [];
+        $scope.educs = [];
+        $scope.originEducs = [];
         $scope.type = 'add';
         console.log($scope.participant)
+        $scope.userId = $window.sessionStorage.userId;
+        $scope.showEduc = true;
+        $scope.qual;
+
         $scope.init = function () {
             var param = $window.location.search;
             if(param.length > 0){
@@ -238,11 +240,57 @@
                     if (data.data && angular.isArray(data.data)) {
                         $scope.participant = data.data[0];
                         $scope.participant.skillArr = $scope.participant.skills.split(',');
+                        $scope.changeQual();
                     }
                 });
             }
         }
         $scope.init();
+
+        $scope.getUserSpec = function(){
+            $http.get('./functions/user-spec/user-spec-list-get.php?userId=' + $scope.userId).then(function (data) {
+                console.log(data);
+                $scope.changingId = -1;
+                if (data.data && angular.isArray(data.data)) {
+                    $scope.specs = data.data;
+                }else{
+                    console.error('userSpec array null!');
+                }
+            });
+        }
+        $scope.getUserSpec();
+
+        $scope.getEducationProgram = function(){
+            $http.get('./functions/education-program/education-program-get.php?userId=' + $scope.userId).then(function (data) {
+                console.log(data);
+                $scope.changingId = -1;
+                if (data.data && angular.isArray(data.data)) {
+                    $scope.originEducs = data.data;
+                }else{
+                    console.error('userSpec array null!');
+                }
+            });
+        }
+        $scope.getEducationProgram();
+
+        $scope.changeQual = function(){
+            $scope.showEduc = false;
+            console.log('change',  $scope.participant.specId)
+            console.log($scope.originEducs)
+            $scope.educs = [];
+            for (let i = 0; i < $scope.originEducs.length; i++) {
+                if(parseInt($scope.originEducs[i].specId) === parseInt($scope.participant.specId)){
+                    $scope.educs.push($scope.originEducs[i]);
+                }
+            }
+            $timeout(function(){
+                $scope.showEduc = true;
+                $timeout(function(){
+                    $('select').styler();
+                },50)
+            },50)
+            console.log('$scope.educs: ',$scope.educs);
+        }
 
         $scope.nextStep = function(){
             $scope.step = 2;
@@ -271,6 +319,33 @@
             return skills[item+""];
         }
 
+        $scope.checkBeforeSave = function(){
+            let tr = true;
+            for (let i = 0; i < $scope.originEducs.length; i++) {
+                console.log($scope.participant.qualId, ' ' , $scope.originEducs[i])
+                if($scope.participant.qualId === $scope.originEducs[i].id && $scope.originEducs[i].busy < $scope.originEducs[i].total){
+                    $scope.qual = $scope.originEducs[i];
+                    $scope.qual.busy = $scope.qual.busy + 1;
+                    $scope.save();
+                    tr = false;
+                    break;
+                }
+            }
+            if(tr){
+                alert('Нет мест в данном програмном обучении');
+            }
+        };
+
+        $scope.saveQual = function(){
+            $http({
+                method: "POST",
+                url: "functions/education-program/education-program-post.php",
+                data: $scope.qual
+            }).then(function (data) {
+                console.log('saveQual: ',data);
+            });
+        }
+
         $scope.save = function(){
             $scope.participant.skills = $scope.participant.skillArr.join(',');
             if($scope.type === 'add'){
@@ -284,7 +359,10 @@
                     console.log(parseInt(data.data.replace(' ','')));
                     var insertedId = parseInt(data.data.replace(' ',''));
                     console.log('crassavchik - insertedId: ', insertedId);
-                    $window.location.href = '18_Dobavit_uch_st_4.html?id='+insertedId;
+                    $scope.saveQual();
+                    $timeout(function(){
+                        $window.location.href = '18_Dobavit_uch_st_4.html?id='+insertedId;
+                    },80);
                 });
             }else{
                 $scope.participant.id = $scope.id;
@@ -298,7 +376,10 @@
                     console.log(parseInt(data.data.replace(' ','')));
                     var insertedId = parseInt(data.data.replace(' ',''));
                     console.log('crassavchik - insertedId: ', insertedId);
-                    $window.location.href = '19_Otredactirovat_uch_st_3.html?id='+$scope.id;
+                    // $scope.saveQual();
+                    $timeout(function(){
+                        $window.location.href = '19_Otredactirovat_uch_st_3.html?id='+$scope.id;
+                    },80);
                 });
             }
 

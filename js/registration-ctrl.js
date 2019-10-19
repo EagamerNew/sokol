@@ -1,10 +1,11 @@
 var app = angular.module("index", []);
-app.controller("registration", function($scope, $http,$location,$window) {
+app.controller("registration", function($scope, $http,$location,$window, $timeout) {
     $scope.user = {
         surname: '',
         name: '',
         lastname: '',
         email: '',
+        phone: '',
         password: '',
         uchcenter: '',
         bin: '',
@@ -57,7 +58,10 @@ app.controller("registration", function($scope, $http,$location,$window) {
         // $scope.user.file_uchdocs = $scope.file_uchdocs;
         // $scope.user.file_rekvisity = $scope.file_rekvisity;
         // $scope.user.file_ustav = $scope.file_ustav;
-        $scope.user.strSpecializations=$scope.user.specializations.join(',');
+        // $scope.user.strSpecializations=$scope.user.specializations.map(val => {
+        //     var temp = val.replace(',','');
+        //     return temp;
+        // }).join(',');
         console.log($scope.user);
         $http({
             method:"POST",
@@ -71,13 +75,34 @@ app.controller("registration", function($scope, $http,$location,$window) {
                 // $cookies.put('email',$scope.user.email);
                 $window.sessionStorage.setItem('email',$scope.user.email);
                 $window.sessionStorage.setItem('userId',insertedId);
-                 $window.location.href = 'thanks.html';
+                $scope.saveUserSpecs(insertedId);
+                 // $window.location.href = 'thanks.html';
             });
     }
 
-    $scope.hello = function(){
-        console.log($scope.user.email);
-        $window.sessionStorage.setItem('email',$scope.user.email);
+    $scope.saveUserSpecs = function(id){
+        let values = '(';
+        $scope.user.specializations.map(val=>{
+            values = values + id + ",'" + val + "'),(";
+        });
+        values = values.substring(0, values.length - 2);
+        console.log('specs: ', values);
+        $http({
+            method:"POST",
+            url:"functions/user-spec/user-spec-post.php",
+            data:{specValues: values}
+        }).then(function(data){
+            console.log(data);
+            $timeout(function () {
+                $window.location.href = 'thanks.html';
+            }, 100);
+            // var insertedId = parseInt(data.data.replace(' ',''));
+            // console.log('crassavchik' + $scope.user.email);
+            // $cookies.put('email',$scope.user.email);
+            // $window.sessionStorage.setItem('email',$scope.user.email);
+            // $window.sessionStorage.setItem('userId',insertedId);
+            // $window.location.href = 'thanks.html';
+        });
     }
 
     // $scope.uploadFiles = function(){

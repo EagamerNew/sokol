@@ -1,6 +1,7 @@
 <?php
 
 include('database_connection.php');
+include_once "smsc_api.php";
 
 $form_data = json_decode(file_get_contents("php://input"));
 
@@ -8,6 +9,7 @@ $name = $form_data->name;
 $surname= $form_data->surname;
 $lastname= $form_data->lastname;
 $email= $form_data->email;
+$phone= $form_data->phone;
 $password= $form_data->password;
 $uchcenter= $form_data->uchcenter;
 $bin= $form_data->bin;
@@ -18,7 +20,7 @@ $srokObuch= $form_data->srokObuch;
 $language= $form_data->language;
 $lessons= $form_data->lessons;
 $groups= $form_data->groups;
-$strSpecializations=$form_data->strSpecializations;
+//$strSpecializations=$form_data->strSpecializations;
 $file_ustav = $form_data->file_ustav;
 $file_rekvisity = $form_data->file_rekvisity;
 $file_uchdocs = $form_data->file_uchdocs;
@@ -44,18 +46,18 @@ $data = array(
 $query = "
     INSERT INTO main 
     (
-        name,lastname,surname,email,password,
+        name,lastname,surname,email,phone,password,
         uchcenter,bin, fact_address,
         project_vmest,srokObuch,specialization,
-        language,lessons,groups,specializations,
+        language,lessons,groups,
         file_ustav, file_rekvisity,file_uchdocs
 
     ) VALUES 
     (
-        '".$name."', '".$lastname."' , '".$surname."','".$email."', '".$password."',
+        '".$name."', '".$lastname."' , '".$surname."','".$email."','".$phone."', '".$password."',
         '".$uchcenter."' ,'".$bin."' ,'".$fact_address."' ,
         '".$project_vmest."' ,'".$srokObuch."' , '".$specialization."',
-        '".$language."' ,'".$lessons."' ,'".$groups."' ,'".$strSpecializations."',
+        '".$language."' ,'".$lessons."' ,'".$groups."' ,
         '".$file_ustav."' ,'".$file_rekvisity."' ,'".$file_uchdocs."' 
     )
 ";
@@ -74,7 +76,10 @@ $subject = "Регистрация прошла успешно";
 $txt = "Здравствуйте! Спасибо за регистрацию в нашу систему.\nВаши данные для входа:\n\tЛогин:".$email."\n\tПароль:".$password;
 $headers = "From: no-reply@digitalcontrol.kz";
 
-mail($to,$subject,$txt,$headers);
+//mail($to,$subject,$txt,$headers);
+$fio = "$surname $name $lastname";
+$message = "Здравствуйте, $fio, Вы зарегистрировались на портале Digital Control. Скачайте мобильное приложение чтобы отмечать посещаемость своих учеников!\nДля Android: [link]\nДля iOS: [link]";
+list($sms_id, $sms_cnt, $cost, $balance) = send_sms('7'.$phone, $message, 0);
 
 $temp = $statement->fetch(PDO::FETCH_ASSOC);
 echo ($connect->lastInsertId());

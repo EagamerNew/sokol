@@ -73,13 +73,13 @@ if($hell)
 
 $to = $email;
 $subject = "Регистрация прошла успешно";
-$txt = "Здравствуйте! Спасибо за регистрацию в нашу систему.\nВаши данные для входа:\n\tЛогин:".$email."\n\tПароль:".$password;
+$txt = "Привет $name! Вы зарегистрировались на digitalcontrol.kz, скачайте приложение для дальнейшей работы.\nAndroid: скачать\niOS: скачать";
 $headers = "From: no-reply@digitalcontrol.kz";
 
 //mail($to,$subject,$txt,$headers);
 $fio = "$surname $name $lastname";
 $message = "Здравствуйте, $fio, Вы зарегистрировались на портале Digital Control. Скачайте мобильное приложение чтобы отмечать посещаемость своих учеников!\nДля Android: [link]\nДля iOS: [link]";
-list($sms_id, $sms_cnt, $cost, $balance) = send_sms('7'.$phone, $message, 0);
+//list($sms_id, $sms_cnt, $cost, $balance) = send_sms('7'.$phone, $message, 0);
 
 $temp = $statement->fetch(PDO::FETCH_ASSOC);
 echo ($connect->lastInsertId());

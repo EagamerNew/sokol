@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+	<meta http-equiv="x-ua-compatible" content="ie=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta name="format-detection" content="telephone=no" />
+	<title>index</title>
+	<meta name="description" content="">
+	<meta name="Keywords" content="">
+
+	<link rel="stylesheet" href="css/stylelogin.css">
+	<link rel="stylesheet" href="fonts/icomoon/style.css">
+	<link rel="stylesheet" href="fonts/font.css">
+</head>
+    
+    
+<body class="body" ng-app="restore-success" ng-controller="success-ctrl">
+<script src="js/libs/jquery-3.2.1.min.js"></script>
+<script src="js/libs/jquery.formstyler.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.7.8/angular.js"></script>
+<script src="js/common.js"></script>
+    
+    <section class="section section-log">
+        <div class="section-center">
+        <a href="/" class="logo logo-log">
+            <img src="images/logo.svg" alt="digital control">
+        </a>
+            
+        <img src="images/end/4.svg" alt="alt" style="width: 100%;">    
+        <h1 class="">Восстановление пароля
+            <p class="h2">
+                Письмо с инструкцией по восстановлению было выслано на почту {{email}}!
+            </p>
+            </h1>
+
+                
+                <div class="d-flex justify-content-center">
+                    
+                    <a href="index.html" class="btn btn-pur btn-big">
+                        На главную
+                    </a>
+                    
+                </div>
+        
+        </div>
+    </section>
+</body>
+<script>
+    var app = angular.module("restore", []);
+    app.controller("restorectrl", function ($scope, $http, $location, $window, $timeout) {
+        $scope.email = $window.sessionStorage.getItem('email');
+    });
+</script>
+</html>

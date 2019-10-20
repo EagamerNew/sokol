@@ -23,6 +23,18 @@ app.controller("registration", function($scope, $http,$location,$window, $timeou
     $scope.file_rekvisity;
     $scope.file_uchdocs;
 
+    $scope.init = function(){
+
+        $window.localStorage.removeItem('nextStep');
+        $window.localStorage.removeItem('loginPage');
+        $window.localStorage.removeItem('prevStep');
+        $window.localStorage.removeItem('currentStep');
+        $window.localStorage.removeItem('formName');
+        $window.sessionStorage.removeItem('email');
+        $window.sessionStorage.removeItem('userId');
+    }
+    $scope.init();
+
     $scope.saveStep1 = function(){
         console.log($scope.user);
     }
@@ -78,6 +90,11 @@ app.controller("registration", function($scope, $http,$location,$window, $timeou
                 $scope.saveUserSpecs(insertedId);
                  // $window.location.href = 'thanks.html';
             });
+    }
+
+    $scope.toLogin = function(){
+
+        $window.location.href = '19_login.html';
     }
 
     $scope.saveUserSpecs = function(id){

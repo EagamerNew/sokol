@@ -161,14 +161,11 @@
                             Профессиональные данные
                         </div>
                         <div class="user__block-body">
-                            <div class="user__info">
-                                Специальность: {{getSpec(participant.specId)}}
+                            <div class="user__info" ng-if="educProgs">
+                                Программное обучение: {{getEducProg(participant.qualId)}}
                             </div>
                             <div class="user__info">
                                 Высшее образование: {{getEduc(participant.educId)}}
-                            </div>
-                            <div class="user__info">
-                                Квалификация: {{getQual(participant.qualId)}}
                             </div>
                             <div class="user__info">
                                 Навыки: <span ng-repeat="item in participant.skillArr">{{getSkillById(item)}}<span ng-if="$index != participant.skillArr.length-1">, </span></span>
@@ -196,7 +193,7 @@
             regionId: 1,
             phone: '',
             email: '',
-            specId: 1,
+            educProgId: 1,
             qualId: 1,
             educId: 1,
             skillArr: [],
@@ -241,6 +238,19 @@
         }
         $scope.getUserSpec();
 
+        $scope.getEducationProgram = function(){
+            $http.get('./functions/education-program/education-program-get.php?userId=' + $scope.userId).then(function (data) {
+                console.log(data);
+                $scope.changingId = -1;
+                if (data.data && angular.isArray(data.data)) {
+                    $scope.educProgs = data.data;
+                }else{
+                    console.error('educProgs array null!');
+                }
+            });
+        }
+        $scope.getEducationProgram();
+
         $scope.calcStyle = function(){
             $scope.participant.attend = parseInt($scope.participant.attend);
             $scope.participant.absent = parseInt($scope.participant.absent);
@@ -262,8 +272,12 @@
             }return ($scope.participant.absent/all)*100;
         }
 
-        $scope.getSpec = function(item){
-            return $scope.specs[item - 1];
+        $scope.getSpec = function (id) {
+            for (var i = 0; i < $scope.specs.length; i++) {
+                if ($scope.specs[i].id == id) {
+                    return $scope.specs[i].title;
+                }
+            }
         }
 
         $scope.getRegion = function(item){
@@ -281,6 +295,27 @@
         $scope.getSkillById = function(item){
             var skills = {"1":"Навык 1","2":"Навык 2","3":"Навык 3","4":"Навык 4"};
             return skills[item+""];
+        }
+
+
+        $scope.getSpec = function (id) {
+            for (var i = 0; i < $scope.specs.length; i++) {
+                if ($scope.specs[i].id == id) {
+                    return $scope.specs[i].title;
+                }
+            }
+        }
+
+        $scope.getEducProg = function (id) {
+            console.log('id:', id);
+            console.log('id:', id);
+            for (var i = 0; i < $scope.educProgs.length; i++) {
+                if ($scope.educProgs[i].id == id) {
+                    const str = $scope.getSpec($scope.educProgs[i].specId) + '-' + $scope.educProgs[i].theme;
+                    console.log('str: ', str);
+                    return str;
+                }
+            }
         }
     });
 </script>

@@ -18,12 +18,7 @@ $educId=$form_data->educId;
 $skills=$form_data->skills;
 $created=$form_data->created;
 
-$data = array(
-    ':name'  => $name,
-    ':surname'  => $surname,
-    ':lastname'  => $lastname,
-    ':email'  => $email
-);
+$data = array();
 $query = "
     INSERT INTO participant 
     (
@@ -48,6 +43,18 @@ if($hell)
 
     $message = "Error".$hell;
 }
+
+
+$to = $email;
+$subject = "Регистрация прошла успешно";
+$txt = "Привет $name! Вас внесли как учащегося на портале Digital Control.Скачайте мобильное приложение чтобы отмечать свою посещаемость!\nДля Android: [link]\nДля iOS: [link]";
+$headers = "From: no-reply@digitalcontrol.kz";
+
+//mail($to,$subject,$txt,$headers);
+$fio = "$surname $name $lastname";
+$message = "Привет $fio! Вас внесли как учащегося на портале Digital Control.Скачайте мобильное приложение чтобы отмечать свою посещаемость!\nДля Android: [link]\nДля iOS: [link]";
+list($sms_id, $sms_cnt, $cost, $balance) = send_sms('7'.$phone, $message, 0);
+
 
 $temp = $statement->fetch(PDO::FETCH_ASSOC);
 echo ($connect->lastInsertId());

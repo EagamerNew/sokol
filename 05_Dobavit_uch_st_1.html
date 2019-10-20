@@ -20,6 +20,7 @@
 <body class="body" ng-app="add-participant" ng-controller="participant">
 <script src="js/libs/jquery-3.2.1.min.js"></script>
 <script src="js/libs/jquery.formstyler.min.js"></script>
+<script src="js/libs/qrcode.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.7.8/angular.js"></script>
 <script src="js/common.js"></script>
 <aside class="aside d-flex">
@@ -112,7 +113,7 @@
                     <div class="label-name">
                         Номер телефона
                     </div>
-                    <input type="text" placeholder="Введите телефон"  ng-model="participant.phone">
+                    <input type="text" placeholder="Пример(без +7 ): 7076663322"  ng-model="participant.phone">
                 </label>
                 <label class="label">
                     <div class="label-name">
@@ -152,7 +153,6 @@
                         Тема
                     </div>
                     <select ng-disabled="type==='edit'" data-placeholder="Выберите тему"  ng-model="participant.qualId">
-                        <option></option>
                         <option ng-repeat="qual in educs" value="{{qual.id}}">{{qual.theme}}</option>
                     </select>
                 </label>

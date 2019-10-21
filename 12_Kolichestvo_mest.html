@@ -14,9 +14,9 @@
 	<link rel="stylesheet" href="fonts/font.css">
 </head>
 
-    
-    
-    
+
+
+
 <body class="body"  ng-app="kol-mest" ng-controller="mest">
 <script src="js/libs/jquery-3.2.1.min.js"></script>
 <script src="js/libs/jquery.formstyler.min.js"></script>
@@ -51,10 +51,10 @@
                     Табелирование
                 </span>
             </a>
-            
+
         </nav>
     </aside>
-    
+
     <section class="section user">
         <div class="mobile align-items-center">
             <div class="btn-mob">
@@ -63,10 +63,10 @@
             <a href="/" class="logo">
                 <img src="images/logo.svg" alt="digital control">
             </a>
-        </div>  
-        
+        </div>
+
         <div class="container_ section__head">
-           
+
             <div class="d-flex align-items-center justify-content-between">
                 <div class="section__head-h1  d-flex align-items-center">
                     Количество мест
@@ -81,7 +81,7 @@
                     </a>
                 </div>
             </div>
-            
+
         </div>
         <div class=" container_ section__block table">
             <div class="table-tab">
@@ -92,8 +92,8 @@
                                     Специализация
 <!--                                    <i class="icon-angle-arrow-down"></i>-->
                                 </label>
-                                
-                                
+
+
                             </div>
                             <div class="colo ">
                                 Тема
@@ -115,13 +115,13 @@
                                 Окончили
 <!--                                <i class="icon-angle-arrow-down"></i>-->
                             </div>
-                            <div class="colo ">
-                                Отчислено
-<!--                                <i class="icon-angle-arrow-down"></i>-->
-                            </div>
+<!--                            <div class="colo ">-->
+<!--                                Отчислено-->
+<!--&lt;!&ndash;                                <i class="icon-angle-arrow-down"></i>&ndash;&gt;-->
+<!--                            </div>-->
                         </div>
-                            
-                    
+
+
                 </div>
                 <div class="table-body table-body-bg table-body-last table-body-t " ng-if="educs" ng-repeat="item in educs |  filter: {specName: search}">
                             <div class="d-flex">
@@ -147,15 +147,15 @@
                                 <div class="colo " data-text="Окончили">
                                     0
                                 </div>
-                                <div class="colo " data-text="Отчислено">
-                                    0
-                                </div>
+<!--                                <div class="colo " data-text="Отчислено">-->
+<!--                                    0-->
+<!--                                </div>-->
                             </div>
                         </div>
-            </div>        
+            </div>
         </div>
-        
-        
+
+
     </section>
 </body>
 <script>

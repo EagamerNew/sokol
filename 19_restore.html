@@ -73,7 +73,7 @@
                 if(data.data){
                     console.log('ok');
                     $window.sessionStorage.setItem('email', $scope.email);
-                    $window.location.href = '19_restore_st_2.html';
+                    $timeout(function(){$window.location.href = '19_restore_st_2.html';},120);
                 }else{
                     alert('Данные пользователя не существуют с таким email');
                 }

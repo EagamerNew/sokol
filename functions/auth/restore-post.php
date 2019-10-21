@@ -1,5 +1,7 @@
 <?php
-
+error_reporting(-1);
+ini_set('display_errors', 'On');
+set_error_handler("var_dump");
 header("Access-Control-Allow-Origin: *");
 include('../database_connection.php');
 
@@ -47,9 +49,9 @@ if($statement->execute())
         $txt = "Здравствуйте! Вы запросили свои данные для входа в digitalcontrol.kz\nВаши данные:\nЛогин:$email\nПароль:$password";
         $headers = "From: no-reply@digitalcontrol.kz";
 
-//        $rs = mail($to,$subject,$txt,$headers);
+        $rs = mail($to,$subject,$txt,$headers);
 //        echo "{'id':$id}";
-        echo $id;
+        echo $id.'asdf';
     }else{
         echo null;
     }

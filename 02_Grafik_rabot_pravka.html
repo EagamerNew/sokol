@@ -150,9 +150,13 @@
                             </select>
 
                         </div>
-                        <div class="colo" data-text="Программа обучения">
-                            <select id="specId" ng-model="item.educProgId" >
-                                <option ng-repeat="spec in educProgs" value="{{spec.id}}">{{getSpec(spec.id)}}-{{spec.theme}}</option>
+                        <div class="colo" ng-if="changingId !== -1" data-text="Программа обучения">
+                            {{getEducProg(item.educProgId)}}
+
+                        </div>
+                        <div class="colo" ng-if="changingId === -1" data-text="Программа обучения">
+                            <select id="specId2" ng-model="item.educProgId" >
+                                <option ng-repeat="spec in educProgs" value="{{spec.id}}">{{getSpec(spec.specId)}}-{{spec.theme}}</option>
                             </select>
 
                         </div>
@@ -215,7 +219,7 @@
 
         $scope.getEducationProgram = function(){
             $http.get('./functions/education-program/education-program-get.php?userId=' + $scope.userId).then(function (data) {
-                console.log(data);
+                console.log('educProgs:', data);
                 $scope.changingId = -1;
                 if (data.data && angular.isArray(data.data)) {
                     $scope.educProgs = data.data;
@@ -285,15 +289,6 @@
                 $scope.fetchData();
             });
         }
-
-        $scope.getSpec = function (id) {
-            for (var i = 0; i < $scope.specs.length; i++) {
-                if ($scope.specs[i].id == id) {
-                    return $scope.specs[i].title;
-                }
-            }
-        }
-
         $scope.getDay = function (id) {
             var arr = [{ name: "Понедельник", id: 1 }, { name: "Вторник", id: 2 }, { name: "Среда", id: 3 }, { name: "Четверг", id: 4 }, { name: "Пятница", id: 5 }];
             for (var i = 0; i < arr.length; i++) {
@@ -318,7 +313,7 @@
 
         $scope.getSpec = function (id) {
             for (var i = 0; i < $scope.specs.length; i++) {
-                if ($scope.specs[i].id == id) {
+                if ($scope.specs[i].id === id) {
                     return $scope.specs[i].title;
                 }
             }
@@ -326,7 +321,7 @@
 
         $scope.getEducProg = function (id) {
             for (var i = 0; i < $scope.educProgs.length; i++) {
-                if ($scope.educProgs[i].id == id) {
+                if ($scope.educProgs[i].id === id) {
                     const str = $scope.getSpec($scope.educProgs[i].specId) + '-' + $scope.educProgs[i].theme;
                     return str;
                 }

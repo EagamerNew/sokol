@@ -6,8 +6,8 @@
     <meta http-equiv="x-ua-compatible" content="ie=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="format-detection" content="telephone=no" />
-    <title>Digital Control</title>	
-	<link rel="shortcut icon" href="/images/favicon.ico" type="image/png">
+    <title>Digital Control</title>
+    <link rel="shortcut icon" href="/images/favicon.ico" type="image/png">
     <meta name="description" content="">
     <meta name="Keywords" content="">
 
@@ -20,134 +20,140 @@
 
 
 <body class="body" ng-app="education-program" ng-controller="education-crud">
-    <script src="js/libs/jquery-3.2.1.min.js"></script>
-    <script src="js/libs/jquery.formstyler.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.7.8/angular.js"></script>
-    <script src="js/common.js"></script>
-    <aside class="aside d-flex">
+<script src="js/libs/jquery-3.2.1.min.js"></script>
+<script src="js/libs/jquery.formstyler.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.7.8/angular.js"></script>
+<script src="js/common.js"></script>
+<aside class="aside d-flex">
+    <a href="/" class="logo">
+        <img src="images/logo.svg" alt="digital control">
+    </a>
+    <nav class="nav d-flex">
+        <a class="nav-a active" href="02_Grafik_rabot_pravka.html">
+            <i class="icon-home"></i>
+            <span>
+                    Главная
+                </span>
+        </a>
+        <a class="nav-a" href="08_Spisok_uch.html">
+            <i class="icon-account-group"></i>
+            <span>
+                    Список учащихся
+                </span>
+        </a>
+        <a class="nav-a" href="12_Kolichestvo_mest.html">
+            <i class="icon-clipboard"></i>
+            <span>
+                    Количество мест
+                </span>
+        </a>
+        <a class="nav-a" href="14_Tabelirovanie_st_1.html">
+            <i class="icon-new-window"></i>
+            <span>
+                    Табелирование
+                </span>
+        </a>
+
+    </nav>
+</aside>
+<section class="section">
+    <div class="mobile align-items-center">
+        <div class="btn-mob">
+            <span></span>
+        </div>
         <a href="/" class="logo">
             <img src="images/logo.svg" alt="digital control">
         </a>
-        <nav class="nav d-flex">
-            <a class="nav-a active" href="02_Grafik_rabot_pravka.html">
-                <i class="icon-home"></i>
-                <span>
-                    Главная
-                </span>
-            </a>
-            <a class="nav-a" href="08_Spisok_uch.html">
-                <i class="icon-account-group"></i>
-                <span>
-                    Список учащихся
-                </span>
-            </a>
-            <a class="nav-a" href="12_Kolichestvo_mest.html">
-                <i class="icon-clipboard"></i>
-                <span>
-                    Количество мест
-                </span>
-            </a>
-            <a class="nav-a" href="14_Tabelirovanie_st_1.html">
-                <i class="icon-new-window"></i>
-                <span>
-                    Табелирование
-                </span>
-            </a>
+    </div>
+    <div class="container_ section__head">
+        <div class="d-flex align-items-center justify-content-between">
+            <div class="section__head-h1  ">
+                Главная
+            </div>
+            <div class=" d-flex justify-content-end">
+                <a href="javascript:void(0);" ng-click="add()" class="btn btn-pur">
+                    <i class="icon-add"></i>
+                    Добавить программу обучения
+                </a>
+            </div>
+        </div>
+    </div>
+    <div class="container_ section__block table">
+        <div class="table-tabs">
+            <div class="d-flex">
+                <a href="02_Grafik_rabot_pravka.html" class="col-6 table-tabs-a">
+                    График обучения
+                </a>
+                <a href="javascript:void(0);" class="col-6 table-tabs-a active">
+                    Программы обучения
+                </a>
+            </div>
+        </div>
 
-        </nav>
-    </aside>
-    <section class="section">
-        <div class="mobile align-items-center">
-            <div class="btn-mob">
-                <span></span>
-            </div>
-            <a href="/" class="logo">
-                <img src="images/logo.svg" alt="digital control">
-            </a>
-        </div>
-        <div class="container_ section__head">
-            <div class="d-flex align-items-center justify-content-between">
-                <div class="section__head-h1  ">
-                    Главная
-                </div>
-                <div class=" d-flex justify-content-end">
-                    <a href="javascript:void(0);" ng-click="add()" class="btn btn-pur">
-                        <i class="icon-add"></i>
-                        Добавить программу обучения
-                    </a>
-                </div>
-            </div>
-        </div>
-        <div class="container_ section__block table">
-            <div class="table-tabs">
+        <div class="table-tab">
+            <div class="table-head">
                 <div class="d-flex">
-                    <a href="02_Grafik_rabot_pravka.html" class="col-6 table-tabs-a">
-                        График обучения
-                    </a>
-                    <a href="javascript:void(0);" class="col-6 table-tabs-a active">
-                        Программы обучения
-                    </a>
+                    <div class="colo ">
+                        Специализация
+                    </div>
+                    <div class="colo">
+                        Тема
+                    </div>
+                    <div class="colo ">
+                        Количество мест
+                    </div>
+                    <div class="colo">
+                        Действие
+                    </div>
                 </div>
             </div>
-
-            <div class="table-tab">
-                <div class="table-head">
-                    <div class="d-flex">
-                        <div class="colo ">
-                            Специализация
-                        </div>
-                        <div class="colo">
-                            Тема
-                        </div>
-                        <div class="colo ">
-                            Количество мест
-                        </div>
-                        <div class="colo">
-                            Действие
-                        </div>
-                    </div>
-                </div>
-                <div class="table-body" ng-if="graphics" ng-repeat="item in graphics track by item.id">
-                    <div class="d-flex" ng-class="{'d-flex':true,show: item.id === changingId, hide: item.id !== changingId}">
-                        <div class="colo " data-text="Специализация">
-                            <select ng-model="item.specId">
-                                <option ng-repeat="spec in specs" value="{{spec.id}}">{{spec.title}}</option>
-                            </select>
-                        </div>
-                        <div class="colo" data-text="Тема">
-                            <input type="text" placeholder="Введите тему" style="font-size:13px; padding-top:9px;padding-bottom:9px;width:90%;"  ng-model="item.theme">
-                        </div>
-                        <div class="colo" data-text="Количество мест">
-                            <input type="text" minlength="1" placeholder="Введите количество" style="font-size:13px; padding-top:9px;padding-bottom:9px;width:90%;"  ng-model="item.total">
-                        </div>
-                        <div class="colo ">
-                            <a href="javascript:void(0);" class="btn btn-check" ng-click="save(item)">
-                                <i class="icon-tick"></i>
-                            </a>
-                        </div>
-                    </div>
-                    <div class="d-flex"  ng-class="{'d-flex':true,show: item.id !== changingId, hide: item.id === changingId}">
-                        <div class="colo " data-text="Специализация">
+            <div class="table-body" ng-if="graphics" ng-repeat="item in graphics track by item.id">
+                <div class="d-flex" ng-class="{'d-flex':true,show: item.id === changingId, hide: item.id !== changingId}">
+                    <div class="colo " data-text="Специализация">
+                        <div class="colo " ng-if="changingId !== -1" data-text="Специализация">
                             {{getSpec(item.specId)}}
                         </div>
-                        <div class="colo" data-text="Тема">
-                            {{item.theme}}
-                        </div>
-                        <div class="colo " data-text="Количество мест">
-                            {{item.total}}
-                        </div>
-                        <div class="colo ">
-                            <a href="javascript:void(0);" ng-click="edit(item.id)" class="icon-edit"></a>
-                            <a href="javascript:void(0);" ng-click="remove(item.id)" class="icon-trash"></a>
-                        </div>
+                        <select ng-model="item.specId" ng-if="changingId === -1">
+                            <option ng-repeat="spec in specs" value="{{spec.id}}">{{spec.title}}</option>
+                        </select>
+                    </div>
+                    <div class="colo" data-text="Тема" ng-if="changingId === -1">
+                        <input type="text" placeholder="Введите тему"  ng-disabled="changingId !== -1" style="font-size:13px; padding-top:9px;padding-bottom:9px;width:90%;"  ng-model="item.theme">
+                    </div>
+                    <div class="colo" data-text="Тема" ng-if="changingId !== -1">
+                        {{item.theme}}
+                    </div>
+                    <div class="colo" data-text="Количество мест">
+                        <input type="text" minlength="1" placeholder="Введите количество" style="font-size:13px; padding-top:9px;padding-bottom:9px;width:90%;"  ng-model="item.total">
+                    </div>
+                    <div class="colo ">
+                        <a href="javascript:void(0);" class="btn btn-check" ng-click="save(item)">
+                            <i class="icon-tick"></i>
+                        </a>
+                    </div>
+                </div>
+                <div class="d-flex"  ng-class="{'d-flex':true,show: item.id !== changingId, hide: item.id === changingId}">
+                    <div class="colo " data-text="Специализация">
+                        {{getSpec(item.specId)}}
+                    </div>
+                    <div class="colo" data-text="Тема">
+                        {{item.theme}}
+                    </div>
+                    <div class="colo " data-text="Количество мест">
+                        {{item.total}}
+                    </div>
+                    <div class="colo ">
+                        <a href="javascript:void(0);" ng-click="edit(item.id)" class="icon-edit"></a>
+                        <a href="javascript:void(0);" ng-click="remove(item.id)" class="icon-trash"></a>
                     </div>
                 </div>
             </div>
         </div>
-    </section>
+    </div>
+</section>
 </body>
 <script>
-var app = angular.module("education-program", []);
+    var app = angular.module("education-program", []);
     app.controller("education-crud", function ($scope, $http, $location, $window, $timeout) {
         $scope.changingId = -1;
         $scope.graphics = [];
@@ -184,21 +190,21 @@ var app = angular.module("education-program", []);
 
         $scope.add = function () {
             $scope.changingId = -1;
-			$scope.initPluginSelect();
+            $scope.initPluginSelect();
             $scope.graphics.push({ id: -1, userId: $scope.userId, total:'', busy: 0, specId: 1,theme:'' });
         }
 
         $scope.edit = function (id) {
             $scope.changingId = id;
-			$scope.initPluginSelect();
+            $scope.initPluginSelect();
         }
 
-		$scope.initPluginSelect = function(){
+        $scope.initPluginSelect = function(){
             $timeout(function () {
                 $('select').styler();
             }, 50);
-		}
-		
+        }
+
         $scope.remove = function (id) {
             $http({
                 method: "POST",
@@ -259,15 +265,15 @@ var app = angular.module("education-program", []);
             }
         }
     });
-    </script>
-    
+</script>
+
 <style>
-        .show {
-            display: flex !important;
-        }
-    
-        .hide {
-            display: none !important;
-        }
-    </style>
+    .show {
+        display: flex !important;
+    }
+
+    .hide {
+        display: none !important;
+    }
+</style>
 </html>

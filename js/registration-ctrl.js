@@ -102,7 +102,7 @@ app.controller("registration", function($scope, $http,$location,$window, $timeou
         $scope.user.specializations.map(val=>{
             values = values + id + ",'" + val + "'),(";
         });
-        values = values.substring(0, values.length - 2);
+        values += id + ",'"+ $scope.user.specialization + "')";
         console.log('specs: ', values);
         $http({
             method:"POST",
@@ -112,7 +112,7 @@ app.controller("registration", function($scope, $http,$location,$window, $timeou
             console.log(data);
             $timeout(function () {
                 $window.location.href = 'thanks.html';
-            }, 100);
+            }, 120);
             // var insertedId = parseInt(data.data.replace(' ',''));
             // console.log('crassavchik' + $scope.user.email);
             // $cookies.put('email',$scope.user.email);

@@ -105,8 +105,15 @@
                     <select  data-placeholder="Выберите район"  ng-model="participant.regionId">
                         <option></option>
                         <option value="1">Алмалинский</option>
-                        <option value="2">Алатауский</option>
+                        <option value="2">Алатауский</option>["Бостандыкский","Ауезовский","Жетисуский","Турксибсий","Наурызбайский","Алатауский","Алматинский"]
                         <option value="3">Медеуский</option>
+                        <option value="4">Бостандыкский</option>
+                        <option value="5">Ауезовский</option>
+                        <option value="6">Жетисуский</option>
+                        <option value="7">Турксибсий</option>
+                        <option value="8">Наурызбайский</option>
+                        <option value="9">Алатауский</option>
+                        <option value="10">Алматинский</option>
                     </select>
                 </label>
                 <label class="label">
@@ -170,10 +177,10 @@
                         Выберите навыки
                     </div>
                     <select data-placeholder="Выберите навыки" ng-model="tempSkill" ng-change="addSkill(tempSkill)">
-                        <option value="1">Навык 1</option>
-                        <option value="2">Навык 2</option>
-                        <option value="3">Навык 3</option>
-                        <option value="4">Навык 4</option>
+                        <option value="1">Аналитик</option>
+                        <option value="2">Переговоры</option>
+                        <option value="3">Пользователь ПК</option>
+                        <option value="4">Тайм-менеджмент</option>
                     </select>
                 </label>
                 <div class="label skill" >
@@ -301,7 +308,7 @@
         }
 
         $scope.addSkill = function(item){
-            var skills = {"1":"Навык 1","2":"Навык 2","3":"Навык 3","4":"Навык 4"};
+            var skills = {"1":"Аналитик","2":"Переговоры","3":"Пользователь ПК","4":"Тайм-менеджмент"};
             console.log('item exist: ', skills[item+""], ' item: ', item);
             if(!$scope.participant.skillArr.includes(item) && item){
                 $scope.participant.skillArr.push(item);
@@ -315,7 +322,7 @@
         }
 
         $scope.getSkillById = function(item){
-            var skills = {"1":"Навык 1","2":"Навык 2","3":"Навык 3","4":"Навык 4"};
+            var skills = {"1":"Аналитик","2":"Переговоры","3":"Пользователь ПК","4":"Тайм-менеджмент"};
             return skills[item+""];
         }
 
@@ -362,7 +369,8 @@
                     $scope.saveQual();
                     $timeout(function(){
                         $window.location.href = '18_Dobavit_uch_st_4.html?id='+insertedId;
-                    },80);
+                        // console.log('perehod')
+                    },120);
                 });
             }else{
                 $scope.participant.id = $scope.id;
@@ -379,7 +387,7 @@
                     // $scope.saveQual();
                     $timeout(function(){
                         $window.location.href = '19_Otredactirovat_uch_st_3.html?id='+$scope.id;
-                    },80);
+                    },120);
                 });
             }
 

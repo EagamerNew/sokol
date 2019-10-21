@@ -1,0 +1,932 @@
+@charset "UTF-8";
+@font-face {
+  font-family: "PT Root UI";
+  src: local("PT Root UI Medium"), local("PTRootUI-Medium"), url("../fonts/Ptrootuimedium.woff2") format("woff2"), url("../fonts/Ptrootuimedium.woff") format("woff"), url("../fonts/Ptrootuimedium.ttf") format("truetype");
+  font-weight: 500;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "PT Root UI";
+  src: local("PT Root UI Light"), local("PTRootUI-Light"), url("../fonts/Ptrootuilight.woff2") format("woff2"), url("../fonts/Ptrootuilight.woff") format("woff"), url("../fonts/Ptrootuilight.ttf") format("truetype");
+  font-weight: 300;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "PT Root UI";
+  src: local("PT Root UI"), local("PTRootUI-Regular"), url("../fonts/Ptrootui.woff2") format("woff2"), url("../fonts/Ptrootui.woff") format("woff"), url("../fonts/Ptrootui.ttf") format("truetype");
+  font-weight: 400;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "PT Root UI";
+  src: local("PT Root UI Bold"), local("PTRootUI-Bold"), url("../fonts/Ptrootuibold.woff2") format("woff2"), url("../fonts/Ptrootuibold.woff") format("woff"), url("../fonts/Ptrootuibold.ttf") format("truetype");
+  font-weight: 700;
+  font-style: normal;
+}
+
+img {
+  vertical-align: bottom;
+}
+
+/*********************Reset*********************/
+html,
+body,
+div,
+span,
+object,
+iframe,
+img,
+strong,
+b,
+u,
+i,
+table,
+tbody,
+tfoot,
+thead,
+td,
+th,
+tr,
+nav,
+section,
+header,
+footer,
+article,
+form,
+label,
+legend {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  vertical-align: baseline;
+  background: transparent;
+}
+
+input:focus,
+select:focus,
+textarea:focus {
+  outline: none;
+}
+
+table,
+td,
+th,
+tr {
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+
+html,
+body {
+  width: 100%;
+  height: 100%;
+}
+
+input,
+textarea {
+  -webkit-appearance: none;
+  -webkit-border-radius: 0;
+  overflow: visible;
+}
+
+input,
+select,
+textarea,
+button {
+  font-family: arial, sans-serif;
+}
+
+input[type="button"] {
+  cursor: pointer;
+}
+
+.clear {
+  clear: both;
+  font-size: 0;
+}
+
+.clearfix:after {
+  content: ".";
+  display: block;
+  height: 0;
+  clear: both;
+  visibility: hidden;
+}
+
+html > body .clearfix {
+  display: block;
+}
+
+.clearfix {
+  display: inline-block;
+}
+
+header,
+footer,
+article,
+section,
+aside,
+figcaption,
+figure,
+hgroup,
+time {
+  display: block;
+  margin: 0;
+  border: 0;
+  padding: 0;
+}
+
+input[type="checkbox"],
+input[type="radio"] {
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  padding: 0;
+}
+
+* {
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+}
+
+.login-wrapper {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  min-height: 100vh;
+  padding: 40px 0px;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  font-family: "PT Root UI";
+  /* задаем стили кнопки выбора файла*/
+  /* Растягиваем label на всю область блока .file-upload */
+  /* стиль текста на кнопке*/
+}
+
+.login-wrapper button {
+  cursor: pointer;
+  outline: none;
+}
+
+.login-wrapper .steps {
+  text-align: center;
+  max-width: 600px;
+  width: 100%;
+  padding: 0 15px;
+}
+
+.login-wrapper .steps .form-title {
+  font-size: 34px;
+  font-weight: normal;
+  font-style: normal;
+  font-stretch: normal;
+  line-height: 1.62;
+  letter-spacing: normal;
+  color: #242424;
+  margin: 0;
+}
+
+@media (max-width: 414px) {
+  .login-wrapper .steps .form-title {
+    margin-top: 30px;
+  }
+}
+
+.login-wrapper .steps .violet {
+  color: #ae00ff;
+}
+
+.login-wrapper .steps .form-step {
+  font-size: 24px;
+  font-weight: normal;
+  font-style: normal;
+  font-stretch: normal;
+  line-height: 1.63;
+  letter-spacing: normal;
+  text-align: center;
+  color: #242424;
+  margin: 20px 0px 30px;
+  margin-bottom: auto;
+}
+
+@media (max-width: 414px) {
+  .login-wrapper .steps .form-step {
+    margin-top: 0;
+    margin-bottom: 20px;
+  }
+}
+
+.login-wrapper .steps .form_item {
+  text-align: left;
+  margin-bottom: 27px;
+  position: relative;
+}
+
+.login-wrapper .steps .form_item label {
+  font-size: 13px;
+  font-weight: 500;
+  font-style: normal;
+  font-stretch: normal;
+  line-height: 1.77;
+  letter-spacing: normal;
+  color: #808080;
+  font-family: "PT Root UI";
+  display: block;
+  margin-bottom: 4px;
+}
+
+.login-wrapper .steps .form_item input {
+  max-width: 570px;
+  width: 100%;
+  height: 48px;
+  border-radius: 4px;
+  border: solid 1px #e4ebe7;
+  outline: none;
+  padding-left: 20px;
+  font-size: 16px;
+  color: #242424;
+  font-weight: normal;
+  font-family: "PT Root UI";
+  -webkit-transition: all 0.5s;
+  transition: all 0.5s;
+}
+
+.login-wrapper .steps .form_item input[type="password"] {
+  -webkit-text-security: circle;
+}
+
+.login-wrapper .steps .form_item input::-webkit-input-placeholder {
+  font-size: 16px;
+  font-weight: normal;
+  font-style: normal;
+  font-stretch: normal;
+  line-height: 1.63;
+  letter-spacing: normal;
+  color: #b8b9b8;
+}
+
+.login-wrapper .steps .form_item input:-ms-input-placeholder {
+  font-size: 16px;
+  font-weight: normal;
+  font-style: normal;
+  font-stretch: normal;
+  line-height: 1.63;
+  letter-spacing: normal;
+  color: #b8b9b8;
+}
+
+.login-wrapper .steps .form_item input::-ms-input-placeholder {
+  font-size: 16px;
+  font-weight: normal;
+  font-style: normal;
+  font-stretch: normal;
+  line-height: 1.63;
+  letter-spacing: normal;
+  color: #b8b9b8;
+}
+
+.login-wrapper .steps .form_item input::placeholder {
+  font-size: 16px;
+  font-weight: normal;
+  font-style: normal;
+  font-stretch: normal;
+  line-height: 1.63;
+  letter-spacing: normal;
+  color: #b8b9b8;
+}
+
+.login-wrapper .steps .form_item .btn-toggle-pass {
+  border: none;
+  position: absolute;
+  top: 43px;
+  background: transparent;
+  right: 14.5px;
+  color: #e4ebe7;
+}
+
+.login-wrapper .steps .form_item .btn-toggle-pass.active {
+  color: var(--info-color);
+}
+
+.login-wrapper .steps .footer-buttons {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  margin-top: 87px;
+}
+
+@media (max-width: 414px) {
+  .login-wrapper .steps .footer-buttons {
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+  }
+}
+
+.login-wrapper .steps .footer-buttons .next {
+  max-width: 187px;
+  width: 100%;
+  height: 56px;
+  border-radius: 4px;
+  background-color: #ae00ff;
+  -webkit-box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.12);
+          box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.12);
+  font-size: 16px;
+  font-weight: bold;
+  font-style: normal;
+  font-stretch: normal;
+  line-height: 1.63;
+  letter-spacing: normal;
+  text-align: center;
+  color: #ffffff;
+  text-transform: uppercase;
+  margin-bottom: 26px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+
+.login-wrapper .steps .footer-buttons .next:hover {
+  background-color: #bf00ff;
+}
+
+.login-wrapper .steps .footer-buttons .back {
+  max-width: 142px;
+  width: 100%;
+  height: 56px;
+  border-radius: 4px;
+  font-size: 16px;
+  font-weight: bold;
+  font-style: normal;
+  font-stretch: normal;
+  line-height: 1.63;
+  letter-spacing: normal;
+  text-align: center;
+  color: #242424;
+  border: solid 1px #808080;
+  text-transform: uppercase;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  cursor: pointer;
+  -webkit-transition: all .5s;
+  transition: all .5s;
+}
+
+.login-wrapper .steps .footer-buttons .back:hover {
+  background: #242424;
+  color: #fff;
+}
+
+@media (max-width: 414px) {
+  .login-wrapper .steps .footer-buttons .back {
+    max-width: 187px;
+    margin-bottom: 20px;
+  }
+}
+
+.login-wrapper #step1 {
+  text-align: center;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.login-wrapper #step1.active {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.login-wrapper #step1 .logo {
+  margin-bottom: 199px;
+}
+
+.login-wrapper #step1 .registration {
+  max-width: 315px;
+  width: 100%;
+  height: 56px;
+  border-radius: 4px;
+  background-color: #ae00ff;
+  -webkit-box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.12);
+          box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.12);
+  font-size: 16px;
+  font-weight: bold;
+  font-style: normal;
+  font-stretch: normal;
+  line-height: 1.63;
+  letter-spacing: normal;
+  text-align: center;
+  color: #ffffff;
+  text-transform: uppercase;
+  margin-bottom: 26px;
+}
+
+.login-wrapper #step1 .registration:hover {
+  background-color: #bf00ff;
+}
+
+.login-wrapper #step1 .enter {
+  max-width: 315px;
+  width: 100%;
+  height: 56px;
+  border-radius: 4px;
+  font-size: 16px;
+  font-weight: bold;
+  font-style: normal;
+  font-stretch: normal;
+  line-height: 1.63;
+  letter-spacing: normal;
+  text-align: center;
+  color: #242424;
+  border: solid 1px #808080;
+  text-transform: uppercase;
+}
+
+.login-wrapper .file-upload input[type="file"] {
+  display: none;
+  /* скрываем input file */
+}
+
+.login-wrapper .file-upload {
+  position: relative;
+  overflow: hidden;
+  height: 48px;
+  text-align: left;
+  margin-top: 16px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.login-wrapper .file-upload label {
+  display: inline-block;
+  cursor: pointer;
+}
+
+.login-wrapper .upload img {
+  margin-right: 15px;
+}
+
+.login-wrapper .file-upload span {
+  padding: 0px 20px;
+  height: 36px;
+  border-radius: 4px;
+  border: solid 1px #242423;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  font-size: 14px;
+  font-weight: 500;
+  font-style: normal;
+  font-stretch: normal;
+  line-height: 1.64;
+  letter-spacing: normal;
+  color: #242423;
+  text-transform: uppercase;
+}
+
+.login-wrapper .upload:before {
+  content: " ";
+  background: url("../images/plus.svg") center no-repeat;
+  width: 16.3px;
+  height: 15.6px;
+  margin-right: 7px;
+  position: relative;
+  display: inline-block;
+}
+
+.login-wrapper .fileName {
+  margin-left: 20px;
+}
+
+.login-wrapper .file_wrap {
+  max-width: 200px;
+  width: 100%;
+}
+
+.login-wrapper .fileName {
+  font-size: 10px;
+}
+
+.login-wrapper .add-input {
+  font-size: 14px;
+  font-weight: 500;
+  font-style: normal;
+  font-stretch: normal;
+  line-height: 1.64;
+  text-transform: uppercase;
+  letter-spacing: normal;
+  color: #ae00ff;
+  cursor: pointer;
+}
+
+.login-wrapper .add-input img {
+  margin-right: 8px;
+  width: 9.8px;
+  height: 9.4px;
+}
+
+.thanks {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  min-height: 100vh;
+  padding: 40px 0px;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  font-family: "PT Root UI";
+}
+
+.thanks-inner {
+  text-align: center;
+  max-width: 600px;
+  width: 100%;
+  padding: 0 15px;
+}
+
+.thanks-inner .logo {
+  margin-bottom: 80px;
+}
+
+.thanks-title {
+  font-size: 34px;
+  font-weight: normal;
+  font-style: normal;
+  font-stretch: normal;
+  line-height: 1.62;
+  letter-spacing: normal;
+  text-align: center;
+  color: #242424;
+}
+
+.thanks-text {
+  font-size: 24px;
+  font-weight: normal;
+  font-style: normal;
+  font-stretch: normal;
+  line-height: 1.25;
+  letter-spacing: normal;
+  text-align: center;
+  color: #242424;
+}
+
+.thanks-finish {
+  max-width: 315px;
+  width: 100%;
+  text-decoration: none;
+  height: 56px;
+  border-radius: 4px;
+  background-color: #ae00ff;
+  -webkit-box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.12);
+          box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.12);
+  font-size: 16px;
+  font-weight: bold;
+  font-style: normal;
+  font-stretch: normal;
+  line-height: 1.63;
+  letter-spacing: normal;
+  text-align: center;
+  color: #ffffff;
+  text-transform: uppercase;
+  margin-bottom: 26px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  margin: 30px auto 0;
+}
+
+.thanks-finish:hover {
+  background-color: #bf00ff;
+}
+
+.datepicker {
+  max-width: 570px;
+  width: 100%;
+  height: 48px;
+  border-radius: 4px;
+  outline: none;
+  font-size: 16px;
+  color: #242424;
+  font-weight: normal;
+  position: relative;
+}
+
+@media (max-width: 640px) {
+  .datepicker {
+    max-width: 100%;
+  }
+}
+
+.datepicker .calendar-icon {
+  position: absolute;
+  right: 20px;
+  top: calc(50% - 8px);
+  color: #b8b9b8;
+}
+
+.datepicker p {
+  width: 100%;
+  display: -moz-flex;
+  display: -ms-flex;
+  display: -o-flex;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-align-items: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  color: #fff;
+  margin: 0;
+}
+
+.datepicker img {
+  display: none;
+}
+
+.datepicker.active img {
+  display: block;
+}
+
+.datepicker p span {
+  font-size: 12px;
+  margin-left: 5px;
+}
+
+@media (max-width: 640px) {
+  #datepicker {
+    max-width: 100%;
+  }
+}
+
+#datepicker::-webkit-input-placeholder {
+  /* Chrome/Opera/Safari */
+  color: #dddddd;
+}
+
+#datepicker::-moz-placeholder {
+  /* Firefox 19+ */
+  color: #dddddd;
+}
+
+#datepicker:-ms-input-placeholder {
+  /* IE 10+ */
+  color: #dddddd;
+}
+
+#datepicker:-moz-placeholder {
+  /* Firefox 18- */
+  color: #dddddd;
+}
+
+#ui-datepicker-div.ui-widget-content {
+  border: none;
+  background: #fff;
+  border: solid 1px #e4ebe7;
+  position: absolute !important;
+  top: 103% !important;
+  left: 0px !important;
+  padding: 0;
+  width: 100%;
+  border-radius: 0;
+  z-index: 99999 !important;
+}
+
+.ui-selectmenu-button.ui-button {
+  background: #fff;
+  color: #dddddd !important;
+  border: solid 1px #e4ebe7;
+  width: 100%;
+  outline: none;
+  font-weight: 400;
+  font-family: "PT Root UI";
+}
+
+.ui-widget.ui-widget-content {
+  border: 1px solid #e4ebe7;
+}
+
+.ui-state-active,
+.ui-widget-content .ui-state-active,
+.ui-widget-header .ui-state-active,
+a.ui-button:active,
+.ui-button:active,
+.ui-button.ui-state-active:hover {
+  border: none;
+  background: #ffffff;
+  font-weight: normal;
+  color: #ae00ff;
+}
+
+.ui-button .ui-icon {
+  background: url("../images/angle-arrow-down.svg") no-repeat !important;
+  -webkit-transition: all 0.5s;
+  transition: all 0.5s;
+}
+
+.ui-selectmenu-icon.ui-icon {
+  float: right;
+  margin-top: 3px;
+}
+
+.ui-button:hover .ui-icon {
+  -webkit-transform: rotate(180deg);
+          transform: rotate(180deg);
+}
+
+.ui-state-focus .ui-icon,
+.ui-button:focus .ui-icon {
+  background: url("../images/angle-arrow-down.svg") no-repeat !important;
+  -webkit-transform: rotate(180deg);
+          transform: rotate(180deg);
+}
+
+.ui-selectmenu-text {
+  color: #212121;
+}
+
+.ui-icon-triangle-1-s {
+  background-position: center;
+}
+
+.ui-selectmenu-menu .ui-menu {
+  margin-top: 2px;
+  padding: 0px 0px 15px;
+}
+
+.ui-selectmenu-menu .ui-menu .ui-menu-item {
+  padding: 10px 20px 0px;
+  font-family: "PT Root UI";
+}
+
+.ui-menu .ui-menu-item-wrapper {
+  padding: 0;
+}
+
+.ui-menu .ui-state-focus,
+.ui-menu .ui-state-active {
+  margin: 0px;
+}
+
+#ui-datepicker-div .ui-widget-header {
+  border: none;
+  background: transparent;
+  color: #212121;
+  font-weight: bold;
+}
+
+#ui-datepicker-div .ui-state-default,
+#ui-datepicker-div .ui-widget-content .ui-state-default {
+  border: none;
+  background: transparent;
+  color: #212121;
+  font-weight: normal;
+  text-align: center;
+}
+
+#ui-datepicker-div .ui-state-default:hover,
+#ui-datepicker-div .ui-widget-content .ui-state-default:hover {
+  color: #ae00ff;
+}
+
+#ui-datepicker-div .ui-state-active,
+#ui-datepicker-div .ui-widget-content .ui-state-active {
+  color: #fff;
+  background: #ae00ff;
+}
+
+.ui-datepicker .ui-datepicker-next {
+  background: url(../images/arr_right_white.png) center no-repeat;
+}
+
+.ui-datepicker .ui-datepicker-prev {
+  background: url(../images/arr_left_white.png) center no-repeat;
+}
+
+.ui-datepicker .ui-datepicker-next:hover {
+  background: url(../images/arr_right.png) center no-repeat;
+  border: none;
+  cursor: pointer;
+}
+
+.ui-datepicker .ui-datepicker-prev:hover {
+  background: url(../images/arr_left.png) center no-repeat;
+  border: none;
+  cursor: pointer;
+}
+
+.ui-datepicker th,
+.ui-datepicker td {
+  font-weight: normal !important;
+  font-size: 16px;
+  text-transform: uppercase;
+}
+
+.ui-datepicker td {
+  font-size: 18px;
+}
+
+.ui-datepicker th:last-of-type {
+  color: #ae00ff;
+}
+
+.ui-datepicker th:first-of-type {
+  color: #ae00ff;
+}
+
+.ui-datepicker-year:before {
+  content: " ";
+  width: 8px;
+  height: 8px;
+  background: #ae00ff;
+  border-radius: 50%;
+  display: inline-block;
+  margin-right: 13px;
+  margin-left: 7px;
+}
+
+.ui-datepicker .ui-datepicker-title {
+  margin: 0 2.3em;
+  line-height: 1.8em;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  text-align: center;
+  font-weight: normal;
+  font-size: 12px;
+  padding: 10px 0px;
+}
+
+.ui-datepicker .ui-datepicker-prev,
+.ui-datepicker .ui-datepicker-next {
+  position: absolute;
+  top: 14px;
+  width: 1.8em;
+  height: 1.4em !important;
+}
+
+.ui-datepicker-trigger {
+  cursor: pointer;
+}
+/*# sourceMappingURL=style.css.map */

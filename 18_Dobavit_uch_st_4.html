@@ -17,9 +17,10 @@
     
     
     
-<body class="body">
+<body class="body" ng-app="add-map-participant" ng-controller="participant">
 <script src="js/libs/jquery-3.2.1.min.js"></script>
 <script src="js/libs/jquery.formstyler.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.7.8/angular.js"></script>
 <script src="js/common.js"></script>
     <aside class="aside d-flex">
         <a href="/" class="logo">
@@ -74,7 +75,7 @@
                     <a href="08_Spisok_uch.html" class="btn btn-white btn-big">
                         Список учащихся
                     </a>
-                    <a href="05_Dobavit_uch_st_1.html" class="btn btn-pur btn-big">
+                    <a href="05_Dobavit_uch_st_1.html?id={{id}}" class="btn btn-pur btn-big">
                         Добавить
                     </a>
                     
@@ -84,4 +85,16 @@
         
     </section>
 </body>
+<script>
+    var app = angular.module("add-map-participant", []);
+    app.controller("participant", function ($scope, $http, $location, $window, $timeout,$filter) {
+        $scope.init = function () {
+            var param = $window.location.search;
+            if(param.length > 0){
+                $scope.id = param.split('=')[1];
+            }
+        }
+        $scope.init();
+    });
+</script>
 </html>

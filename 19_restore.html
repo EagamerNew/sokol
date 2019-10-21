@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+	<meta http-equiv="x-ua-compatible" content="ie=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta name="format-detection" content="telephone=no" />
+	<title>index</title>
+	<meta name="description" content="">
+	<meta name="Keywords" content="">
+
+	<link rel="stylesheet" href="css/stylelogin.css">
+	<link rel="stylesheet" href="fonts/icomoon/style.css">
+	<link rel="stylesheet" href="fonts/font.css">
+</head>
+
+    
+    
+    
+<body class="body" ng-app="restore" ng-controller="restorectrl">
+<script src="js/libs/jquery-3.2.1.min.js"></script>
+<script src="js/libs/jquery.formstyler.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.7.8/angular.js"></script>
+
+<script src="js/common.js"></script>
+    
+   <section class="section section-log">
+        <div class="section-center">
+        <a href="/" class="logo logo-log">
+            <img src="images/logo.svg" alt="digital control">
+        </a>
+        <h1 class="">Восстановление пароля
+            <p>
+                Введите свой e-mail и мы отправим вам инструкцию по восстановлению пароля
+            </p>
+            </h1>
+        
+        <form>
+                <label class="label">
+                    <div class="label-name">
+                        Ваш e-mail
+                    </div>
+                    <input type="text" ng-model="email" placeholder="Введите e-mail">
+                </label>
+                
+                
+                <div class="d-flex justify-content-between">
+                    <a href="19_login.html" class="btn btn-white btn-big">
+                        Назад
+                    </a>
+                    <a href="javascript:void(0)" ng-click="restore()" class="btn btn-pur btn-big">
+                        Продолжить
+                    </a>
+                    
+                </div>
+        </form>
+        </div>
+    </section>
+</body>
+<script>
+    var app = angular.module("restore", []);
+    app.controller("restorectrl", function ($scope, $http, $location, $window, $timeout) {
+        $scope.email = '';
+        //
+        $scope.restore = function(){
+            $http({
+                method: "POST",
+                url: "functions/auth/restore-post.php",
+                data: {email: $scope.email}
+            }).then(function (data) {
+                console.log(data);
+                console.log(data.data &&  data.data.id && typeof data.data.id === 'number');
+                if(data.data){
+                    console.log('ok');
+                    $window.sessionStorage.setItem('email', $scope.email);
+                    $timeout(function(){$window.location.href = '19_restore_st_2.html';},120);
+                }else{
+                    alert('Данные пользователя не существуют с таким email');
+                }
+            });
+        }
+    });
+</script>
+    </html>

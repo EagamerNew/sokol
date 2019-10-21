@@ -17,9 +17,10 @@
     
     
     
-<body class="body">
+<body class="body" ng-app="tabulation" ng-controller="tabulation-ctrl">
 <script src="js/libs/jquery-3.2.1.min.js"></script>
 <script src="js/libs/jquery.formstyler.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.7.8/angular.js"></script>
 <script src="js/common.js"></script>
     <aside class="aside d-flex">
         <a href="/" class="logo">
@@ -80,14 +81,14 @@
                 </div>
                 <div class="load-body d-flex">
                     <div class="load-left">
-                        <input type="file">
+                        <input type="file" name="file" formnovalidate file-model="file1">
                         <span class="btn btn-big">
                             <i class="icon-arrow-up"></i>
                             Загрузить
                         </span>
                     </div>
                     <div>
-                        
+                        {{file1.name}}
                     </div>
                 </div>
             </div>
@@ -97,14 +98,14 @@
                 </div>
                 <div class="load-body d-flex">
                     <div class="load-left">
-                        <input type="file">
+                        <input type="file" name="file" formnovalidate file-model="file2">
                         <span class="btn btn-big">
                             <i class="icon-arrow-up"></i>
                             Загрузить
                         </span>
                     </div>
                     <div>
-                        
+                        {{file2.name}}
                     </div>
                 </div>
             </div>
@@ -114,18 +115,18 @@
                 </div>
                 <div class="load-body d-flex">
                     <div class="load-left">
-                        <input type="file">
+                        <input type="file" name="file" formnovalidate file-model="file3">
                         <span class="btn btn-big">
                             <i class="icon-arrow-up"></i>
                             Загрузить
                         </span>
                     </div>
                     <div>
-                        
+                        {{file3.name}}
                     </div>
                 </div>
             </div>
-            <a href="" class="btn btn-pur btn-big">
+            <a href="" ng-click="save()" class="btn btn-pur btn-big">
                 Отправить
             </a>
             
@@ -136,4 +137,39 @@
         
     </section>
 </body>
+<script>
+    var app = angular.module("tabulation", []);
+    app.controller("tabulation-ctrl", function($scope, $http,$location,$window, $timeout) {
+        $scope.file1;
+        $scope.file2;
+        $scope.file3;
+        $scope.userId = $window.sessionStorage.getItem('userId');
+
+        $scope.save = function(){
+            $http({
+                method:"POST",
+                url:"functions/tabulation/tabulation-add-post.php",
+                data:{fileUchet:$scope.file1.name,fileSchet:$scope.file2.name,fileAkt:$scope.file3.name,userId:$scope.userId}
+            }).then(function(data){
+                console.log(data);
+                $window.location.href = '17_Tabelirovanie_st_3.html';
+            });
+        }
+    });
+    app.directive('fileModel', ['$parse', function ($parse) {
+        return {
+            restrict: 'A',
+            link: function(scope, element, attrs) {
+                var model = $parse(attrs.fileModel);
+                var modelSetter = model.assign;
+
+                element.bind('change', function() {
+                    scope.$apply(function() {
+                        modelSetter(scope, element[0].files[0]);
+                    });
+                });
+            }
+        };
+    }]);
+</script>
 </html>

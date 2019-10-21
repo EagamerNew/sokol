@@ -5,7 +5,8 @@
 	<meta charset="UTF-8">
 	<meta required="true" name="viewport" content="width=device-width, initial-scale=1.0">
 	<meta http-equiv="X-UA-Compatible" content="ie=edge">
-	<title>Document</title>
+	<link rel="shortcut icon" href="/images/favicon.ico" type="image/png">
+	<title>Digital Control</title>
 	<link href="fonts/fontawesome/css/all.css" rel="stylesheet">
 	<link rel="stylesheet" href="css/jquery-ui.css">
 	<link rel="stylesheet" href="css/style1.css">
@@ -18,7 +19,7 @@
 		<div id="step1" class="steps">
 			<img src="images/dc-logo.svg" alt="" class="logo">
 			<button class="registration" data-id="registration-form">Регистрация</button>
-			<button class="enter">Вход</button>
+			<button class="enter" ng-click="toLogin()">Вход</button>
 		</div>
 		<div id="registration-form" class="steps" style="display: none;">
 			<img src="images/dc-logo.svg" width="140" alt="" class="logo">
@@ -44,7 +45,12 @@
 				<div class="form_item">
 					<label for="email">Ваш e-mail</label>
 					<input type="text" id="email" required="true" name="email" placeholder="Введите e-mail"
-						ng-model="user.email">
+						   ng-model="user.email">
+				</div>
+				<div class="form_item">
+					<label for="phone">Ваш номер телефона</label>
+					<input type="text" id="phone" required="true" name="phone" placeholder="Пример(без +7): 7788098989"
+						   ng-model="user.phone">
 				</div>
 				<div class="form_item">
 					<label for="password">Ваш пароль</label>
@@ -182,6 +188,7 @@
 			<!-- </form> -->
 		</div>
 	</div>
+<!--	 <button ng-click="saveUserSpecs(1)">hello</button>-->
 
 	<script src="js/jquery-3.3.1.min.js"></script>
 	<script src="js/jquery-ui.js"></script>

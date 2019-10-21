@@ -6,9 +6,10 @@ $form_data = json_decode(file_get_contents("php://input"));
 
 $id = $form_data->id;
 $userId = $form_data->userId;
-$dayId= $form_data->dayId;
+$total= $form_data->total;
+$busy= $form_data->busy;
 $specId= $form_data->specId;
-$themeId= $form_data->themeId;
+$theme= $form_data->theme;
 
 $data = array();
 $message = "";
@@ -16,18 +17,18 @@ if($id == -1){
     $query = "
     INSERT INTO education_program  
     (
-        userId,dayId,themeId,specId
+        userId,theme,specId, total,busy
 
     ) VALUES 
     (
-        ".$userId.", ".$dayId." , ".$themeId.",".$specId."
+        ".$userId.", '$theme',".$specId.", ".$total.", ".$busy."
     )
     ";
     $message = $message." add;";
 }else{
     $query = "
     UPDATE education_program  
-    SET themeId=".$themeId.", dayId=".$dayId.",specId=".$specId."  WHERE id=".$id."  ";
+    SET theme='$theme', total=".$total.",busy=".$busy.",specId=".$specId."  WHERE id=".$id."  ";
     $message = $message." edit;";
 
 }

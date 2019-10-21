@@ -17,9 +17,10 @@
     
     
     
-<body class="body">
+<body class="body" ng-app="get-list-participant" ng-controller="participant-list">
 <script src="js/libs/jquery-3.2.1.min.js"></script>
 <script src="js/libs/jquery.formstyler.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.7.8/angular.js"></script>
 <script src="js/common.js"></script>
     <aside class="aside d-flex">
         <a href="/" class="logo">
@@ -76,11 +77,9 @@
                     </a>
                 </div>
                 
-                
-                
                 <div class=" d-flex justify-content-end align-items-center">
                     <label class="search-input">
-                        <input type="search" placeholder="Поиск…">
+                        <input type="search" placeholder="Поиск…" ng-model="search">
                         <i class="icon-search"></i>
                     </label>
                     <a href="" class="filter">
@@ -96,321 +95,95 @@
                     <div class="d-flex">
                             <div class="colo ">
                                 <label class="flex">
-                                    <input type="checkbox"><span></span>
+<!--                                    <input type="checkbox"><span></span>-->
                                     Учащийся
-                                    <i class="icon-angle-arrow-down"></i>
+<!--                                    <i class="icon-angle-arrow-down"></i>-->
                                 </label>
                                 
                                 
                             </div>
                             <div class="colo ">
                                 Специализация
-                                <i class="icon-angle-arrow-down"></i>
+<!--                                <i class="icon-angle-arrow-down"></i>-->
                             </div>
                             <div class="colo ">
                                 Дата регистрации
-                                <i class="icon-angle-arrow-down"></i>
+<!--                                <i class="icon-angle-arrow-down"></i>-->
                             </div>
                             <div class="colo ">
                                 Успеваемость
-                                <i class="icon-angle-arrow-down"></i>
+<!--                                <i class="icon-angle-arrow-down"></i>-->
                             </div>
                             <div class="colo ">
                                 Профиль
                             </div>
                     </div>
                 </div>
-                <div class="table-body table-body-list table-body-bg">
+                <div class="table-body table-body-list table-body-bg" ng-if="participants" ng-repeat="participant in participants | filter: {fullName: search}">
                             
                             <div class="d-flex">
                                 <div class="colo ">
                                     <label class="flex">
-                                        <input type="checkbox"><span></span>
-                                        Наурызбеков Бауржан Сагиевич
+<!--                                        <input type="checkbox"><span></span>-->
+                                        {{participant.fullName}}
                                     </label>
-
-
                                 </div>
                                 <div class="colo ">
-                                    Автомеханик
+                                    {{getSpec(participant.specId)}}
                                 </div>
                                 <div class="colo ">
-                                    14.08.2018
+                                    {{participant.created}}
                                 </div>
                                 <div class="colo  d-flex">
                                     <div class="user__lesson-line d-flex">
-                                        <div class="user__lesson-line-div user__lesson-line-green" style="min-width: 85%">
+                                        <div class="user__lesson-line-div user__lesson-line-green" ng-style="getStyle(participant.attendance)">
                                             
                                         </div>
                                         <div class="user__lesson-line-div">
                                             
                                         </div>
                                     </div>
-                                    86%
+                                    {{participant.attendance + '%'}}
                                 </div>
                                 <div class="colo ">
-                                    <a href="07_Uch.html" class="btn btn-white-pur btn-big-text">
+                                    <a href="07_Uch.html?id={{participant.id}}" class="btn btn-white-pur btn-big-text">
                                         Открыть
                                     </a>
                                 </div>
                             </div>
-                            <div class="d-flex">
-                                <div class="colo ">
-                                    <label class="flex">
-                                        <input type="checkbox"><span></span>
-                                        Наурызбеков Бауржан Сагиевич
-                                    </label>
+<!--                            <div class="d-flex">-->
+<!--                                <div class="colo ">-->
+<!--                                    <label class="flex">-->
+<!--                                        <input type="checkbox"><span></span>-->
+<!--                                        Наурызбеков Бауржан Сагиевич-->
+<!--                                    </label>-->
 
 
-                                </div>
-                                <div class="colo ">
-                                    Автомеханик
-                                </div>
-                                <div class="colo ">
-                                    14.08.2018
-                                </div>
-                                <div class="colo  d-flex">
-                                    <div class="user__lesson-line d-flex">
-                                        <div class="user__lesson-line-div user__lesson-line-green" style="background: #eec643; min-width: 48%">
-                                            
-                                        </div>
-                                        <div class="user__lesson-line-div">
-                                            
-                                        </div>
-                                    </div>
-                                    48%
-                                </div>
-                                <div class="colo ">
-                                    <a href="07_Uch.html" class="btn btn-white-pur btn-big-text">
-                                        Открыть
-                                    </a>
-                                </div>
-                            </div>
-                            <div class="d-flex">
-                                <div class="colo ">
-                                    <label class="flex">
-                                        <input type="checkbox"><span></span>
-                                        Наурызбеков Бауржан Сагиевич
-                                    </label>
-
-
-                                </div>
-                                <div class="colo ">
-                                    Автомеханик
-                                </div>
-                                <div class="colo ">
-                                    14.08.2018
-                                </div>
-                                <div class="colo  d-flex">
-                                    <div class="user__lesson-line d-flex">
-                                        <div class="user__lesson-line-div user__lesson-line-green" style="background: #df443a;min-width:20%">
-                                            
-                                        </div>
-                                        <div class="user__lesson-line-div">
-                                            
-                                        </div>
-                                    </div>
-                                    20%
-                                </div>
-                                <div class="colo ">
-                                    <a href="07_Uch.html" class="btn btn-white-pur btn-big-text">
-                                        Открыть
-                                    </a>
-                                </div>
-                            </div>
-                            <div class="d-flex">
-                                <div class="colo ">
-                                    <label class="flex">
-                                        <input type="checkbox"><span></span>
-                                        Наурызбеков Бауржан Сагиевич
-                                    </label>
-
-
-                                </div>
-                                <div class="colo ">
-                                    Автомеханик
-                                </div>
-                                <div class="colo ">
-                                    14.08.2018
-                                </div>
-                                <div class="colo  d-flex">
-                                    <div class="user__lesson-line d-flex">
-                                        <div class="user__lesson-line-div user__lesson-line-green" style="min-width: 85%">
-                                            
-                                        </div>
-                                        <div class="user__lesson-line-div">
-                                            
-                                        </div>
-                                    </div>
-                                    86%
-                                </div>
-                                <div class="colo ">
-                                    <a href="07_Uch.html" class="btn btn-white-pur btn-big-text">
-                                        Открыть
-                                    </a>
-                                </div>
-                            </div>
-                            <div class="d-flex">
-                                <div class="colo ">
-                                    <label class="flex">
-                                        <input type="checkbox"><span></span>
-                                        Наурызбеков Бауржан Сагиевич
-                                    </label>
-
-
-                                </div>
-                                <div class="colo ">
-                                    Автомеханик
-                                </div>
-                                <div class="colo ">
-                                    14.08.2018
-                                </div>
-                                <div class="colo  d-flex">
-                                    <div class="user__lesson-line d-flex">
-                                        <div class="user__lesson-line-div user__lesson-line-green" style="background: #eec643; min-width: 48%">
-                                            
-                                        </div>
-                                        <div class="user__lesson-line-div">
-                                            
-                                        </div>
-                                    </div>
-                                    48%
-                                </div>
-                                <div class="colo ">
-                                    <a href="07_Uch.html" class="btn btn-white-pur btn-big-text">
-                                        Открыть
-                                    </a>
-                                </div>
-                            </div>
-                            <div class="d-flex">
-                                <div class="colo ">
-                                    <label class="flex">
-                                        <input type="checkbox"><span></span>
-                                        Наурызбеков Бауржан Сагиевич
-                                    </label>
-
-
-                                </div>
-                                <div class="colo ">
-                                    Автомеханик
-                                </div>
-                                <div class="colo ">
-                                    14.08.2018
-                                </div>
-                                <div class="colo  d-flex">
-                                    <div class="user__lesson-line d-flex">
-                                        <div class="user__lesson-line-div user__lesson-line-green" style="background: #df443a;min-width:20%">
-                                            
-                                        </div>
-                                        <div class="user__lesson-line-div">
-                                            
-                                        </div>
-                                    </div>
-                                    20%
-                                </div>
-                                <div class="colo ">
-                                    <a href="07_Uch.html" class="btn btn-white-pur btn-big-text">
-                                        Открыть
-                                    </a>
-                                </div>
-                            </div>
-                            <div class="d-flex">
-                                <div class="colo ">
-                                    <label class="flex">
-                                        <input type="checkbox"><span></span>
-                                        Наурызбеков Бауржан Сагиевич
-                                    </label>
-
-
-                                </div>
-                                <div class="colo ">
-                                    Автомеханик
-                                </div>
-                                <div class="colo ">
-                                    14.08.2018
-                                </div>
-                                <div class="colo  d-flex">
-                                    <div class="user__lesson-line d-flex">
-                                        <div class="user__lesson-line-div user__lesson-line-green" style="min-width: 85%">
-                                            
-                                        </div>
-                                        <div class="user__lesson-line-div">
-                                            
-                                        </div>
-                                    </div>
-                                    86%
-                                </div>
-                                <div class="colo ">
-                                    <a href="07_Uch.html" class="btn btn-white-pur btn-big-text">
-                                        Открыть
-                                    </a>
-                                </div>
-                            </div>
-                            <div class="d-flex">
-                                <div class="colo ">
-                                    <label class="flex">
-                                        <input type="checkbox"><span></span>
-                                        Наурызбеков Бауржан Сагиевич
-                                    </label>
-
-
-                                </div>
-                                <div class="colo ">
-                                    Автомеханик
-                                </div>
-                                <div class="colo ">
-                                    14.08.2018
-                                </div>
-                                <div class="colo  d-flex">
-                                    <div class="user__lesson-line d-flex">
-                                        <div class="user__lesson-line-div user__lesson-line-green" style="background: #eec643; min-width: 48%">
-                                            
-                                        </div>
-                                        <div class="user__lesson-line-div">
-                                            
-                                        </div>
-                                    </div>
-                                    48%
-                                </div>
-                                <div class="colo ">
-                                    <a href="07_Uch.html" class="btn btn-white-pur btn-big-text">
-                                        Открыть
-                                    </a>
-                                </div>
-                            </div>
-                            <div class="d-flex">
-                                <div class="colo ">
-                                    <label class="flex">
-                                        <input type="checkbox"><span></span>
-                                        Наурызбеков Бауржан Сагиевич
-                                    </label>
-
-
-                                </div>
-                                <div class="colo ">
-                                    Автомеханик
-                                </div>
-                                <div class="colo ">
-                                    14.08.2018
-                                </div>
-                                <div class="colo  d-flex">
-                                    <div class="user__lesson-line d-flex">
-                                        <div class="user__lesson-line-div user__lesson-line-green" style="background: #df443a;min-width:20%">
-                                            
-                                        </div>
-                                        <div class="user__lesson-line-div">
-                                            
-                                        </div>
-                                    </div>
-                                    20%
-                                </div>
-                                <div class="colo ">
-                                    <a href="07_Uch.html" class="btn btn-white-pur btn-big-text">
-                                        Открыть
-                                    </a>
-                                </div>
-                            </div>
-                            
+<!--                                </div>-->
+<!--                                <div class="colo ">-->
+<!--                                    Автомеханик-->
+<!--                                </div>-->
+<!--                                <div class="colo ">-->
+<!--                                    14.08.2018-->
+<!--                                </div>-->
+<!--                                <div class="colo  d-flex">-->
+<!--                                    <div class="user__lesson-line d-flex">-->
+<!--                                        <div class="user__lesson-line-div user__lesson-line-green" style="background: #df443a;min-width:20%">-->
+<!--                                            -->
+<!--                                        </div>-->
+<!--                                        <div class="user__lesson-line-div">-->
+<!--                                            -->
+<!--                                        </div>-->
+<!--                                    </div>-->
+<!--                                    20%-->
+<!--                                </div>-->
+<!--                                <div class="colo ">-->
+<!--                                    <a href="07_Uch.html" class="btn btn-white-pur btn-big-text">-->
+<!--                                        Открыть-->
+<!--                                    </a>-->
+<!--                                </div>-->
+<!--                            </div>-->
+<!--                            -->
 
                         </div>
             </div>        
@@ -419,4 +192,76 @@
         
     </section>
 </body>
+<script>
+    var app = angular.module("get-list-participant", []);
+    app.controller("participant-list", function ($scope, $http, $location, $window, $timeout, $filter) {
+        $scope.specs = [];
+        $scope.greenStyle = {'min-width':'26%'};
+        $scope.yellowStyle = {'background': '#eec643','min-width':'26%'};
+        $scope.redStyle = {'background': '#df443a','min-width':'26%'};
+        $scope.userId = $window.sessionStorage.userId;
+        $scope.participants = [];
+        $scope.search;
+
+        $scope.fetchData = function () {
+            $http.get('./functions/participant/participant-list-get.php?userId=' + $scope.userId).then(function (data) {
+                console.log(data);
+                if (data.data && angular.isArray(data.data)) {
+                    $scope.participants = data.data;
+                    for (let i = 0; i < $scope.participants.length; i++) {
+                        let participant = $scope.participants[i];
+                        $scope.participants[i].fullName = participant.surname + ' ' + participant.name + ' ' + participant.lastname;
+                        $scope.participants[i].attendance = $scope.getAttendPerc(participant);
+                    }
+                }
+            });
+        };
+        $scope.fetchData();
+
+        $scope.getUserSpec = function(){
+            $http.get('./functions/user-spec/user-spec-list-get.php?userId=' + $scope.userId).then(function (data) {
+                console.log(data);
+                $scope.changingId = -1;
+                if (data.data && angular.isArray(data.data)) {
+                    $scope.specs = data.data;
+                }else{
+                    console.error('userSpec array null!');
+                }
+            });
+        }
+        $scope.getUserSpec();
+
+        $scope.getAttendPerc = function(participant){
+            var all = parseInt(participant.absent) + parseInt(participant.attend);
+            if(all === 0){
+                return 0;
+            }
+            return ($scope.participant.attend/all)*100;
+        }
+
+        $scope.getStyle = function(perc){
+            if(perc >= 50) {
+                var green = $scope.greenStyle;
+                green['min-width'] = perc + '%';
+                return green;
+            }else if(perc>=25 && perc< 50){
+                var yellow = $scope.yellowStyle;
+                yellow['min-width'] = perc + '%';
+                return yellow;
+            }else{
+                var red = $scope.redStyle;
+                red['min-width'] = perc + '%';
+                return red;
+            }
+        };
+
+        $scope.getSpec = function (id) {
+            for (var i = 0; i < $scope.specs.length; i++) {
+                if ($scope.specs[i].id == id) {
+                    return $scope.specs[i].title;
+                }
+            }
+        }
+    });
+</script>
 </html>

@@ -8,7 +8,7 @@
 	<title>Document</title>
 	<link href="fonts/fontawesome/css/all.css" rel="stylesheet">
 	<link rel="stylesheet" href="css/jquery-ui.css">
-	<link rel="stylesheet" href="css/style.css">
+	<link rel="stylesheet" href="css/style1.css">
 </head>
 
 <body ng-app="thanks" ng-controller="thanks-info">
@@ -33,7 +33,7 @@
 
 	<script>
 			var app = angular.module("thanks", []);
-			app.controller("thanks-info", function($scope, $http, $window) {
+			app.controller("thanks-info", function($scope, $http, $window, $timeout) {
 				console.log('init');
 				$scope.email = $window.sessionStorage.email;
 				console.log($window.sessionStorage.email);
@@ -42,6 +42,9 @@
 				 $window.localStorage.removeItem('prevStep');
 				 $window.localStorage.removeItem('currentStep');
 				 $window.localStorage.removeItem('formName');
+				 $timeout(function(){
+					$window.location.href = '02_Grafik_rabot_pravka.html';
+				}, 3000);
 			});
 		
 		</script>

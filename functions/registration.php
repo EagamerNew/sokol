@@ -76,8 +76,9 @@ $headers = "From: no-reply@digitalcontrol.kz";
 
 mail($to,$subject,$txt,$headers);
 
-$temp = $statement->fetch(PDO::FETCH_ASSOC);
-echo ($connect->lastInsertId());
+// $temp = $statement->fetch(PDO::FETCH_ASSOC);
+echo ($hell);
+// echo ($connect->lastInsertId());
 
 ?>
     

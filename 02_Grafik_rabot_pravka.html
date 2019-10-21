@@ -1,33 +1,34 @@
 <!DOCTYPE html>
 <html>
+
 <head>
     <meta charset="utf-8">
-	<meta http-equiv="x-ua-compatible" content="ie=edge">
-	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<meta name="format-detection" content="telephone=no" />
-	<title>index</title>
-	<meta name="description" content="">
-	<meta name="Keywords" content="">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="format-detection" content="telephone=no" />
+    <title>index</title>
+    <meta name="description" content="">
+    <meta name="Keywords" content="">
 
-	<link rel="stylesheet" href="css/style.css">
-	<link rel="stylesheet" href="fonts/icomoon/style.css">
-	<link rel="stylesheet" href="fonts/font.css">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="fonts/icomoon/style.css">
+    <link rel="stylesheet" href="fonts/font.css">
 </head>
 
-    
-    
-    
+
+
+
 <body class="body" ng-app="graphic-rabot" ng-controller="graphic-crud">
-<script src="js/libs/jquery-3.2.1.min.js"></script>
-<script src="js/libs/jquery.formstyler.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.7.8/angular.js"></script>
-<script src="js/common.js"></script>
+    <script src="js/libs/jquery-3.2.1.min.js"></script>
+    <script src="js/libs/jquery.formstyler.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.7.8/angular.js"></script>
+    <script src="js/common.js"></script>
     <aside class="aside d-flex">
         <a href="/" class="logo">
             <img src="images/logo.svg" alt="digital control">
         </a>
         <nav class="nav d-flex">
-            <a class="nav-a active" href="01_Grafik_rabot.html">
+            <a class="nav-a active" href="02_Grafik_rabot_pravka.html">
                 <i class="icon-home"></i>
                 <span>
                     Главная
@@ -51,7 +52,7 @@
                     Табелирование
                 </span>
             </a>
-            
+
         </nav>
     </aside>
     <section class="section">
@@ -69,8 +70,8 @@
                     Главная
                 </div>
                 <div class="d-flex justify-content-end ">
-<!--                    <a href="04_Grafik_rabot_dobavit.html" class="btn btn-pur">-->
-                    <a ng-click="add()" class="btn btn-pur">
+                    <!--                    <a href="04_Grafik_rabot_dobavit.html" class="btn btn-pur">-->
+                    <a ng-click="add()" href="javascript:void(0);" class="btn btn-pur">
                         <i class="icon-add"></i>
                         Добавить график обучения
                     </a>
@@ -80,10 +81,10 @@
         <div class="section__block table container_">
             <div class="container_ table-tabs">
                 <div class="d-flex">
-                    <a href="01_Grafik_rabot.html" class="col-6 active table-tabs-a">
+                    <a href="01_Grafik_rabot_pravka.html" class="col-6 active table-tabs-a">
                         График обучения
                     </a>
-                    <a href="03_Programma_obucheniya.html" class="col-6 table-tabs-a">
+                    <a href="10_Programma_obucheniya_redactirovat.html" class="col-6 table-tabs-a">
                         Программы обучения
                     </a>
                 </div>
@@ -91,155 +92,217 @@
             <div class="container_ table-tab">
                 <div class="table-head">
                     <div class="d-flex">
-                            <div class="colo">
-                                Дни
-                            </div>
-                            <div class="colo">
-                                Время
-                            </div>
-                            <div class="colo">
-                                Специализация
-                            </div>
-                            <div class="colo">
-                                Действие
-                            </div>
+                        <div class="colo">
+                            Дни
+                        </div>
+                        <div class="colo">
+                            Время
+                        </div>
+                        <div class="colo">
+                            Специализация
+                        </div>
+                        <div class="colo">
+                            Действие
+                        </div>
                     </div>
                 </div>
-                <div class="table-body"  ng-repeat="item in graphics">
-                            <div class="d-flex" ng-class="{'d-flex':true,show: item.id === changingId, hide: item.id !== changingId}" >
-                                <div class="colo" data-text="Дни">
-                                    <select>
-                                        <option>Понедельник</option>
-                                        <option>Вторник</option>
-                                        <option>Среда</option>
-                                        <option>Четверг</option>
-                                        <option>Пятница</option>
-                                    </select>
-                                </div>
-                                <div class="colo edit" data-text="Время">
-                                    <select>
-                                        <option>09:00</option>
-                                        <option>10:00</option>
-                                        <option>11:00</option>
-                                        <option>12:00</option>
-                                        <option>13:00</option>
-                                        <option>14:00</option>
-                                        <option>15:00</option>
-                                        <option>16:00</option>
-                                        <option>17:00</option>
-                                        <option>18:00</option>
-                                        <option>19:00</option>
-                                    </select>
-                                    <span class="or">-</span>
-                                    <select>
-                                        <option>09:00</option>
-                                        <option>10:00</option>
-                                        <option>11:00</option>
-                                        <option>12:00</option>
-                                        <option>13:00</option>
-                                        <option>14:00</option>
-                                        <option>15:00</option>
-                                        <option>16:00</option>
-                                        <option>17:00</option>
-                                        <option>18:00</option>
-                                        <option>19:00</option>
-                                    </select>
 
-                                </div>
-                                <div class="colo" data-text="Специализация">
-                                    <select>
-                                        <option>Слесарь</option>
-                                        <option>Автомеханик</option>
-                                    </select>
-
-                                </div>
-                                <div class="colo">
-                                    <a href="" class="btn btn-check" ng-click="save(item)">
-                                        <i class="icon-tick"></i>
-                                    </a>
-
-                                </div>
-                            </div>
-                            <div  class="d-flex" ng-class="{'d-flex':true,show: item.id !== changingId, hide: item.id === changingId}">
-                                <div class="colo" data-text="Дни">
-                                    Среда
-                                </div>
-                                <div class="colo" data-text="Время">
-                                    12:00 - 15:00
-                                </div>
-                                <div class="colo" data-text="Специализация">
-                                    Автомеханик
-                                </div>
-                                <div class="colo">
-                                    <a href="02_Grafik_rabot_pravka.html" class="icon-edit" ng-click="edit(item.id)"></a>
-                                    <a href="" class="icon-trash"></a>
-                                </div>
-                            </div>
-<!--                            <div class="d-flex">-->
-<!--                                <div class="colo" data-text="Дни">-->
-<!--                                    Пятница-->
-<!--                                </div>-->
-<!--                                <div class="colo" data-text="Время">-->
-<!--                                    12:00 - 15:00-->
-<!--                                </div>-->
-<!--                                <div class="colo" data-text="Специализация">-->
-<!--                                    Автомеханик -->
-<!--                                </div>-->
-<!--                                <div class="colo">-->
-<!--                                    <a href="02_Grafik_rabot_pravka.html" class="icon-edit"></a>-->
-<!--                                    <a href="" class="icon-trash"></a>-->
-<!--                                </div>-->
-<!--                            </div>-->
+                <div class="table-body" ng-if="graphics" ng-repeat="item in graphics track by item.id">
+                    <div class="d-flex"
+                        ng-show="item.id === changingId">
+                        <!-- ng-class="{'d-flex':true,show: item.id === changingId, hide: item.id !== changingId}"> -->
+                        <div class="colo" data-text="Дни">
+                            <select id="dayId" ng-model="item.dayId" ng-change="check(item, $event)">
+                                <option value="1">Понедельник</option>
+                                <option value="2">Вторник</option>
+                                <option value="3">Среда</option>
+                                <option value="4">Четверг</option>
+                                <option value="5">Пятница</option>
+                            </select>
+                        </div>
+                        <div class="colo edit" data-text="Время">
+                            <select id="timeStartId" ng-model="item.timeStartId">
+                                <option value="1">09:00</option>
+                                <option value="2">10:00</option>
+                                <option value="3">11:00</option>
+                                <option value="4">12:00</option>
+                                <option value="5">13:00</option>
+                                <option value="6">14:00</option>
+                                <option value="7">15:00</option>
+                                <option value="8">16:00</option>
+                                <option value="9">17:00</option>
+                                <option value="10">18:00</option>
+                                <option value="11">19:00</option>
+                            </select>
+                            <span class="or">-</span>
+                            <select id="timeEndId" ng-model="item.timeEndId">
+                                <option value="1">09:00</option>
+                                <option value="2">10:00</option>
+                                <option value="3">11:00</option>
+                                <option value="4">12:00</option>
+                                <option value="5">13:00</option>
+                                <option value="6">14:00</option>
+                                <option value="7">15:00</option>
+                                <option value="8">16:00</option>
+                                <option value="9">17:00</option>
+                                <option value="10">18:00</option>
+                                <option value="11">19:00</option>
+                            </select>
 
                         </div>
-            </div>        
-                   
-      
-            
+                        <div class="colo" data-text="Специализация">
+                            <select id="specId" ng-model="item.specId">
+                                <option value="1">Слесарь</option>
+                                <option value="2">Автомеханик</option>
+                            </select>
+
+                        </div>
+                        <div class="colo">
+                            <a href="javascript:void(0);" class="btn btn-check" ng-click="save(item)">
+                                <i class="icon-tick"></i>
+                            </a>
+
+                        </div>
+                    </div>
+                    <div class="d-flex"
+                        ng-if="item.id !== changingId">
+                        <!-- ng-class="{'d-flex':true,show: item.id !== changingId, hide: item.id === changingId}"> -->
+                        <div class="colo" data-text="Дни">
+                            {{getDay(item.dayId)}}
+                        </div>
+                        <div class="colo" data-text="Время">
+                            {{getTime(item.timeStartId)}} - {{getTime(item.timeEndId)}}
+                        </div>
+                        <div class="colo" data-text="Специализация">
+                            {{getSpec(item.specId)}}
+                        </div>
+                        <div class="colo">
+                            <a href="javascript:void(0);" class="icon-edit" ng-click="edit(item.id)"></a>
+                            <a href="javascript:void(0);" class="icon-trash" ng-click="remove(item.id)"></a>
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+
+
+
         </div>
     </section>
 </body>
 <script>
     var app = angular.module("graphic-rabot", []);
-    app.controller("graphic-crud", function($scope, $http,$location,$window) {
+    app.controller("graphic-crud", function ($scope, $http, $location, $window, $timeout) {
         $scope.changingId = -1;
         $scope.graphics = [];
+        $scope.userId = $window.sessionStorage.userId;
 
-        $scope.fetchData = function(){
-            $http.get('./functions/graphic-rabot/graphic-rabot-get.php').then(function(data){
+        $scope.fetchData = function () {
+            $http.get('./functions/graphic-rabot/graphic-rabot-get.php?userId=' + $scope.userId).then(function (data) {
                 console.log(data);
-                $scope.graphics = data.data;
+                $scope.changingId = -1;
+                if (data.data && angular.isArray(data.data)) {
+                    $scope.graphics = data.data;
+                }
             });
         };
         $scope.fetchData();
 
-        $scope.add = function(){
+        $scope.add = function () {
             $scope.changingId = -1;
-            $scope.graphics.push({id:-1, userId: -1, dayId:1, timeId: 1, specId:1});
+            $timeout(function(){
+            $('select').styler();
+				}, 100);
+            $scope.graphics.push({ id: -1, userId: $scope.userId, dayId: 1, timeStartId: 1, timeEndId:1, specId: 1 });
         }
 
-        $scope.edit = function(id){
+        $scope.edit = function (id) {
             $scope.changingId = id;
         }
 
-        $scope.save = function(item){
+        $scope.remove = function (id) {
+            $http({
+                method: "POST",
+                url: "functions/graphic-rabot/graphic-rabot-del.php",
+                data: {id:id}
+            }).then(function (data) {
+                console.log(data);
+                $scope.fetchData();
+            });
+        }
+
+        $scope.check = function (item, event) {
+            console.log('check', item, event);
+        }
+
+        $scope.save = function (item) {
             $scope.changingId = -2;
-            // $http({
-            //     method:"POST",
-            //     url:"./functions/graphic-rabot/graphic-rabot-post.php",
-            //     data:{}
-            // }).then(function(data){
-            //
-            // });
+            console.log('before item: ', item);
+
+            $http({
+                method: "POST",
+                url: "functions/graphic-rabot/graphic-rabot-post.php",
+                data: item
+            }).then(function (data) {
+                console.log(data);
+                $scope.fetchData();
+            });
+        }
+
+        $scope.getDay = function (id) {
+            var arr = [{ name: "Понедельник", id: 1 }, { name: "Вторник", id: 2 }, { name: "Среда", id: 3 }, { name: "Четверг", id: 4 }, { name: "Пятница", id: 5 }];
+            for (var i = 0; i < arr.length; i++) {
+                if (arr[i].id == id) {
+                    return arr[i].name;
+                }
+            }
+        }
+
+        $scope.getTime = function (id) {
+            var arr = [
+                { name: "09:00", id: 1 },
+                { name: "10:00", id: 2 }, { name: "11:00", id: 3 }, { name: "12:00", id: 4 }, { name: "13:00", id: 5 }, { name: "14:00", id: 6 },
+                { name: "15:00", id: 7 }, { name: "16:00", id: 8 }, { name: "17:00", id: 9 }, { name: "18:00", id: 10 }, { name: "19:00", id: 11 }
+            ];
+            for (var i = 0; i < arr.length; i++) {
+                if (arr[i].id == id) {
+                    return arr[i].name;
+                }
+            }
+        }
+
+        $scope.getSpec = function (id) {
+            var arr = [
+                { name: "Автомеханик", id: 2 }, { name: "Слесарь", id: 1 }
+            ];
+            for (var i = 0; i < arr.length; i++) {
+                if (arr[i].id == id) {
+                    return arr[i].name;
+                }
+            }
         }
     });
+
+    // app.directive('custom-selected', ['$parse', function ($parse) {
+    //     return {
+    //         restrict: 'A',
+    //         link: function (scope, element, attrs, ngModelCtrl) {
+    //             scope.updateModel = function (item) {
+    //                 ngModelCtrl.$setViewValue(item);
+    //             }
+    //         }
+    //     };
+    // }]);
 </script>
 <style>
-    .show{
-        display: flex!important;
+    .show {
+        display: flex !important;
     }
-    .hide{
-        display: none!important;
+
+    .hide {
+        display: none !important;
     }
 </style>
+
 </html>

@@ -9,7 +9,7 @@ $qrText= $form_data->qrText;//studentId
 
 $data = array();
 $query = "
-    UPDATE lesson SET qrText= '$qrText' WHERE id = $id
+    UPDATE lesson SET qrText= '$qrText' WHERE id = $lessonId
 ";
 $statement = $connect->prepare($query);
 $hell = $statement->execute($data);
@@ -22,7 +22,7 @@ if($hell)
 }
 
 $temp = $statement->fetch(PDO::FETCH_ASSOC);
-echo ($connect->lastInsertId());
+echo json_encode('{"status":"success"}');
 
 ?>
     

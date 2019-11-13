@@ -30,9 +30,9 @@ if($statement->execute())
             $message = '{"answer":"Data Inserted"}';
         }else{
 
-            $message = "Error".$hell;
+            $message = "{'answer':'Error'}";
         }
     }
 }
-echo $message;
+echo json_encode($message);
 ?>

@@ -84,7 +84,13 @@
                 if(data.data && data.data.id){
                     $window.sessionStorage.setItem('email',$scope.auth.email);
                     $window.sessionStorage.setItem('userId',data.data.id);
-                    $window.location.href = '02_Grafik_rabot_pravka.html';
+                    if($scope.auth.email === "admincnz01@mail.ru"){
+                        $window.location.href = 'csn_main.html';
+
+                    }else{
+                        $window.location.href = '02_Grafik_rabot_pravka.html';
+
+                    }
                 }
                 // $scope.fetchData();13_Otredaktirovat_uch_st_2.html
             });

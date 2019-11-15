@@ -1,0 +1,368 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="format-detection" content="telephone=no"/>
+    <title>index</title>
+    <meta name="description" content="">
+    <meta name="Keywords" content="">
+
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="fonts/icomoon/style.css">
+    <link rel="stylesheet" href="fonts/font.css">
+</head>
+
+
+<body class="body" ng-app="add-participant" ng-controller="participant">
+<script src="js/libs/jquery-3.2.1.min.js"></script>
+<script src="js/jquery-ui.js"></script>
+<link rel="stylesheet" href="css/jquery-ui.css">
+<link rel="stylesheet" href="css/style1.css">
+<script src="js/libs/jquery.formstyler.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.7.8/angular.js"></script>
+<script src="//code.jivosite.com/widget.js" data-jv-id="DOrySdjuIy" async></script>
+<script src="js/common.js"></script>
+<aside class="aside d-flex">
+    <a href="/" class="logo">
+        <img src="images/logo.svg" alt="digital control">
+    </a>
+    <nav class="nav d-flex">
+        <a class="nav-a" href="02_Grafik_rabot_pravka.html">
+            <i class="icon-home"></i>
+            <span>
+                    Главная
+                </span>
+        </a>
+        <a class="nav-a" href="08_Spisok_uch.html">
+            <i class="icon-account-group"></i>
+            <span>
+                    Список учащихся
+                </span>
+        </a>
+        <a class="nav-a active" href="uch_spisok_company.html">
+            <i class="icon-account-group"></i>
+            <span>
+                    Компании
+                </span>
+        </a>
+        <a class="nav-a" href="12_Kolichestvo_mest.html">
+            <i class="icon-clipboard"></i>
+            <span>
+                    Количество мест
+                </span>
+        </a>
+        <a class="nav-a" href="14_Tabelirovanie_st_1.html">
+            <i class="icon-new-window"></i>
+            <span>
+                    Табелирование
+                </span>
+        </a>
+
+    </nav>
+</aside>
+<section class="section">
+    <div class="mobile align-items-center">
+        <div class="btn-mob">
+            <span></span>
+        </div>
+        <a href="/" class="logo">
+            <img src="images/logo.svg" alt="digital control">
+        </a>
+    </div>
+    <div class="user__add">
+        <div class="user__add-h1">{{type === 'add'? 'Добавить компанию' : 'Редактирование' }}</div>
+        <div ng-show="step === 1">
+            <form class="form">
+                <label class="label">
+                    <div class="label-name">
+                        Название
+                    </div>
+                    <input type="text" placeholder="Введите название" ng-model="company.name">
+                </label>
+                <label class="label">
+                    <div class="label-name">
+                        Сфера деятельности
+                    </div>
+
+                    <select data-placeholder="Выберите деятельность" ng-model="company.sphereId">
+                        <option ng-repeat="row in companySpecs" ng-value="$index">{{row}}</option>
+                    </select>
+                </label>
+                <label class="label">
+                    <div class="label-name">
+                        Фактический адрес
+                    </div>
+                    <input type="text" placeholder="Введите фактический адрес" ng-model="company.address">
+                </label>
+                <label class="label">
+                    <div class="label-name">
+                        ФИО Куратора
+                    </div>
+                    <input type="text" placeholder="Введите ФИО Куратора" ng-model="company.curator">
+                </label>
+
+                <label class="label">
+                    <div class="label-name">
+                        Телефон куратора
+                    </div>
+                    <input type="text" placeholder="Пример(без +7 ): 7076663322" ng-model="company.phone">
+                </label>
+                <label class="label">
+                    <div class="label-name">
+                        Эл. почта куратора
+                    </div>
+                    <input type="text" placeholder="Введите эл. почту куратора" ng-model="company.email">
+                </label>
+                <div class="d-flex justify-content-between">
+                    <a href="uch_spisok_company.html" class="btn btn-white btn-big">
+                        Отмена
+                    </a>
+                    <a ng-click="nextStep()" href="" class="btn btn-pur btn-big">
+                        Далее
+                    </a>
+
+                </div>
+
+            </form>
+        </div>
+        <div ng-show="step === 2">
+            <form class="form">
+                <label class="label">
+                    <label class="label-name" for="datepicker">Период практики</label>
+                    <br>
+                    <label class="label-name" for="datepicker">С</label>
+                    <div class="datepicker">
+                        <input id="helll" placeholder="Выберите период" required
+                               style="  border-radius: 4px;
+                                        border: solid 1px #e4ebe7;
+                                        background-color: #ffffff;
+                                        width: 100%;
+                                        font-size: 16px;
+                                        padding: 10px 20px;
+                                        font-family: 'PTRootUIWebRegular';
+                                        position: relative;
+                                    "
+                        ng-model="company.startTime"> <i class="far fa-calendar-alt calendar-icon"></i>
+                    </div>
+                    <label class="label-name" for="datepicker">По</label>
+                    <div class="datepicker">
+                        <input id="datepicker2" placeholder="Выберите период" required
+                               style="  border-radius: 4px;
+                                        border: solid 1px #e4ebe7;
+                                        background-color: #ffffff;
+                                        width: 100%;
+                                        font-size: 16px;
+                                        padding: 10px 20px;
+                                        font-family: 'PTRootUIWebRegular';
+                                        position: relative;
+                                    "
+                        ng-model="company.endTime"> <i class="far fa-calendar-alt calendar-icon"></i>
+                    </div>
+                </label>
+
+                <label class="label">
+                    <div class="label-name">
+                        Студенты
+                    </div>
+                    <select data-placeholder="Студенты"
+                            ng-model="tempForStudent"
+                            ng-change="addParticipant(tempForStudent)">
+                        <option ng-repeat="row in freeParticipantList" ng-value="row">{{row.surname + " " +
+                            row.name}}
+                        </option>
+                    </select>
+                </label>
+                <div class="label skill">
+                    <div class="skill-item" ng-repeat="item in participantList">
+                        <span style="color:black;">{{item.surname + " " + item.name}}</span>
+                        <i class="skill-remove icon-close" ng-click="removeParticipant(item)"></i>
+                    </div>
+                </div>
+                <div class="d-flex justify-content-between">
+                    <a href="javascript:void(0)" ng-click="prevStep()" class="btn btn-white btn-big">
+                        Назад
+                    </a>
+                    <a href="javascript:void(0)" class="btn btn-pur btn-big" ng-click="save()">
+                        Завершить
+                    </a>
+                </div>
+
+            </form>
+        </div>
+    </div>
+
+
+</section>
+</body>
+<script>
+    var app = angular.module("add-participant", []);
+    app.controller("participant", function ($scope, $http, $location, $window, $timeout, $filter) {
+        $scope.step = 1;
+        $scope.serverUrl = 'http://91.201.214.132:8080';
+        $scope.company = {
+            id: -1,
+            userId: $window.sessionStorage.userId,
+            name: '',
+            sphereId: 0,
+            phone: '',
+            email: '',
+            address: '',
+            curator: '',
+            startTime: $filter('date')(new Date(), "dd.MM.yyyy"),
+            endTime: $filter('date')(new Date(), "dd.MM.yyyy")
+        };
+        $scope.participantList = [];
+        $scope.companySpecs = [];
+        $scope.freeParticipantList = [];
+        $scope.type = 'add';
+        $scope.userId = $window.sessionStorage.userId;
+        $scope.tempForStudent = {};
+
+        $scope.getFreeParticipantList = function () {
+            $http.get($scope.serverUrl + '/fast/general/read/free/participant').then(function (data) {
+                if (data.data) {
+                    $scope.freeParticipantList = data.data.data;
+                }
+                console.log('freeParticipantList:', $scope.freeParticipantList);
+            });
+        };
+
+        $scope.getCompanySpecs = function () {
+            $http.get($scope.serverUrl + '/fast/company/read/specs/company').then(function (data) {
+                if (data.data) {
+                    $scope.companySpecs = data.data.data;
+                }
+                console.log('companySpecs:', $scope.companySpecs);
+            });
+        };
+        $scope.getCompanySpecs();
+
+        $scope.init = function () {
+            const param = $window.location.search;
+            if (param.length > 0) {
+                $scope.id = param.split('=')[1];
+                $scope.type = 'edit';
+                $http.get($scope.serverUrl + '/fast/company/read/company/onebyid/' + $scope.id).then(function (data) {
+                    if (data.data) {
+                        $scope.company = data.data.data;
+                        $scope.company.startTime = $filter('date')($scope.company.startTime, "dd.MM.yyyy");
+                        $scope.company.endTime = $filter('date')($scope.company.endTime, "dd.MM.yyyy");
+                    }
+                    $scope.getBusyParticipantList();
+                    console.log('company:', $scope.company);
+                });
+            } else {
+                $scope.getFreeParticipantList();
+            }
+        };
+        $scope.init();
+
+        $scope.getBusyParticipantList = function () {
+            $http.get($scope.serverUrl + '/fast/general/read/busy/participant/' + $scope.id).then(function (data) {
+                if (data.data) {
+                    $scope.busyParticipantList = data.data.data;
+                }
+                console.log('busyParticipantList:', $scope.busyParticipantList);
+                $scope.participantList = $scope.busyParticipantList;
+            });
+        };
+
+        $scope.nextStep = function () {
+            $scope.step = 2;
+        };
+
+        $scope.prevStep = function () {
+            $scope.step = 1;
+        };
+
+        $scope.save = function () {
+            $scope.company.startTime = $scope.company.startTime.toString().replace('г','');
+            $scope.company.endTime = $scope.company.endTime.toString().replace('г','');
+            let model = {
+                company: $scope.company,
+                participantIdList: $scope.participantList.map(val => val.id)
+            };
+            if ($scope.type === 'add') {
+                console.log('to add:', model);
+                $http({
+                    method: "POST",
+                    url: $scope.serverUrl + "/fast/company/create/company",
+                    data: model
+                }).then(function (data) {
+                    console.log('added: ', data);
+                    window.location = 'uch_add_final.html';
+                });
+            } else {
+                console.log('to update:', model);
+                $http({
+                    method: "PUT",
+                    url: $scope.serverUrl + "/fast/company/update/company",
+                    data: model
+                }).then(function (data) {
+                    console.log('updated: ', data);
+                    window.location = 'uch_add_final.html';
+                });
+            }
+        };
+
+        $scope.addParticipant = function (participant) {
+            console.log('addParticipant() before:', participant, ' list: ', $scope.participantList);
+            let isHave = false;
+            for (let i = 0; i < $scope.participantList.length; i++) {
+                if ($scope.participantList[i].id === participant.id) {
+                    isHave = true;
+                }
+            }
+            if (!isHave) {
+                $scope.participantList.push(participant);
+            }
+            $scope.tempForStudent = {};
+            console.log('addParticipant() after:', participant, ' list: ', $scope.participantList);
+
+        };
+
+        $scope.removeParticipant = function (participant) {
+            console.log('removeParticipant() before:', participant, ' list: ', $scope.participantList);
+            for (let i = 0; i < $scope.participantList.length; i++) {
+                if ($scope.participantList[i].id === participant.id) {
+                    $scope.participantList.splice(i, 1);
+                }
+            }
+            console.log('removeParticipant() after:', participant, ' list: ', $scope.participantList);
+
+        };
+
+    });
+</script>
+<!--<input type="date" id="">-->
+<script>
+
+    setTimeout(function () {
+        $("#helll").datepicker({
+            // showOn:"button",
+            monthNames: ['Январь', 'Февраль', 'Март', 'Апрель', 'Май', 'Июнь', 'Июль', 'Август', 'Сентябрь', 'Октябрь', 'Ноябрь', 'Декабрь'],
+            dayNamesMin: ['Вс', 'Пн', 'Вт', 'Ср', 'Чт', 'Пт', 'Сб'],
+            beforeShow: function (textbox, instance) {
+                $('.datepicker').append($('#ui-datepicker-div')).addClass('active');
+            }
+        });
+    }, 200)
+    setTimeout(function () {
+        $("#datepicker2").datepicker({
+            // showOn:"button",
+            monthNames: ['Январь', 'Февраль', 'Март', 'Апрель', 'Май', 'Июнь', 'Июль', 'Август', 'Сентябрь', 'Октябрь', 'Ноябрь', 'Декабрь'],
+            dayNamesMin: ['Вс', 'Пн', 'Вт', 'Ср', 'Чт', 'Пт', 'Сб'],
+            beforeShow: function (textbox, instance) {
+                $('.datepicker').append($('#ui-datepicker-div')).addClass('active');
+            }
+        });
+    }, 200)
+</script>
+<style>
+    #pickme {
+
+    }
+</style>
+</html>

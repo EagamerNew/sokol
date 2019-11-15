@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="format-detection" content="telephone=no"/>
+    <title>index</title>
+    <meta name="description" content="">
+    <meta name="Keywords" content="">
+
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="fonts/icomoon/style.css">
+    <link rel="stylesheet" href="fonts/font.css">
+</head>
+
+
+<body class="body" ng-app="get-list-participant" ng-controller="participant-list">
+<script src="js/libs/jquery-3.2.1.min.js"></script>
+<script src="js/libs/jquery.formstyler.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.7.8/angular.js"></script>
+<script src="//code.jivosite.com/widget.js" data-jv-id="DOrySdjuIy" async></script>
+<script src="js/common.js"></script>
+<aside class="aside d-flex">
+    <a href="/" class="logo">
+        <img src="images/logo.svg" alt="digital control">
+    </a>
+    <nav class="nav d-flex">
+        <a class="nav-a " href="csn_main.html">
+            <i class="icon-home"></i>
+            <span>
+                    Главная
+                </span>
+        </a>
+        <a class="nav-a active" href="csn_list_uch.html">
+            <img src="images/school-colored.svg" style="width:18px;" alt="">
+            &nbsp;
+            &nbsp;
+            &nbsp;
+            <span>
+                    Учебные центры
+                </span>
+        </a>
+        <a class="nav-a" href="javascript:void(0)">
+            <i class="icon-account-group"></i>
+            <span>
+                    Учащиеся
+                </span>
+        </a>
+
+    </nav>
+</aside>
+
+<section class="section user">
+    <div class="mobile align-items-center">
+        <div class="btn-mob">
+            <span></span>
+        </div>
+        <a href="/" class="logo">
+            <img src="images/logo.svg" alt="digital control">
+        </a>
+    </div>
+
+    <div class="container_ section__head">
+
+        <div class="d-flex align-items-center justify-content-between">
+            <div class="section__head-h1  d-flex align-items-center">
+                Учебные центры
+
+                <a href="javascript:void(0)" class="btn btn-pur">
+                    <i class="icon-arrow-down"></i>
+                    Скачать в Excel
+                </a>
+            </div>
+
+            <div class=" d-flex justify-content-end align-items-center">
+                <a href=""  class="filter">
+                    <img src="images/cards.svg" style="margin-top: 4px;vertical-align: middle;width: 16px;height: 16px;object-fit: contain;">
+                    <span style="
+                          font-family: SFProTextMedium;
+                          font-size: 15px;
+                          font-weight: 500;
+                          font-stretch: normal;
+                          font-style: normal;
+                          line-height: 1.33;
+                          letter-spacing: normal;
+                          color:  rgba(37, 44, 50, 0.4);
+                     ">Карточки</span></a>
+
+                <a href=""  class="filter" style="margin-left:14px;">
+                    <img src="images/list.svg" style="margin-top: 4px;vertical-align: middle;width: 16px;height: 16px;object-fit: contain;">
+                    <span style="
+                          font-family: SFProTextMedium;
+                          font-size: 15px;
+                          font-weight: 500;
+                          font-stretch: normal;
+                          font-style: normal;
+                          line-height: 1.33;
+                          letter-spacing: normal;
+                          color: #9f34d1;
+                     ">Список</span></a>
+                <span style="   border-left: 1px solid rgba(37, 44, 50, 0.4);
+                                height: 22px;
+                                margin-left:17px;
+                                vertical-align: middle;
+                                margin-top: 10px;"></span>
+                <a href="" class="filter" style="margin-left: 17px;">
+                    <img src="images/filter.svg" style="margin-top: 4px;vertical-align: middle;width: 16px;height: 16px;object-fit: contain;">
+                    <span style="font-family: SFProTextMedium;
+                      font-size: 15px;
+                      font-weight: normal;
+                      font-stretch: normal;
+                      font-style: normal;
+                      line-height: 1.33;
+                      letter-spacing: normal;
+                      color: rgba(37, 44, 50, 0.4);">Фильтр</span>
+                </a>
+            </div>
+        </div>
+
+    </div>
+    <div class="container_ section__block table">
+        <div class="table-tab">
+            <div class=" table-head table-head-list table-head-sort">
+                <div class="d-flex">
+                    <div class="colo " style="width:20%;">
+                        Название
+                    </div>
+                    <div class="colo " style="width:10%;">
+                        Специализация
+                    </div>
+                    <div class="colo " style="width:10%;">
+                        Программы
+                    </div>
+                    <div class="colo " style="width:10%;">
+                        Графики
+                    </div>
+                    <div class="colo " style="width:10%;">
+                        Ученики
+                    </div>
+                    <div class="colo " style="width:20%;">
+                        Ср. успеваемость
+                    </div>
+                    <div class="colo " style="width:20%;">
+                        Профиль
+                    </div>
+                </div>
+            </div>
+            <div class="table-body table-body-list table-body-bg"
+                 ng-repeat="educ in educCenters">
+
+                <div class="d-flex">
+                    <div class="colo " style="width:20%;">
+                        {{educ.main.uchcenter}}
+                    </div>
+                    <div class="colo " style="width:10%;">
+                        {{educ.specializations}}
+                    </div>
+                    <div class="colo " style="width:10%;">
+                        {{educ.programs}}
+                    </div>
+                    <div class="colo " style="width:10%;">
+                        {{educ.graphics}}
+                    </div>
+                    <div class="colo " style="width:10%;">
+                        {{educ.participants}}
+                    </div>
+                    <div class="colo  d-flex" style="width:20%;">
+                        <pre>87%</pre>
+                        &nbsp;
+                        &nbsp;
+                        <div class="user__lesson-line d-flex">
+                            <div class="user__lesson-line-div user__lesson-line-green"
+                                 style="min-width: 86%">
+
+                            </div>
+                            <div class="user__lesson-line-div">
+
+                            </div>
+                        </div>
+                    </div>
+                    <div class="colo " style="width:20%;">
+                        <a href="csn_one_uch.html?id={{educ.main.id}}" class="btn btn-white-pur btn-big-text">
+                            Посмотреть
+                        </a>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+
+</section>
+</body>
+<script>
+    var app = angular.module("get-list-participant", []);
+    app.controller("participant-list", function ($scope, $http, $location, $window, $timeout, $filter) {
+        $scope.educCenters = [];
+        $scope.userId = $window.sessionStorage.userId;
+        $scope.serverUrl = 'http://91.201.214.132:8080';
+
+        $scope.fetchData = function () {
+            $http.get($scope.serverUrl + '/fast/general/read/custom/main').then(function (data) {
+                console.log(data);
+                if (data.data) {
+                    $scope.educCenters = data.data.data;
+                }
+                console.log('educProgs:', $scope.educCenters);
+            });
+        };
+        $scope.fetchData();
+
+    });
+</script>
+<style>
+    .table-body-list .colo{
+        padding-left: 0;
+    }
+</style>
+</html>

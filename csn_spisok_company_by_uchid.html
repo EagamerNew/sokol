@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="format-detection" content="telephone=no"/>
+    <title>index</title>
+    <meta name="description" content="">
+    <meta name="Keywords" content="">
+
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="fonts/icomoon/style.css">
+    <link rel="stylesheet" href="fonts/font.css">
+</head>
+
+
+<body class="body" ng-app="get-list-participant" ng-controller="participant-list">
+<script src="js/libs/jquery-3.2.1.min.js"></script>
+<script src="js/libs/jquery.formstyler.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.7.8/angular.js"></script>
+<script src="//code.jivosite.com/widget.js" data-jv-id="DOrySdjuIy" async></script>
+<script src="js/common.js"></script>
+<aside class="aside d-flex">
+    <a href="/" class="logo">
+        <img src="images/logo.svg" alt="digital control">
+    </a>
+    <nav class="nav d-flex">
+        <a class="nav-a" href="csn_main.html">
+            <i class="icon-home"></i>
+            <span>
+                    Главная
+                </span>
+        </a>
+        <a class="nav-a active" href="csn_list_uch.html">
+            <img src="images/school-colored.svg" style="width:18px;" alt="">
+            &nbsp;
+            &nbsp;
+            &nbsp;
+            <span>
+                    Учебные центры
+                </span>
+        </a>
+        <a class="nav-a" href="javascript:void(0)">
+            <i class="icon-account-group"></i>
+            <span>
+                    Учащиеся
+                </span>
+        </a>
+
+    </nav>
+</aside>
+
+<section class="section user">
+    <div class="mobile align-items-center">
+        <div class="btn-mob">
+            <span></span>
+        </div>
+        <a href="/" class="logo">
+            <img src="images/logo.svg" alt="digital control">
+        </a>
+    </div>
+
+    <div class="container_ section__head">
+
+        <div class="d-flex align-items-center justify-content-between">
+            <div class="section__head-h1  d-flex align-items-center">
+                <img src="images/arrow-left.svg" style="cursor: pointer;" ng-click="goBack()" alt="digital control">
+                &nbsp;
+                <span style="font-family: PTRootUIWebMedium;
+  font-size: 28px;
+  font-weight: 500;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: normal;
+  letter-spacing: 0.88px;
+  color: #252c32;">Компании-партнеры</span>
+                &nbsp;
+
+
+                <a href="javascript:void(0)" class="btn btn-pur">
+                    <i class="icon-arrow-down"></i>
+                    Скачать в Excel
+                </a>
+            </div>
+
+            <div class=" d-flex justify-content-end align-items-center">
+                <a href="" class="filter" style="margin-left: 17px;">
+                    <img src="images/filter.svg" style="margin-top: 4px;vertical-align: middle;width: 16px;height: 16px;object-fit: contain;">
+                    <span style="font-family: SFProTextMedium;
+                      font-size: 15px;
+                      font-weight: normal;
+                      font-stretch: normal;
+                      font-style: normal;
+                      line-height: 1.33;
+                      letter-spacing: normal;
+                      color: rgba(37, 44, 50, 0.4);">Фильтр</span>
+                </a>
+            </div>
+        </div>
+    </div>
+
+    </div>
+    <div class="container_ section__block table">
+        <div class="table-tab">
+            <div class=" table-head table-head-list table-head-sort">
+                <div class="d-flex">
+                    <div class="colo " style="width:20%">
+                        Название
+                    </div>
+                    <div class="colo ">
+                        Сфера
+                        <!--                                <i class="icon-angle-arrow-down"></i>-->
+                    </div>
+                    <div class="colo ">
+                        Куратор
+                        <!--                                <i class="icon-angle-arrow-down"></i>-->
+                    </div>
+                    <div class="colo ">
+                        Период практики
+                        <!--                                <i class="icon-angle-arrow-down"></i>-->
+                    </div>
+                    <div class="colo " style="width:10%">
+                        Студенты
+                    </div>
+<!--                    <div class="colo " style="width:15%">-->
+<!--                        Профиль-->
+<!--                    </div>-->
+                </div>
+            </div>
+            <div class="table-body table-body-list table-body-bg" ng-if="companies" ng-repeat="company in companies">
+
+                <div class="d-flex">
+                    <div class="colo " style="width:20%">
+                        {{company.name}}
+                    </div>
+                    <div class="colo ">
+                        {{getCompanySpecName(company.sphereId)}}
+                    </div>
+                    <div class="colo ">
+                        {{company.curator}}
+                    </div>
+
+                    <div class="colo ">
+                        {{displayDate(company.startTime)}} - {{displayDate(company.endTime)}}
+                    </div>
+
+                    <div class="colo " style="width:10%">
+                        {{company.studentCount}}
+                    </div>
+<!--                    <div class="colo " style="width:15%">-->
+<!--                        <a href="uch_add_company.html?id={{company.id}}" class="btn btn-white-pur btn-big-text">-->
+<!--                            Посмотреть-->
+<!--                        </a>-->
+<!--                    </div>-->
+                </div>
+                <!--                            <div class="d-flex">-->
+                <!--                                <div class="colo ">-->
+                <!--                                    <label class="flex">-->
+                <!--                                        <input type="checkbox"><span></span>-->
+                <!--                                        Наурызбеков Бауржан Сагиевич-->
+                <!--                                    </label>-->
+
+
+                <!--                                </div>-->
+                <!--                                <div class="colo ">-->
+                <!--                                    Автомеханик-->
+                <!--                                </div>-->
+                <!--                                <div class="colo ">-->
+                <!--                                    14.08.2018-->
+                <!--                                </div>-->
+                <!--                                <div class="colo  d-flex">-->
+                <!--                                    <div class="user__lesson-line d-flex">-->
+                <!--                                        <div class="user__lesson-line-div user__lesson-line-green" style="background: #df443a;min-width:20%">-->
+                <!--                                            -->
+                <!--                                        </div>-->
+                <!--                                        <div class="user__lesson-line-div">-->
+                <!--                                            -->
+                <!--                                        </div>-->
+                <!--                                    </div>-->
+                <!--                                    20%-->
+                <!--                                </div>-->
+                <!--                                <div class="colo ">-->
+                <!--                                    <a href="07_Uch.html" class="btn btn-white-pur btn-big-text">-->
+                <!--                                        Открыть-->
+                <!--                                    </a>-->
+                <!--                                </div>-->
+                <!--                            </div>-->
+                <!--                            -->
+
+            </div>
+        </div>
+    </div>
+
+
+</section>
+</body>
+<script>
+    var app = angular.module("get-list-participant", []);
+    app.controller("participant-list", function ($scope, $http, $location, $window, $timeout, $filter) {
+        $scope.serverUrl = "http://91.201.214.132:8080";
+        $scope.companySpecs = [];
+        $scope.userId = $window.sessionStorage.userId;
+        $scope.companies = [];
+        $scope.search;
+
+        $scope.fetchData = function () {
+            const param = $window.location.search;
+            if (param.length > 0) {
+                $scope.id = param.split('=')[1];
+                $http.get($scope.serverUrl + '/fast/company/read/company/byuserid/' + $scope.id).then(function (data) {
+                    if (data.data) {
+                        $scope.companies = data.data.data;
+                    }
+                    console.log('companies:', $scope.companies);
+
+                });
+            }
+        };
+        $scope.fetchData();
+
+        $scope.getCompanySpecs = function () {
+            $http.get($scope.serverUrl + '/fast/company/read/specs/company').then(function (data) {
+                if (data.data) {
+                    $scope.companySpecs = data.data.data;
+                }
+                console.log('companySpecs:', $scope.companySpecs);
+            });
+        };
+        $scope.getCompanySpecs();
+
+        $scope.getCompanySpecName = function (id) {
+            return $scope.companySpecs[id];
+        }
+
+        $scope.displayDate = function (date) {
+            return $filter('date')(date, "dd.MM.yyyy");
+        }
+
+        $scope.goBack = function(){
+            let url = 'csn_one_uch.html?id=' + $scope.id;
+            window.location = url;
+        }
+    });
+</script>
+</html>

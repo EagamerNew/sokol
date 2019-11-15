@@ -15,7 +15,16 @@ var Common = {
         $(function() {
             setTimeout(function() {
 	           $('select').styler();
-            }, 100)
+	           $('input').filter('[type=date]').datepicker({
+                   // showOn:"button",
+                   monthNames: ['Январь', 'Февраль', 'Март', 'Апрель', 'Май', 'Июнь', 'Июль', 'Август', 'Сентябрь', 'Октябрь', 'Ноябрь', 'Декабрь'],
+                   dayNamesMin: ['Вс', 'Пн', 'Вт', 'Ср', 'Чт', 'Пт', 'Сб'],
+                   beforeShow: function (textbox, instance) {
+                       $('#datepicker').append($('#ui-datepicker-div')).addClass('active');
+                   }
+               });
+            }, 100);
+
         });
     },
     

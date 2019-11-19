@@ -19,7 +19,7 @@ $specialization= $form_data->specialization;
 $srokObuch= $form_data->srokObuch;
 $language= $form_data->language;
 $lessons= $form_data->lessons;
-$groups= $form_data->groups;
+//$groups= $form_data->groups;
 //$strSpecializations=$form_data->strSpecializations;
 $file_ustav = $form_data->file_ustav;
 $file_rekvisity = $form_data->file_rekvisity;
@@ -49,7 +49,7 @@ $query = "
         name,lastname,surname,email,phone,password,
         uchcenter,bin, fact_address,
         project_vmest,srokObuch,specialization,
-        language,lessons,groups,
+        language,lessons,
         file_ustav, file_rekvisity,file_uchdocs
 
     ) VALUES 
@@ -57,7 +57,7 @@ $query = "
         '".$name."', '".$lastname."' , '".$surname."','".$email."','".$phone."', '".$password."',
         '".$uchcenter."' ,'".$bin."' ,'".$fact_address."' ,
         '".$project_vmest."' ,'".$srokObuch."' , '".$specialization."',
-        '".$language."' ,'".$lessons."' ,'".$groups."' ,
+        '".$language."' ,'".$lessons."' ,
         '".$file_ustav."' ,'".$file_rekvisity."' ,'".$file_uchdocs."' 
     )
 ";
@@ -82,7 +82,7 @@ $message = "Здравствуйте, $fio, Вы зарегистрировал�
 //list($sms_id, $sms_cnt, $cost, $balance) = send_sms('7'.$phone, $message, 1);
 
 // $temp = $statement->fetch(PDO::FETCH_ASSOC);
-echo ($hell);
+echo ($connect->lastInsertId());
 // echo ($connect->lastInsertId());
 
 ?>

@@ -22,7 +22,8 @@
 <script src="js/libs/jquery.formstyler.min.js"></script>
 <script src="js/libs/qrcode.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.7.8/angular.js"></script>
-<script src="//code.jivosite.com/widget.js" data-jv-id="DOrySdjuIy" async></script><script src="js/common.js"></script>
+<script src="//code.jivosite.com/widget.js" data-jv-id="DOrySdjuIy" async></script>
+<!--<script src="js/common.js"></script>-->
 <aside class="aside d-flex">
     <a href="/" class="logo">
         <img src="images/logo.svg" alt="digital control">
@@ -105,7 +106,7 @@
                     <select  data-placeholder="Выберите район"  ng-model="participant.regionId">
                         <option></option>
                         <option value="1">Алмалинский</option>
-                        <option value="2">Алатауский</option>["Бостандыкский","Ауезовский","Жетисуский","Турксибсий","Наурызбайский","Алатауский","Алматинский"]
+                        <option value="2">Алатауский</option>
                         <option value="3">Медеуский</option>
                         <option value="4">Бостандыкский</option>
                         <option value="5">Ауезовский</option>
@@ -147,12 +148,12 @@
                 из 2
             </div>
             <form class="form">
-                <label class="label">
+                <label class="label" ng-if="specs">
                     <div class="label-name">
                         Специализация
                     </div>
-                    <select ng-disabled="type==='edit'" data-placeholder="Выберите специализацию"  ng-model="participant.specId" ng-change="changeQual()">
-                        <option ng-repeat="spec in specs" value="{{spec.id}}">{{spec.title}}</option>
+                    <select ng-model="participant.specId" ng-change="changeQual()">
+                        <option ng-repeat="spec1 in specs" ng-value="spec1.id">{{spec1.title}}</option>
                     </select>
                 </label>
                 <label class="label" ng-if="showEduc">
@@ -165,11 +166,12 @@
                 </label>
                 <label class="label">
                     <div class="label-name">
-                        Выберите высшее образование
+                        Выберите социальный статус
                     </div>
                     <select data-placeholder="Выберите вариант" ng-model="participant.educId">
-                        <option value="1">Имеется</option>
-                        <option value="2">Не имеется</option>
+                        <option value="1">Малоимущий</option>
+                        <option value="2">Многодетный</option>
+                        <option value="3">Безработный</option>
                     </select>
                 </label>
                 <label class="label">
@@ -219,8 +221,8 @@
             regionId: 1,
             phone: '',
             email: '',
-            specId: 0,
             qualId: 0,
+            specId: 86,
             educId: 0,
             skillArr: [],
             skills: '',
@@ -228,6 +230,7 @@
             absent: 0,
             created: $filter('date')(new Date(), "dd.MM.yyyy")
         };
+        $scope.specId;
         $scope.specs = [];
         $scope.educs = [];
         $scope.originEducs = [];
@@ -247,7 +250,6 @@
                     if (data.data && angular.isArray(data.data)) {
                         $scope.participant = data.data[0];
                         $scope.participant.skillArr = $scope.participant.skills.split(',');
-                        $scope.changeQual();
                     }
                 });
             }
@@ -256,13 +258,13 @@
 
         $scope.getUserSpec = function(){
             $http.get('./functions/user-spec/user-spec-list-get.php?userId=' + $scope.userId).then(function (data) {
-                console.log(data);
                 $scope.changingId = -1;
                 if (data.data && angular.isArray(data.data)) {
                     $scope.specs = data.data;
                 }else{
                     console.error('userSpec array null!');
                 }
+                console.log('specs:', $scope.specs);
             });
         }
         $scope.getUserSpec();
@@ -273,8 +275,9 @@
                 $scope.changingId = -1;
                 if (data.data && angular.isArray(data.data)) {
                     $scope.originEducs = data.data;
+                    $scope.changeQual();
                 }else{
-                    console.error('userSpec array null!');
+                    console.error('originEducs array null!');
                 }
             });
         }
@@ -330,9 +333,9 @@
             let tr = true;
             for (let i = 0; i < $scope.originEducs.length; i++) {
                 console.log($scope.participant.qualId, ' ' , $scope.originEducs[i])
-                if($scope.participant.qualId === $scope.originEducs[i].id && $scope.originEducs[i].busy < $scope.originEducs[i].total){
+                if($scope.participant.qualId === $scope.originEducs[i].id && parseInt($scope.originEducs[i].busy) < parseInt($scope.originEducs[i].total)){
                     $scope.qual = $scope.originEducs[i];
-                    $scope.qual.busy = $scope.qual.busy + 1;
+                    $scope.qual.busy = parseInt($scope.qual.busy) + 1;
                     $scope.save();
                     tr = false;
                     break;

@@ -221,7 +221,7 @@
         $scope.tempForStudent = {};
 
         $scope.getFreeParticipantList = function () {
-            $http.get($scope.serverUrl + '/fast/general/read/free/participant').then(function (data) {
+            $http.get($scope.serverUrl + '/fast/general/read/free/participant/bymainid/' + $scope.userId).then(function (data) {
                 if (data.data) {
                     $scope.freeParticipantList = data.data.data;
                 }

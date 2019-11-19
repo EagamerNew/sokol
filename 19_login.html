@@ -84,7 +84,8 @@
                 if(data.data && data.data.id){
                     $window.sessionStorage.setItem('email',$scope.auth.email);
                     $window.sessionStorage.setItem('userId',data.data.id);
-                    if($scope.auth.email === "admincnz01@mail.ru"){
+                    console.log($scope.auth.email + ": email");
+                    if($scope.auth.email === "adminczn01@mail.ru"){
                         $window.location.href = 'csn_main.html';
 
                     }else{

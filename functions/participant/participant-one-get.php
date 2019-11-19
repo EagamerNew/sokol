@@ -1,5 +1,6 @@
 <?php
 
+header('Content-Type: text/html; charset=utf-8');
 include('../database_connection.php');
 
 $query = "SELECT * FROM participant WHERE id = ".$_GET['id']." ORDER BY id";

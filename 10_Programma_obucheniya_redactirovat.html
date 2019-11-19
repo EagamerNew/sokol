@@ -170,7 +170,7 @@
         $scope.fetchData = function () {
             if(!$scope.userId){
                 alert("You aren't log on! Please log in first");
-                $window.location.href = "login.html";
+                $window.location.href = "19_login.html";
             }
             $http.get('./functions/education-program/education-program-get.php?userId=' + $scope.userId).then(function (data) {
                 console.log(data);

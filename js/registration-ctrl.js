@@ -110,8 +110,9 @@ app.controller("registration", function($scope, $http,$location,$window, $timeou
             data:{specValues: values}
         }).then(function(data){
             console.log(data);
+            console.log('specValues:' , values);
             $timeout(function () {
-                $window.location.href = 'thanks.html';
+                // $window.location.href = 'thanks.html';
             }, 120);
             // var insertedId = parseInt(data.data.replace(' ',''));
             // console.log('crassavchik' + $scope.user.email);

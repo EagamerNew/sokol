@@ -114,7 +114,7 @@
                                 <div class="col-md-8">
                                     <div class="card-body card-body-custom">
                                         <h1 class="card-title card-title-custom">
-                                            {{csnDashboardCustom.countEducCenter}}</h1>
+                                            {{csnDashboardCustom.countEducCenter - 1}}</h1>
                                         <span class="secondary-text-custom">учебных центров</span>
                                     </div>
                                 </div>
@@ -161,7 +161,7 @@
                       color: rgba(37, 44, 50, 0.4);
                     ">Учащиеся</span>
                 </p>
-                <div class="card" style="max-width: 540px; margin-bottom: 6%;" ng-if="educCenters" ng-repeat="ret in educCenters">
+                <div class="card" style="max-width: 540px; margin-bottom: 6%;" ng-if="educCenters && ret.main.email !== 'adminczn01@mail.ru'" ng-repeat="ret in educCenters">
                     <div class="row no-gutters">
                         <div class="card-body card-body-custom" style="margin:0 8%;padding-top: 8%;">
                             <h1 class="card-title card-title-custom"
@@ -221,7 +221,7 @@
         $scope.fetchData = function () {
             if (!$scope.userId) {
                 alert("You aren't log on! Please log in first");
-                $window.location.href = "login.html";
+                $window.location.href = "19_login.html";
             }
             $http.get($scope.serverUrl + '/fast/general/read/custom/csn/dashboard').then(function (data) {
                 if (data.data) {

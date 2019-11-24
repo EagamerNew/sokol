@@ -45,7 +45,7 @@
                     Учебные центры
                 </span>
         </a>
-        <a class="nav-a" href="javascript:void(0)">
+        <a class="nav-a" href="csn_list_students.html">
             <i class="icon-account-group"></i>
             <span>
                     Учащиеся
@@ -161,7 +161,8 @@
                       color: rgba(37, 44, 50, 0.4);
                     ">Учащиеся</span>
                 </p>
-                <div class="card" style="max-width: 540px; margin-bottom: 6%;" ng-if="educCenters && ret.main.email !== 'adminczn01@mail.ru'" ng-repeat="ret in educCenters">
+                <div class="card" style="max-width: 540px; margin-bottom: 6%;"
+                     ng-if="educCenters && ret.main.email !== 'adminczn01@mail.ru'" ng-repeat="ret in educCenters">
                     <div class="row no-gutters">
                         <div class="card-body card-body-custom" style="margin:0 8%;padding-top: 8%;">
                             <h1 class="card-title card-title-custom"
@@ -216,7 +217,9 @@
         $scope.userId = $window.sessionStorage.userId;
         $scope.csnDashboardCustom = {};
         $scope.educCenters = [];
+        $scope.csnDashboardTableCustom = [];
         $scope.serverUrl = 'http://91.201.214.132:8080';
+        // $scope.serverUrl = 'http://localhost:8080';
 
         $scope.fetchData = function () {
             if (!$scope.userId) {
@@ -232,7 +235,7 @@
         };
         $scope.fetchData();
 
-        $scope.readEducCenters = function(){
+        $scope.readEducCenters = function () {
             $http.get($scope.serverUrl + '/fast/general/read/custom/main').then(function (data) {
                 console.log(data);
                 if (data.data) {
@@ -280,15 +283,15 @@
         padding-left: 0;
     }
 
-    .card {
+    .card, .table {
         border-radius: 8px;
         border: solid 1px rgba(37, 44, 50, 0.1);
         background-color: #ffffff;
     }
 
     .header-second-text {
-        width: 485px;
-        height: 28px;
+        /*width: 485px;*/
+        /*height: 28px;*/
         font-family: PTRootUIWebRegular;
         font-size: 22px;
         font-weight: normal;
@@ -320,7 +323,8 @@
         letter-spacing: 0.47px;
         color: rgba(76, 76, 76, 0.7);
     }
-    .small-secondary-price{
+
+    .small-secondary-price {
         font-family: PTRootUIWebMedium;
         font-size: 15px;
         font-weight: 500;
@@ -331,7 +335,8 @@
         text-align: right;
         color: #252c32;
     }
-    .small-secondary-total{
+
+    .small-secondary-total {
         font-family: PTRootUIWebMedium;
         font-size: 22px;
         font-weight: 500;
@@ -341,8 +346,16 @@
         letter-spacing: 0.32px;
         color: #252c32;
     }
-    a:hover{
+
+    a:hover {
         text-decoration: none;
+    }
+    .dot {
+        height: 25px;
+        width: 25px;
+        background-color: #bbb;
+        border-radius: 50%;
+        display: inline-block;
     }
 </style>
 

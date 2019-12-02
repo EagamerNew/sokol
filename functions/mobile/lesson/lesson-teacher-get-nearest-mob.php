@@ -62,7 +62,9 @@ if($statement->execute()){
                 $lessons[0]['type'] = $type;
                 $lessons[0]['timeStartId'] = $timeStartId;
                 $lessons[0]['timeEndId'] = $timeEndId;
-                $lessons[0]['title'] = $specTitleText;
+                /*$lessons[0]['title'] = $specTitleText;*/
+                $lessons[0]['name'] = $specTitleText;
+                /*$lessons[0]['title'] = "математик";*/
                 echo json_encode($lessons[0]);
             }else{
                 // we haven't lesson and create lesson
@@ -100,7 +102,8 @@ if($statement->execute()){
                         $i++;
                     }
                     $type = "created";
-                    print_r ('{"id":'.$resLessonId.', "type":"'.$type.'", "timeStartId": '.$timeStartId.', "timeEndId":'.$timeEndId.', "title":"'.$specTitleText.'"}');
+                    /*print_r ('{"id":'.$resLessonId.', "type":"'.$type.'", "timeStartId": '.$timeStartId.', "timeEndId":'.$timeEndId.', "title":"'.$specTitleText.'"}');*/
+                    print_r ('{"id":'.$resLessonId.', "type":"'.$type.'", "timeStartId": '.$timeStartId.', "timeEndId":'.$timeEndId.', "name":"'.$specTitleText.'"}');
                     if(!$students) {
                         echo '--STUDENTS_NOT_FOUND--';
                     }

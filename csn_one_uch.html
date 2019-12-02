@@ -68,8 +68,24 @@
             <div class="header-text">
                 {{mainCustom.main.uchcenter}}
             </div>
+
+            <div class=" d-flex justify-content-end align-items-center">
+                <a href="csn_analyze_uch.html?id={{id}}"  class="filter">
+                    <img src="images/chart.svg" style="margin-top: 4px;vertical-align: middle;width: 16px;height: 16px;object-fit: contain;">
+                    <span style="
+                          font-family: SFProTextMedium;
+                          font-size: 15px;
+                          font-weight: 500;
+                          font-stretch: normal;
+                          font-style: normal;
+                          line-height: 1.33;
+                          letter-spacing: normal;
+                          color:  black;
+                     ">Аналитика УЦ</span></a>
+            </div>
         </div>
     </div>
+
     <div class="section__block container_">
         <div class="card-deck">
             <div class="card" style="max-width: 540px;">
@@ -95,7 +111,8 @@
                             opacity: 0.75;
                             cursor:pointer;
                             width:32px;"
-                             alt="digital control">
+                             alt="digital control"
+                             ng-click="openStudentList(mainCustom.main.id)">
                     </div>
                 </div>
             </div>
@@ -155,6 +172,167 @@
                 </div>
             </div>
         </div>
+        <br>
+        <div class="second-header">
+            Данные центра
+        </div>
+        <br>
+        <div class="row" style="justify-content: center;">
+            <div class="col-sm-3">
+                <a href="{{serverUrl}}/fast/general/download/custom/csn/main/tableting/{{id}}" class="btn btn-pur">
+                    <i class="icon-arrow-down"></i>
+                    Скачать табелирование
+                </a>
+            </div>
+            <div class="col-sm-3">
+                <a href="{{serverUrl}}/fast/userfile/downloadFile/{{tabulation.fileSchet}}" class="btn btn-pur">
+                    <i class="icon-arrow-down"></i>
+                    Скачать счет фактуру
+                </a>
+            </div>
+            <div class="col-sm-3">
+                <a href="{{serverUrl}}/fast/userfile/downloadFile/{{tabulation.fileSchet}}" class="btn btn-pur">
+                    <i class="icon-arrow-down"></i>
+                    Скачать акт вып. работ
+                </a>
+            </div>
+        </div>
+        <br>
+
+        <div class="container_ section__block table">
+            <div class="table-tabs">
+                <div class="d-flex">
+                    <a href="javascript:void(0)" class="col-4 table-tabs-a"
+                       ng-click="show('tabel')" ng-class="{active: showTabel}">
+                        Табелирование
+                    </a>
+                    <a href="javascript:void(0)" class="col-4 table-tabs-a"
+                       ng-click="show('educGraph')" ng-class="{active: showEducGraph}">
+                        График обучения
+                    </a>
+                    <a href="javascript:void(0);" class="col-4 table-tabs-a"
+                       ng-click="show('educProg')" ng-class="{active: showEducProg}">
+                        Программы обучения
+                    </a>
+                </div>
+            </div>
+            <div class="table-tab" ng-if="showTabel">
+                <div class="table-head">
+                    <div class="d-flex">
+                        <div class="colo" style="width:30%;">
+                            ФИО
+                        </div>
+                        <div class="colo" style="width:10%;">
+                            Рабочие дни
+                        </div>
+                        <div class="colo" style="width:10%;">
+                            Посещено
+                        </div>
+                        <div class="colo" style="width:10%;">
+                            Пропущено
+                        </div>
+                        <div class="colo" style="width:10%;">
+                            Выходные
+                        </div>
+                        <div class="colo" style="width:15%;">
+                            Итог
+                        </div>
+                        <div class="colo" style="width:15%;">
+                            Степендия
+                        </div>
+                    </div>
+                </div>
+
+                <div class="table-body" ng-repeat="item in tabelList">
+                    <div class="d-flex">
+                        <div class="colo" data-text="ФИО" style="width:30%;">
+                            {{item.fio}}
+                        </div>
+                        <div class="colo" data-text="Рабочие дни" style="width:10%;">
+                            {{item.workingDays}}
+                        </div>
+                        <div class="colo" data-text="Посещено" style="width:10%;">
+                            {{item.attend}}
+                        </div>
+                        <div class="colo" data-text="Пропущено" style="width:10%;">
+                            {{item.skipped}}
+                        </div>
+                        <div class="colo" data-text="Выходные" style="width:10%;">
+                            {{item.holidays}}
+                        </div>
+                        <div class="colo" data-text="Итог" style="width:15%;">
+                            {{item.total}}
+                        </div>
+                        <div class="colo" data-text="Степендия" style="width:15%;">
+                            {{item.stipend}}
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+            <div class="table-tab" ng-if="showEducGraph">
+                <div class="table-head">
+                    <div class="d-flex">
+                        <div class="colo">
+                            Дни
+                        </div>
+                        <div class="colo">
+                            Время
+                        </div>
+                        <div class="colo">
+                            Программа обучения
+                        </div>
+                    </div>
+                </div>
+
+                <div class="table-body" ng-repeat="item in educGraphList track by item.id">
+                    <div class="d-flex">
+                        <div class="colo" data-text="Дни">
+                            {{getDay(item.dayId)}}
+                        </div>
+                        <div class="colo" data-text="Время">
+                            {{getTime(item.timeStartId)}} - {{getTime(item.timeEndId)}}
+                        </div>
+                        <div class="colo" data-text="Программа обучения">
+                            {{getEducProg(item.educProgId)}}
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+            <div class="table-tab" ng-if="showEducProg">
+                <div class="table-head">
+                    <div class="d-flex">
+                        <div class="colo ">
+                            Специализация
+                        </div>
+                        <div class="colo">
+                            Тема
+                        </div>
+                        <div class="colo ">
+                            Количество мест
+                        </div>
+                    </div>
+                </div>
+                <div class="table-body" ng-repeat="item in educProgList track by item.id">
+                    <div class="d-flex"
+                         ng-class="{'d-flex':true,show: item.id !== changingId, hide: item.id === changingId}">
+                        <div class="colo " data-text="Специализация">
+                            {{getSpec(item.specId)}}
+                        </div>
+                        <div class="colo" data-text="Тема">
+                            {{item.theme}}
+                        </div>
+                        <div class="colo " data-text="Количество мест">
+                            {{item.total}}
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
     </div>
 </section>
 </body>
@@ -165,10 +343,97 @@
         $scope.serverUrl = 'http://91.201.214.132:8080';
         $scope.mainCustom = {};
 
+        $scope.showTabel = false;
+        $scope.tabelList = [];
+
+        $scope.showEducGraph = true;
+        $scope.educGraphList = [];
+
+        $scope.showEducProg = false;
+        $scope.educProgList = [];
+
+        $scope.userSpecs = [];
+
+        $scope.tabulation = {};
+
+        $scope.show = function(box){
+            $scope.showTabel = false;
+            $scope.showEducGraph = false;
+            $scope.showEducProg = false;
+            switch(box){
+                case 'tabel':
+                    $scope.showTabel = true;
+                    break;
+                case 'educGraph':
+                    $scope.showEducGraph = true;
+                    break;
+                case 'educProg':
+                    $scope.showEducProg = true;
+                    break;
+            }
+        };
+
+        $scope.getTabulation = function(){
+            $http.get($scope.serverUrl + '/fast/general/read/tabulation/byuserid/' + $scope.id).then(function (data) {
+                if (data.data) {
+                    $scope.tabulation = data.data.data;
+                }
+                console.log('tabulation: ', $scope.tabulation);
+            });
+        };
+
+        $scope.getTabletingList = function(){
+            $http.get($scope.serverUrl + '/fast/general/read/custom/csn/main/tableting/' + $scope.id).then(function (data) {
+                console.log(data.data && angular.isArray(data.data));
+                console.log(data);
+                if (data.data && angular.isArray(data.data.data)) {
+                    $scope.tabelList = data.data.data;
+                }
+                console.log('tabelList: ', $scope.tabelList);
+            });
+        };
+
+        $scope.getEducGraphList = function(){
+            $http.get('./functions/graphic-rabot/graphic-rabot-get.php?userId=' + $scope.id).then(function (data) {
+                if (data.data && angular.isArray(data.data)) {
+                    $scope.educGraphList = data.data;
+                }
+                console.log('educGraphList: ', $scope.educGraphList);
+            });
+        };
+
+        $scope.getEducProgList = function(){
+            $http.get('./functions/education-program/education-program-get.php?userId=' + $scope.id).then(function (data) {
+                if (data.data && angular.isArray(data.data)) {
+                    $scope.educProgList = data.data;
+                }else{
+                    console.error('educProgList array null!');
+                }
+                console.log('educProgList:', $scope.educProgList);
+            });
+        };
+
+        $scope.getUserSpec = function(){
+            $http.get('./functions/user-spec/user-spec-list-get.php?userId=' + $scope.id).then(function (data) {
+                if (data.data && angular.isArray(data.data)) {
+                    $scope.userSpecs = data.data;
+                }else{
+                    console.error('userSpec array null!');
+                }
+                console.log('userSpecs:', $scope.userSpecs);
+
+            });
+        };
+
         $scope.fetchData = function () {
             const param = $window.location.search;
             if (param.length > 0) {
                 $scope.id = param.split('=')[1];
+                $scope.getTabulation();
+                $scope.getTabletingList();
+                $scope.getEducGraphList();
+                $scope.getEducProgList();
+                $scope.getUserSpec();
                 if (!$scope.userId) {
                     alert("You aren't log on! Please log in first");
                     $window.location.href = "19_login.html";
@@ -183,7 +448,50 @@
         };
         $scope.fetchData();
 
-        $scope.goToCompanies = function(){
+        $scope.getDay = function (id) {
+            var arr = [{ name: "Понедельник", id: 1 }, { name: "Вторник", id: 2 }, { name: "Среда", id: 3 }, { name: "Четверг", id: 4 }, { name: "Пятница", id: 5 }];
+            for (var i = 0; i < arr.length; i++) {
+                if (arr[i].id == id) {
+                    return arr[i].name;
+                }
+            }
+        }
+
+        $scope.getTime = function (id) {
+            var arr = [
+                { name: "09:00", id: 1 },
+                { name: "10:00", id: 2 }, { name: "11:00", id: 3 }, { name: "12:00", id: 4 }, { name: "13:00", id: 5 }, { name: "14:00", id: 6 },
+                { name: "15:00", id: 7 }, { name: "16:00", id: 8 }, { name: "17:00", id: 9 }, { name: "18:00", id: 10 }, { name: "19:00", id: 11 }
+            ];
+            for (var i = 0; i < arr.length; i++) {
+                if (arr[i].id == id) {
+                    return arr[i].name;
+                }
+            }
+        }
+
+        $scope.getSpec = function (id) {
+            for (var i = 0; i < $scope.userSpecs.length; i++) {
+                if ($scope.userSpecs[i].id === id) {
+                    return $scope.userSpecs[i].title;
+                }
+            }
+        };
+
+        $scope.getEducProg = function (id) {
+            for (var i = 0; i < $scope.educProgList.length; i++) {
+                if ($scope.educProgList[i].id === id) {
+                    const str = $scope.getSpec($scope.educProgList[i].specId) + '-' + $scope.educProgList[i].theme;
+                    return str;
+                }
+            }
+        };
+
+        $scope.openStudentList = function (id) {
+            $window.location.href = 'csn_one_uch_students.html?id=' + id;
+        }
+
+        $scope.goToCompanies = function () {
             let url = 'csn_spisok_company_by_uchid.html?id=' + $scope.id;
             window.location = url;
         }
@@ -253,6 +561,17 @@
         font-style: normal;
         line-height: normal;
         letter-spacing: 0.88px;
+        color: #252c32;
+    }
+
+    .second-header {
+        font-family: PTRootUIWeb-Regular;
+        font-size: 22px;
+        font-weight: normal;
+        font-stretch: normal;
+        font-style: normal;
+        line-height: 1.27;
+        letter-spacing: normal;
         color: #252c32;
     }
 

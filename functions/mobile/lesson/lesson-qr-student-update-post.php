@@ -6,6 +6,7 @@ $form_data = json_decode(file_get_contents("php://input"));
 
 $studentId= (int)$form_data->studentId;
 $qrText= $form_data->qrText;
+$time = $form_data->time;
 
 
 $query = "SELECT * from lesson where qrText = '$qrText'";
@@ -21,7 +22,7 @@ if($statement->execute())
     if($data){
         $lessonId = (int)$data[0]["id"];
         $query = "
-            UPDATE attendance SET status= 'attend' WHERE studentId = $studentId AND lessonId = $lessonId 
+            UPDATE attendance SET status= 'attend', time= '$time' WHERE studentId = $studentId AND lessonId = $lessonId 
           ";
         $statement = $connect->prepare($query);
         $message = '';

@@ -2,182 +2,229 @@
 <html>
 <head>
     <meta charset="utf-8">
-	<meta http-equiv="x-ua-compatible" content="ie=edge">
-	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<meta name="format-detection" content="telephone=no" />
-	<title>index</title>
-	<meta name="description" content="">
-	<meta name="Keywords" content="">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="format-detection" content="telephone=no"/>
+    <title>index</title>
+    <meta name="description" content="">
+    <meta name="Keywords" content="">
 
-	<link rel="stylesheet" href="css/style.css">
-	<link rel="stylesheet" href="fonts/icomoon/style.css">
-	<link rel="stylesheet" href="fonts/font.css">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="fonts/icomoon/style.css">
+    <link rel="stylesheet" href="fonts/font.css">
 </head>
-
 
 
 <body class="body" ng-app="tabulation" ng-controller="tabulation-ctrl">
 <script src="js/libs/jquery-3.2.1.min.js"></script>
 <script src="js/libs/jquery.formstyler.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.7.8/angular.js"></script>
-<script src="//code.jivosite.com/widget.js" data-jv-id="DOrySdjuIy" async></script><script src="js/common.js"></script>
+<script src="//code.jivosite.com/widget.js" data-jv-id="DOrySdjuIy" async></script>
+<script src="js/common.js"></script>
 
-    <aside class="aside d-flex">
+<aside class="aside d-flex">
+    <a href="/" class="logo">
+        <img src="images/logo.svg" alt="digital control">
+    </a>
+    <nav class="nav d-flex">
+        <a class="nav-a" href="02_Grafik_rabot_pravka.html">
+            <i class="icon-home"></i>
+            <span>
+                    Главная
+                </span>
+        </a>
+        <a class="nav-a" href="08_Spisok_uch.html">
+            <i class="icon-account-group"></i>
+            <span>
+                    Список учащихся
+                </span>
+        </a>
+
+        <a class="nav-a" href="uch_spisok_company.html">
+            <i class="icon-account-group"></i>
+            <span>
+                    Компании
+                </span>
+        </a>
+        <a class="nav-a" href="12_Kolichestvo_mest.html">
+            <i class="icon-clipboard"></i>
+            <span>
+                    Количество мест
+                </span>
+        </a>
+        <a class="nav-a active" href="14_Tabelirovanie_st_1.html">
+            <i class="icon-new-window"></i>
+            <span>
+                    Табелирование
+                </span>
+        </a>
+        <!--            <a class="nav-a" href="javascript:void(0)">-->
+        <!--                <i class="icon-new-window"></i>-->
+        <!--                <span>-->
+        <!--                    Это пилотный проект*!)-->
+        <!--                </span>-->
+        <!--            </a>-->
+
+    </nav>
+</aside>
+
+<section class="section user">
+    <div class="mobile align-items-center">
+        <div class="btn-mob">
+            <span></span>
+        </div>
         <a href="/" class="logo">
             <img src="images/logo.svg" alt="digital control">
         </a>
-        <nav class="nav d-flex">
-            <a class="nav-a" href="02_Grafik_rabot_pravka.html">
-                <i class="icon-home"></i>
-                <span>
-                    Главная
-                </span>
-            </a>
-            <a class="nav-a" href="08_Spisok_uch.html">
-                <i class="icon-account-group"></i>
-                <span>
-                    Список учащихся
-                </span>
-            </a>
+    </div>
+    <div class=" section__head">
 
-            <a class="nav-a" href="uch_spisok_company.html">
-                <i class="icon-account-group"></i>
-                <span>
-                    Компании
-                </span>
-            </a>
-            <a class="nav-a" href="12_Kolichestvo_mest.html">
-                <i class="icon-clipboard"></i>
-                <span>
-                    Количество мест
-                </span>
-            </a>
-            <a class="nav-a active" href="14_Tabelirovanie_st_1.html">
-                <i class="icon-new-window"></i>
-                <span>
-                    Табелирование
-                </span>
-            </a>
-<!--            <a class="nav-a" href="javascript:void(0)">-->
-<!--                <i class="icon-new-window"></i>-->
-<!--                <span>-->
-<!--                    Это пилотный проект*!)-->
-<!--                </span>-->
-<!--            </a>-->
+        <div class="row align-items-center justify-content-between">
+            <div class="section__head-h1 col-md-6 col-sm-12 d-flex align-items-center">
+                Табелирование
+            </div>
 
-        </nav>
-    </aside>
-    
-    <section class="section user">
-        <div class="mobile align-items-center">
-            <div class="btn-mob">
-                <span></span>
-            </div>
-            <a href="/" class="logo">
-                <img src="images/logo.svg" alt="digital control">
-            </a>
         </div>
-        <div class=" section__head">
-           
-            <div class="row align-items-center justify-content-between">
-                <div class="section__head-h1 col-md-6 col-sm-12 d-flex align-items-center">
-                    Табелирование
-                </div>
-                
+
+    </div>
+    <div class="section__block">
+        <div class="load">
+            <div class="load-head">
+                Табель учета успеваемости
             </div>
-            
-        </div>
-        <div class="section__block">
-            <div class="load">
-                <div class="load-head">
-                    Табель учета успеваемости
+            <div class="load-body d-flex">
+                <div class="load-left">
+                    <a href="{{serverUrl}}/fast/general/download/custom/csn/main/tableting/{{userId}}"
+                       class="btn btn-pur">
+                        <i class="icon-arrow-down"></i>
+                        Скачать табелирование
+                    </a>
                 </div>
-                <div class="load-body d-flex">
-                    <div class="load-left">
-                        <input type="file" name="file" formnovalidate file-model="file1">
-                        <span class="btn btn-big">
+            </div>
+        </div>
+        <div class="load">
+            <div class="load-head">
+                Счет фактура
+            </div>
+            <div class="load-body d-flex">
+                <div class="load-left">
+                    <input type="file" name="file" formnovalidate file-model="file2">
+                    <span class="btn btn-big">
                             <i class="icon-arrow-up"></i>
                             Загрузить
                         </span>
-                    </div>
-                    <div>
-                        {{file1.name}}
-                    </div>
+                </div>
+                <div>
+                    {{file2.name}}
                 </div>
             </div>
-            <div class="load">
-                <div class="load-head">
-                    Счет фактура
-                </div>
-                <div class="load-body d-flex">
-                    <div class="load-left">
-                        <input type="file" name="file" formnovalidate file-model="file2">
-                        <span class="btn btn-big">
-                            <i class="icon-arrow-up"></i>
-                            Загрузить
-                        </span>
-                    </div>
-                    <div>
-                        {{file2.name}}
-                    </div>
-                </div>
-            </div>
-            <div class="load">
-                <div class="load-head">
-                    Акт выполненных работ
-                </div>
-                <div class="load-body d-flex">
-                    <div class="load-left">
-                        <input type="file" name="file" formnovalidate file-model="file3">
-                        <span class="btn btn-big">
-                            <i class="icon-arrow-up"></i>
-                            Загрузить
-                        </span>
-                    </div>
-                    <div>
-                        {{file3.name}}
-                    </div>
-                </div>
-            </div>
-            <a href="" ng-click="save()" class="btn btn-pur btn-big">
-                Отправить
-            </a>
-            
-            
-            
         </div>
+        <div class="load">
+            <div class="load-head">
+                Акт выполненных работ
+            </div>
+            <div class="load-body d-flex">
+                <div class="load-left">
+                    <input type="file" name="file" formnovalidate file-model="file3">
+                    <span class="btn btn-big">
+                            <i class="icon-arrow-up"></i>
+                            Загрузить
+                        </span>
+                </div>
+                <div>
+                    {{file3.name}}
+                </div>
+            </div>
+        </div>
+        <a href="javascript:void(0)" ng-click="save()" class="btn btn-pur btn-big " ng-class="{disabled: saving}">
+            Отправить
+        </a>
+        <!--            <button ng-click="uploadFirst()">upload first</button>-->
+        <!--            -->
+    </div>
 
 
-    </section>
+</section>
 </body>
 <script>
     var app = angular.module("tabulation", []);
-    app.controller("tabulation-ctrl", function($scope, $http,$location,$window, $timeout) {
+    app.controller("tabulation-ctrl", function ($scope, $http, $location, $window, $timeout) {
         $scope.file1;
         $scope.file2;
         $scope.file3;
         $scope.userId = $window.sessionStorage.getItem('userId');
+        $scope.serverUrl = 'http://91.201.214.132:8080';
+        $scope.saving = false;
 
-        $scope.save = function(){
+        $scope.save = function () {
+            if(!$scope.saving){
+                if (!$scope.file2 || !$scope.file3) {
+                    alert('Загрузите все 2 файла для сохранения!');
+                } else {
+                    $scope.saving = true;
+                    var formData = new FormData();
+                    formData.append('file', $scope.file2);
+                    // formData = new FormData();
+                    $http({
+                        method: "POST",
+                        url: $scope.serverUrl + "/fast/userfile/uploadFile",
+                        data: formData,
+                        headers: {'Content-Type': undefined}
+                    }).then(function (data) {
+                        var firstSchet = data.data.id;
+                        formData = new FormData();
+                        formData.append('file', $scope.file3);
+                        $http({
+                            method: "POST",
+                            url: $scope.serverUrl + "/fast/userfile/uploadFile",
+                            data: formData,
+                            headers: {'Content-Type': undefined}
+                        }).then(function (response) {
+                            var secondAkt = response.data.id;
+                            $scope.saveGlobal(firstSchet,secondAkt);
+                        });
+                    });
+                }
+            }
+        };
+
+        $scope.saveGlobal = function (file1Id,file2Id) {
             $http({
-                method:"POST",
-                url:"functions/tabulation/tabulation-add-post.php",
-                data:{fileUchet:$scope.file1.name,fileSchet:$scope.file2.name,fileAkt:$scope.file3.name,userId:$scope.userId}
-            }).then(function(data){
+                method: "POST",
+                url: $scope.serverUrl + "/fast/general/save/tabulation",
+                data: {
+                    userId: $scope.userId,
+                    fileSchet: file1Id,
+                    fileAkt: file2Id
+                }
+            }).then(function (data) {
                 console.log(data);
                 $window.location.href = '17_Tabelirovanie_st_3.html';
+            });
+        }
+
+        $scope.uploadFirst = function () {
+            var formData = new FormData();
+            formData.append('file', $scope.file1);
+            $http({
+                method: "POST",
+                url: $scope.serverUrl + "/fast/userfile/uploadFile",
+                data: formData,
+                headers: {'Content-Type': undefined}
+            }).then(function (data) {
+                console.log(data);
             });
         }
     });
     app.directive('fileModel', ['$parse', function ($parse) {
         return {
             restrict: 'A',
-            link: function(scope, element, attrs) {
+            link: function (scope, element, attrs) {
                 var model = $parse(attrs.fileModel);
                 var modelSetter = model.assign;
 
-                element.bind('change', function() {
-                    scope.$apply(function() {
+                element.bind('change', function () {
+                    scope.$apply(function () {
                         modelSetter(scope, element[0].files[0]);
                     });
                 });
@@ -185,4 +232,10 @@
         };
     }]);
 </script>
+<style>
+    .disabled, .disabled:hover{
+        background-color: grey;
+        border: none;
+    }
+</style>
 </html>

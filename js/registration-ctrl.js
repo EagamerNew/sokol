@@ -1,5 +1,5 @@
 var app = angular.module("index", []);
-app.controller("registration", function($scope, $http,$location,$window, $timeout) {
+app.controller("registration", function ($scope, $http, $location, $window, $timeout) {
     $scope.user = {
         surname: '',
         name: '',
@@ -22,8 +22,14 @@ app.controller("registration", function($scope, $http,$location,$window, $timeou
     $scope.file_ustav;
     $scope.file_rekvisity;
     $scope.file_uchdocs;
+    $scope.userSpecs = [];
+    $scope.tempForSpec = {
+        title:"",
+        money:0
+    };
+    $scope.serverUrl = 'http://91.201.214.132:8080';
 
-    $scope.init = function(){
+    $scope.init = function () {
 
         $window.localStorage.removeItem('nextStep');
         $window.localStorage.removeItem('loginPage');
@@ -35,22 +41,27 @@ app.controller("registration", function($scope, $http,$location,$window, $timeou
     }
     $scope.init();
 
-    $scope.saveStep1 = function(){
+    $scope.saveStep1 = function () {
         console.log($scope.user);
     }
 
-    $scope.saveStep2 = function(){
+    $scope.saveStep2 = function () {
         console.log($scope.user);
         console.log($scope.file_ustav);
         console.log($scope.file_rekvisity);
         console.log($scope.file_uchdocs);
     }
-    
-    $scope.addSpecialization = function(){
-        $scope.user.specializations.push('');
+
+    $scope.addSpecialization = function () {
+        // $scope.user.specializations.push('');
+        $scope.userSpecs.push({
+            userId: -1,
+            title: "",
+            money: 0
+        });
     }
 
-    $scope.saveAll = function(){
+    $scope.saveAll = function () {
         var language = angular.element(document.getElementById('language'));
         var lessons = angular.element(document.getElementById('lessons'));
         var groups = angular.element(document.getElementById('groups'));
@@ -58,15 +69,17 @@ app.controller("registration", function($scope, $http,$location,$window, $timeou
         $scope.user.language = language.val();
         $scope.user.lessons = lessons.val();
         $scope.user.groups = groups.val();
-        $scope.user.srokObuch = $scope.user.srokObuch.replace('г','');
+        $scope.user.srokObuch = $scope.user.srokObuch.replace('г', '');
         $scope.user.file_ustav = $scope.file_ustav.name;
         $scope.user.file_rekvisity = $scope.file_rekvisity.name;
         $scope.user.file_uchdocs = $scope.file_uchdocs.name;
+        $scope.user.specialization = $scope.tempForSpec.title;
+        $scope.userSpecs.push($scope.tempForSpec);
         console.log($scope.user);
         $scope.register();
     }
 
-    $scope.register = function(){
+    $scope.register = function () {
         // $scope.user.file_uchdocs = $scope.file_uchdocs;
         // $scope.user.file_rekvisity = $scope.file_rekvisity;
         // $scope.user.file_ustav = $scope.file_ustav;
@@ -74,43 +87,54 @@ app.controller("registration", function($scope, $http,$location,$window, $timeou
         //     var temp = val.replace(',','');
         //     return temp;
         // }).join(',');
-        console.log($scope.user);
+        var request = {
+            main: $scope.user,
+            userSpecList: $scope.userSpecs
+        };
+        console.log('tosave:' , request);
         $http({
-            method:"POST",
-            url:"functions/registration.php",
-            data:$scope.user
-           }).then(function(data){
-                console.log(data);
-                console.log(parseInt(data.data.replace(' ','')));
-                var insertedId = parseInt(data.data.replace(' ',''));
-                console.log('crassavchik' + $scope.user.email);
-                // $cookies.put('email',$scope.user.email);
-                $window.sessionStorage.setItem('email',$scope.user.email);
-                $window.sessionStorage.setItem('userId',insertedId);
-                $scope.saveUserSpecs(insertedId);
-                 // $window.location.href = 'thanks.html';
-            });
+            method: "POST",
+            url: $scope.serverUrl + "/fast/general/save/mainregcustom",
+            data: request
+        }).then(function (data) {
+            console.log(data);
+            if(data.data && data.data.data){
+                $window.sessionStorage.setItem('email', $scope.user.email);
+                $window.sessionStorage.setItem('userId', data.data.data.id);
+                $window.location.href = 'thanks.html';
+            }else{
+                alert("Ошибка: " + data.data.error_description);
+            }
+            // console.log(parseInt(data.data.replace(' ', '')));
+            // var insertedId = parseInt(data.data.replace(' ', ''));
+            // console.log('crassavchik' + $scope.user.email);
+            // // $cookies.put('email',$scope.user.email);
+            // $window.sessionStorage.setItem('email', $scope.user.email);
+            // $window.sessionStorage.setItem('userId', insertedId);
+            // $scope.saveUserSpecs(insertedId);
+            // $window.location.href = 'thanks.html';
+        });
     }
 
-    $scope.toLogin = function(){
+    $scope.toLogin = function () {
 
         $window.location.href = '19_login.html';
     }
 
-    $scope.saveUserSpecs = function(id){
+    $scope.saveUserSpecs = function (id) {
         let values = '(';
-        $scope.user.specializations.map(val=>{
+        $scope.user.specializations.map(val => {
             values = values + id + ",'" + val + "'),(";
         });
-        values += id + ",'"+ $scope.user.specialization + "')";
+        values += id + ",'" + $scope.user.specialization + "')";
         console.log('specs: ', values);
         $http({
-            method:"POST",
-            url:"functions/user-spec/user-spec-post.php",
-            data:{specValues: values}
-        }).then(function(data){
+            method: "POST",
+            url: "functions/user-spec/user-spec-post.php",
+            data: {specValues: values}
+        }).then(function (data) {
             console.log(data);
-            console.log('specValues:' , values);
+            console.log('specValues:', values);
             $timeout(function () {
                 $window.location.href = 'thanks.html';
             }, 120);
@@ -138,22 +162,22 @@ app.controller("registration", function($scope, $http,$location,$window, $timeou
     //     });
     // }
 
-    $scope.onSelectChange = function(){
+    $scope.onSelectChange = function () {
         console.log('hello');
     }
 });
 app.directive('fileModel', ['$parse', function ($parse) {
     return {
-       restrict: 'A',
-       link: function(scope, element, attrs) {
-          var model = $parse(attrs.fileModel);
-          var modelSetter = model.assign;
-          
-          element.bind('change', function() {
-             scope.$apply(function() {
-                modelSetter(scope, element[0].files[0]);
-             });
-          });
-       }
+        restrict: 'A',
+        link: function (scope, element, attrs) {
+            var model = $parse(attrs.fileModel);
+            var modelSetter = model.assign;
+
+            element.bind('change', function () {
+                scope.$apply(function () {
+                    modelSetter(scope, element[0].files[0]);
+                });
+            });
+        }
     };
- }]);
+}]);

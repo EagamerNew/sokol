@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="format-detection" content="telephone=no"/>
+    <title>index</title>
+    <meta name="description" content="">
+    <meta name="Keywords" content="">
+
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="fonts/icomoon/style.css">
+    <link rel="stylesheet" href="fonts/font.css">
+</head>
+
+
+<body class="body" ng-app="get-list-participant" ng-controller="participant-list">
+<script src="js/libs/jquery-3.2.1.min.js"></script>
+<script src="js/libs/jquery.formstyler.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.7.8/angular.js"></script>
+<script src="//code.jivosite.com/widget.js" data-jv-id="DOrySdjuIy" async></script>
+<script src="js/common.js"></script>
+<aside class="aside d-flex">
+    <a href="/" class="logo">
+        <img src="images/logo.svg" alt="digital control">
+    </a>
+    <nav class="nav d-flex">
+        <a class="nav-a" href="csn_main.html">
+            <i class="icon-home"></i>
+            <span>
+                    Главная
+                </span>
+        </a>
+        <a class="nav-a active" href="csn_list_uch.html">
+            <img src="images/school-colored.svg" style="width:18px;" alt="">
+            &nbsp;
+            &nbsp;
+            &nbsp;
+            <span>
+                    Учебные центры
+                </span>
+        </a>
+        <a class="nav-a" href="csn_list_students.html">
+            <i class="icon-account-group"></i>
+            <span>
+                    Учащиеся
+                </span>
+        </a>
+
+    </nav>
+</aside>
+
+<section class="section user">
+    <div class="mobile align-items-center">
+        <div class="btn-mob">
+            <span></span>
+        </div>
+        <a href="/" class="logo">
+            <img src="images/logo.svg" alt="digital control">
+        </a>
+    </div>
+
+    <div class="container_ section__head">
+
+        <div class="d-flex align-items-center justify-content-between">
+            <div class="section__head-h1  d-flex align-items-center">
+                <img src="images/arrow-left.svg" style="cursor: pointer;" ng-click="goBack()" alt="digital control">
+                &nbsp;
+                Учащиеся {{main.uchcenter}}
+
+<!--                <a href="05_Dobavit_uch_st_1.html" class="btn btn-pur">-->
+<!--                    <i class="icon-add"></i>-->
+<!--                    Добавить-->
+<!--                </a>-->
+            </div>
+
+            <div class=" d-flex justify-content-end align-items-center">
+<!--                <label class="search-input">-->
+<!--                    <input type="search" placeholder="Поиск…" ng-model="search">-->
+<!--                    <i class="icon-search"></i>-->
+<!--                </label>-->
+                <a href="" class="filter">
+                    <i class="icon-filter"></i>
+                </a>
+            </div>
+        </div>
+
+    </div>
+    <div class="container_ section__block table">
+        <div class="table-tab">
+            <div class=" table-head table-head-list table-head-sort">
+                <div class="d-flex">
+                    <div class="colo ">
+                        <label class="flex">
+                            <!--                                    <input type="checkbox"><span></span>-->
+                            Учащийся
+                            <!--                                    <i class="icon-angle-arrow-down"></i>-->
+                        </label>
+
+
+                    </div>
+                    <div class="colo ">
+                        Специализация
+                        <!--                                <i class="icon-angle-arrow-down"></i>-->
+                    </div>
+                    <div class="colo ">
+                        Дата регистрации
+                        <!--                                <i class="icon-angle-arrow-down"></i>-->
+                    </div>
+                    <div class="colo ">
+                        Успеваемость
+                        <!--                                <i class="icon-angle-arrow-down"></i>-->
+                    </div>
+                    <div class="colo ">
+                        Профиль
+                    </div>
+                </div>
+            </div>
+            <div class="table-body table-body-list table-body-bg" ng-if="participants"
+                 ng-repeat="participant in participants | filter: {fullName: search}">
+
+                <div class="d-flex">
+                    <div class="colo ">
+                        <label class="flex">
+                            <!--                                        <input type="checkbox"><span></span>-->
+                            {{participant.fullName}}
+                        </label>
+                    </div>
+                    <div class="colo ">
+                        {{getSpec(participant.specId)}}
+                    </div>
+                    <div class="colo ">
+                        {{participant.created}}
+                    </div>
+                    <div class="colo  d-flex">
+                        <div class="user__lesson-line d-flex">
+                            <div class="user__lesson-line-div user__lesson-line-green"
+                                 ng-style="getStyle(participant.attendance)">
+
+                            </div>
+                            <div class="user__lesson-line-div">
+
+                            </div>
+                        </div>
+                        {{participant.attendance + '%'}}
+                    </div>
+                    <div class="colo ">
+                        <a href="csn_uch_one_student.html?id={{participant.id}}" class="btn btn-white-pur btn-big-text">
+                            Открыть
+                        </a>
+                    </div>
+                </div>
+                <!--                            <div class="d-flex">-->
+                <!--                                <div class="colo ">-->
+                <!--                                    <label class="flex">-->
+                <!--                                        <input type="checkbox"><span></span>-->
+                <!--                                        Наурызбеков Бауржан Сагиевич-->
+                <!--                                    </label>-->
+
+
+                <!--                                </div>-->
+                <!--                                <div class="colo ">-->
+                <!--                                    Автомеханик-->
+                <!--                                </div>-->
+                <!--                                <div class="colo ">-->
+                <!--                                    14.08.2018-->
+                <!--                                </div>-->
+                <!--                                <div class="colo  d-flex">-->
+                <!--                                    <div class="user__lesson-line d-flex">-->
+                <!--                                        <div class="user__lesson-line-div user__lesson-line-green" style="background: #df443a;min-width:20%">-->
+                <!--                                            -->
+                <!--                                        </div>-->
+                <!--                                        <div class="user__lesson-line-div">-->
+                <!--                                            -->
+                <!--                                        </div>-->
+                <!--                                    </div>-->
+                <!--                                    20%-->
+                <!--                                </div>-->
+                <!--                                <div class="colo ">-->
+                <!--                                    <a href="07_Uch.html" class="btn btn-white-pur btn-big-text">-->
+                <!--                                        Открыть-->
+                <!--                                    </a>-->
+                <!--                                </div>-->
+                <!--                            </div>-->
+                <!--                            -->
+
+            </div>
+        </div>
+    </div>
+
+
+</section>
+</body>
+<script>
+    var app = angular.module("get-list-participant", []);
+    app.controller("participant-list", function ($scope, $http, $location, $window, $timeout, $filter) {
+        $scope.specs = [];
+        $scope.greenStyle = {'min-width': '26%'};
+        $scope.yellowStyle = {'background': '#eec643', 'min-width': '26%'};
+        $scope.redStyle = {'background': '#df443a', 'min-width': '26%'};
+        $scope.userId;
+        $scope.participants = [];
+        $scope.search;
+        $scope.serverUrl = 'http://91.201.214.132:8080';
+        $scope.main = {};
+
+        $scope.fetchData = function () {
+            const param = $window.location.search;
+            if (param.length > 0) {
+                $scope.userId = param.split('=')[1];
+            }else{
+                alert("Что-то пошло не так. Возвращаемся назад...");
+                $window.location.href = "csn_list_uch.html";
+            }
+            $http.get('./functions/participant/participant-list-get.php?userId=' + $scope.userId).then(function (data) {
+                console.log(data);
+                if (data.data && angular.isArray(data.data)) {
+                    $scope.participants = data.data;
+                    for (let i = 0; i < $scope.participants.length; i++) {
+                        let participant = $scope.participants[i];
+                        $scope.participants[i].fullName = participant.surname + ' ' + participant.name + ' ' + participant.lastname;
+                        $scope.participants[i].attendance = $scope.getAttendPerc(participant);
+                    }
+                }
+            });
+            $http.get($scope.serverUrl + '/fast/general/read/main/one/' + $scope.userId).then(function (data) {
+                console.log('main: ', data);
+                if(data.data){
+                    $scope.main = data.data.data;
+                }
+            })
+        };
+        $scope.fetchData();
+
+        $scope.getUserSpec = function () {
+            $http.get('./functions/user-spec/user-spec-list-get.php?userId=' + $scope.userId).then(function (data) {
+                console.log(data);
+                $scope.changingId = -1;
+                if (data.data && angular.isArray(data.data)) {
+                    $scope.specs = data.data;
+                } else {
+                    console.error('userSpec array null!');
+                }
+            });
+        }
+        $scope.getUserSpec();
+
+        $scope.getAttendPerc = function (participant) {
+            var all = parseInt(participant.absent) + parseInt(participant.attend);
+            if (all === 0) {
+                return 0;
+            }
+            return ($scope.participant.attend / all) * 100;
+        }
+
+        $scope.getStyle = function (perc) {
+            if (perc >= 50) {
+                var green = $scope.greenStyle;
+                green['min-width'] = perc + '%';
+                return green;
+            } else if (perc >= 25 && perc < 50) {
+                var yellow = $scope.yellowStyle;
+                yellow['min-width'] = perc + '%';
+                return yellow;
+            } else {
+                var red = $scope.redStyle;
+                red['min-width'] = perc + '%';
+                return red;
+            }
+        };
+
+        $scope.goBack = function(){
+            $window.location.href = 'csn_one_uch.html?id=' + $scope.userId;
+        };
+
+        $scope.getSpec = function (id) {
+            for (var i = 0; i < $scope.specs.length; i++) {
+                if ($scope.specs[i].id == id) {
+                    return $scope.specs[i].title;
+                }
+            }
+        }
+    });
+</script>
+</html>
